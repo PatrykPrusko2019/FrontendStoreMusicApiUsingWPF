@@ -7,23 +7,24 @@
         mc:Ignorable="d"
         Title="Register" Height="450" Width="800">
     <Grid Background="#008080">
-        <Button Content="Add new user" HorizontalAlignment="Left" Margin="400,307,0,0" VerticalAlignment="Top" Click="Button_CreateNewAccount"/>
+        <TextBox Name="RegisterFirstName" HorizontalAlignment="Left" Margin="400,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="RegisterLastName" HorizontalAlignment="Left" Margin="400,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="RegisterEmail" HorizontalAlignment="Left" Margin="400,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="RegisterPassword" HorizontalAlignment="Left" Margin="400,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="RegisterConfirmPassword" HorizontalAlignment="Left" Margin="400,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="RegisterNationality" HorizontalAlignment="Left" Margin="400,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="RegisterDateOfBirth" HorizontalAlignment="Left" Margin="400,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="RegisterRole" HorizontalAlignment="Left" Margin="400,269,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="RegisterFirstName" HorizontalAlignment="Left" Margin="400,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="RegisterEmail" HorizontalAlignment="Left" Margin="400,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="317,108,0,0" TextWrapping="Wrap" Text="FIRST NAME" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="356,270,0,0" TextWrapping="Wrap" Text="ROLE" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="303,247,0,0" TextWrapping="Wrap" Text="DATE OF BIRTH" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="309,224,0,0" TextWrapping="Wrap" Text="NATIONALITY" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="267,200,0,0" TextWrapping="Wrap" Text="CONFIRM PASSWORD" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="321,177,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="349,154,0,0" TextWrapping="Wrap" Text="EMAIL" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="321,132,0,0" TextWrapping="Wrap" Text="LAST NAME" VerticalAlignment="Top"/>
-        <Button Content="Return to Login" HorizontalAlignment="Left" Margin="400,65,0,0" VerticalAlignment="Top" Click="Button_ReturnToLogin"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="317,108,0,0" TextWrapping="Wrap" Text="FIRST NAME" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,132,0,0" TextWrapping="Wrap" Text="LAST NAME" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="349,154,0,0" TextWrapping="Wrap" Text="EMAIL" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,177,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="267,200,0,0" TextWrapping="Wrap" Text="CONFIRM PASSWORD" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="309,224,0,0" TextWrapping="Wrap" Text="NATIONALITY" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="303,247,0,0" TextWrapping="Wrap" Text="DATE OF BIRTH" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="356,270,0,0" TextWrapping="Wrap" Text="ROLE" VerticalAlignment="Top"/>
+        <Button Content="Add new user" HorizontalAlignment="Left" Margin="422,306,0,0" VerticalAlignment="Top" Click="Button_CreateNewAccount" RenderTransformOrigin="0.889,0.486"/>
+        <Button Content="Return to Login" HorizontalAlignment="Left" Margin="417,65,0,0" VerticalAlignment="Top" Click="Button_ReturnToLogin"/>
+        <Button x:Name="Button_Clear" Content="Clear" HorizontalAlignment="Left" Margin="540,185,0,0" VerticalAlignment="Top" Click="Button_Clear_Click"/>
     </Grid>
 </Window>
