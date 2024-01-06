@@ -1,2 +1,2 @@
-Frontend WPF application for web store music Api application 
+Frontend WPF application for Store Music Api application 
 
