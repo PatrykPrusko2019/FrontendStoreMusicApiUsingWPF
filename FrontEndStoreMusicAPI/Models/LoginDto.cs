@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrontEndStoreMusicAPI.Models
 {
-    class LoginModel
+    class LoginDto
     {
         public string Email { get; set; }
         public string Password { get; set; }

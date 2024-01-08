@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +31,18 @@ namespace FrontEndStoreMusicAPI.View
             Register register = new Register();
             this.Visibility = Visibility.Hidden;
             register.Show();
+        }
+
+        private void Button_SignIn(object sender, RoutedEventArgs e)
+        {
+            LoginDto loginDto = new LoginDto()
+            {
+                Email = LoginEmail.Text,
+                Password = LoginPassword.Text
+            };
+            ILoginService loginService = new LoginService();
+            loginService.LoginUser(loginDto);
+
         }
     }
 }

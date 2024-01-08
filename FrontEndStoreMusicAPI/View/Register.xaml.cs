@@ -1,6 +1,6 @@
-﻿using FrontEndStoreMusicAPI.Services;
+﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.View;
-using MusicStoreApi.Models;
 using System;
 using System.Windows;
 
