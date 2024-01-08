@@ -14,7 +14,7 @@
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,176,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100">
             <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/LogoMusicStore/photo_logo.png" />
+                <BitmapImage DecodePixelWidth="300" UriSource="/Images/photo_logo.png" />
             </Image.Source>
         </Image>
         <TextBox HorizontalAlignment="Left" Margin="402,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>

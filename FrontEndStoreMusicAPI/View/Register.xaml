@@ -28,7 +28,7 @@
         <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,369,0,0" VerticalAlignment="Top" Width="150" Click="Button_Clear_Click"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100">
             <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/LogoMusicStore/photo_logo.png" />
+                <BitmapImage DecodePixelWidth="300" UriSource="/Images/photo_logo.png" />
             </Image.Source>
         </Image>
     </Grid>
