@@ -30,6 +30,8 @@ namespace FrontEndStoreMusicAPI.Services
                 }
                 else
                 {
+                    int startIndex = responseBody.IndexOf("\"errors\"", StringComparison.OrdinalIgnoreCase);
+                    if (startIndex != -1) responseBody = responseBody.Substring(startIndex);
                     MessageBox.Show("Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nErrors: " + responseBody);
                 }
             }
