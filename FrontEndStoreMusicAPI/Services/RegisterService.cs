@@ -36,12 +36,12 @@ namespace FrontEndStoreMusicAPI.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Added new user, " + ((int)response.StatusCode) + ", \n");
+                    MessageBox.Show("Added new user" + "\nStatus code: " +((int)response.StatusCode) + " -> " + response.StatusCode);
 
                 }
                 else
                 {
-                    MessageBox.Show("invalid one of values, statusCode: " + ((int)response.StatusCode) + "\n" + responseBody);
+                    MessageBox.Show("Invalid one of values, Status Code: " + ((int)response.StatusCode) + " -> " + response.StatusCode + "\nDETAILS OF WHAT TO CORRECT: " + responseBody);
                 }
             }
 

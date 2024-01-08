@@ -7,11 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindowLogin" Height="450" Width="800">
     <Grid Background="#008080">
-        <Button Content="Register -> Create new account" HorizontalAlignment="Left" Margin="345,217,0,0" VerticalAlignment="Top" Click="Button_Register"/>
-        <Button Name="Login" Content="Login" HorizontalAlignment="Left" Margin="414,173,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="400,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="400,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="317,108,0,0" TextWrapping="Wrap" Text="LOGIN (EMAIL)" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="321,132,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
+        <Button Content="Register" Height="30" HorizontalAlignment="Left" Margin="411,277,0,0" VerticalAlignment="Top" Width="150" Click="Button_Register"/>
+        <Button Content="Sign in" Height="30" HorizontalAlignment="Left" Margin="411,217,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="402,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
+        <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="350,141,0,0" TextWrapping="Wrap" Text="EMAIL" VerticalAlignment="Top"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,176,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="300" UriSource="/LogoMusicStore/photo_logo.png" />
+            </Image.Source>
+        </Image>
+        <TextBox HorizontalAlignment="Left" Margin="402,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
     </Grid>
 </Window>
