@@ -29,16 +29,16 @@ namespace FrontEndStoreMusicAPI
         private void Button_CreateNewAccount(object sender, RoutedEventArgs e)
         {
             int registerRole = 0;
-            if ( DateTime.TryParse(RegisterDateOfBirth.Text, out DateTime dateOfBirth) &&
-                int.TryParse(RegisterRole.Text, out registerRole) && registerRole > 0 && registerRole < 4  ) 
+            if (DateTime.TryParse(RegisterDateOfBirth.Text, out DateTime dateOfBirth) &&
+                int.TryParse(RegisterRole.Text, out registerRole) && registerRole > 0 && registerRole < 4)
             {
                 RegisterUserDto registerUserDto = new RegisterUserDto()
                 {
                     FirstName = RegisterFirstName.Text,
                     LastName = RegisterLastName.Text,
                     Email = RegisterEmail.Text,
-                    Password = RegisterPassword.Text,
-                    ConfirmPassword = RegisterConfirmPassword.Text,
+                    Password = RegisterPassword.Password,
+                    ConfirmPassword = RegisterConfirmPassword.Password,
                     Nationality = RegisterNationality.Text,
                     DateOfBirth = dateOfBirth,
                     RoleId = registerRole

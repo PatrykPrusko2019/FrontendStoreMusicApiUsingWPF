@@ -34,11 +34,11 @@ namespace FrontEndStoreMusicAPI.Services
 
                 HttpResponseMessage response = client.PostAsJsonAsync("api/account/register", registerUserDto).Result;
                 string responseBody = await response.Content.ReadAsStringAsync();
-                responseBody = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Added new user" + "\nStatus code: " +((int)response.StatusCode) + " -> " + response.StatusCode);
+                    Utils.ClearValuesOfUserRegisterWindow();
                 }
                 else
                 {

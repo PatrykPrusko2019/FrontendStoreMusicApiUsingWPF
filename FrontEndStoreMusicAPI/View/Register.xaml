@@ -10,9 +10,9 @@
         <TextBox Name="RegisterFirstName" HorizontalAlignment="Left" Margin="400,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
         <TextBox Name="RegisterLastName" HorizontalAlignment="Left" Margin="400,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
         <TextBox Name="RegisterEmail" HorizontalAlignment="Left" Margin="400,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
-        <TextBox Name="RegisterPassword" HorizontalAlignment="Left" Margin="400,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
-        <TextBox Name="RegisterConfirmPassword" HorizontalAlignment="Left" Margin="400,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
-        <TextBox Name="RegisterNationality" HorizontalAlignment="Left" Margin="400,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <PasswordBox Name="RegisterPassword" MaxLength="32" PasswordChar="*" HorizontalAlignment="Left" Margin="400,191,0,0" VerticalAlignment="Top" Width="194"/>
+        <PasswordBox Name="RegisterConfirmPassword" MaxLength="32" PasswordChar="*" HorizontalAlignment="Left" Margin="400,214,0,0" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="RegisterNationality" HorizontalAlignment="Left" Margin="400,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
         <TextBox Name="RegisterDateOfBirth" HorizontalAlignment="Left" Margin="400,260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
         <TextBox Name="RegisterRole" HorizontalAlignment="Left" Margin="400,284,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="319,123,0,0" TextWrapping="Wrap" Text="FIRST NAME" VerticalAlignment="Top"/>
