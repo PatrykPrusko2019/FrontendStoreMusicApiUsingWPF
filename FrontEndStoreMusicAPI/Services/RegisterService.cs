@@ -1,5 +1,6 @@
 ﻿
 using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Utilites;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -30,7 +31,7 @@ namespace FrontEndStoreMusicAPI.Services
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Added new user" + "\nStatus code: " +(int)response.StatusCode + " -> " + response.StatusCode);
-
+                    Utils.ClearValuesOfUserRegisterWindow();
                 }
                 else
                 {
