@@ -1,4 +1,5 @@
 ﻿using FrontEndStoreMusicAPI.Services;
+using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View;
 using MusicStoreApi.Models;
 using System;
@@ -11,10 +12,11 @@ namespace FrontEndStoreMusicAPI
     /// </summary>
     public partial class Register : Window
     {
+        public static Register r;
         public Register()
         {
             InitializeComponent();
-
+            r = this;
         }
 
         private void Button_ReturnToLogin(object sender, RoutedEventArgs e)
@@ -54,14 +56,7 @@ namespace FrontEndStoreMusicAPI
 
         private void Button_Clear_Click(object sender, RoutedEventArgs e)
         {
-            RegisterFirstName.Clear();
-            RegisterLastName.Clear();
-            RegisterEmail.Clear();
-            RegisterPassword.Clear();
-            RegisterConfirmPassword.Clear();
-            RegisterNationality.Clear();
-            RegisterDateOfBirth.Clear();
-            RegisterRole.Clear();
+            Utils.ClearValuesOfUserRegisterWindow();
         }
     }
 }
