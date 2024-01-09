@@ -12,7 +12,7 @@
         <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="350,141,0,0" TextWrapping="Wrap" Text="EMAIL" VerticalAlignment="Top"/>
         <TextBox Name="LoginEmail" HorizontalAlignment="Left" Margin="402,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,176,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
-        <TextBox Name="LoginPassword" HorizontalAlignment="Left" Margin="402,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <PasswordBox Name="LoginPassword" MaxLength="32" PasswordChar="*" HorizontalAlignment="Left" Margin="402,175,0,0" VerticalAlignment="Top" Width="194"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="300" UriSource="/Images/photo_logo.png" />

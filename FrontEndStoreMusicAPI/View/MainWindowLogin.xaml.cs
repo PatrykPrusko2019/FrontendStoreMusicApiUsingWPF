@@ -38,7 +38,7 @@ namespace FrontEndStoreMusicAPI.View
             LoginDto loginDto = new LoginDto()
             {
                 Email = LoginEmail.Text,
-                Password = LoginPassword.Text
+                Password = LoginPassword.Password
             };
             ILoginService loginService = new LoginService();
             loginService.LoginUser(loginDto);
