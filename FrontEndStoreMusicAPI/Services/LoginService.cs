@@ -5,17 +5,18 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace FrontEndStoreMusicAPI.Services
 {
     interface ILoginService
     {
-        void LoginUser(LoginDto loginDto); 
+        Task<string> LoginUser(LoginDto loginDto); 
     }
     class LoginService : ILoginService
     {
-        public async void LoginUser(LoginDto loginDto)
+        public async Task<string> LoginUser(LoginDto loginDto)
         {
             using (HttpClient client = new HttpClient()) 
             {
@@ -25,7 +26,8 @@ namespace FrontEndStoreMusicAPI.Services
 
                 if (response.IsSuccessStatusCode) 
                 {
-                    MessageBox.Show("Generated Token JWT: " + responseBody + "\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode);
+                    // MessageBox.Show("Generated Token JWT: " + responseBody + "\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode);
+                    return responseBody;
                 }
                 else
                 {
@@ -33,6 +35,7 @@ namespace FrontEndStoreMusicAPI.Services
                     if (startIndex != -1) responseBody = responseBody.Substring(startIndex);
                     MessageBox.Show("Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nErrors: " + responseBody);
                 }
+                return "";
             }
             
         }

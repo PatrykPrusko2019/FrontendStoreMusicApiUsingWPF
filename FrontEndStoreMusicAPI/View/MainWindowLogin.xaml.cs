@@ -41,7 +41,14 @@ namespace FrontEndStoreMusicAPI.View
                 Password = LoginPassword.Password
             };
             ILoginService loginService = new LoginService();
-            loginService.LoginUser(loginDto);
+            var responseBody = loginService.LoginUser(loginDto);
+
+            string tokenJWT = responseBody.Result;
+
+            //if everything is ok, go to window music store for given user
+            WindowMusicStore windowMusicStore = new WindowMusicStore(tokenJWT);
+            this.Visibility = Visibility.Hidden;
+            windowMusicStore.Show();
         }
     }
 }

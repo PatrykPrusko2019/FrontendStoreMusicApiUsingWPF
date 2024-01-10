@@ -24,11 +24,11 @@
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="304,261,0,0" TextWrapping="Wrap" Text="DATE OF BIRTH" VerticalAlignment="Top"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="356,285,0,0" TextWrapping="Wrap" Text="ROLE" VerticalAlignment="Top"/>
         <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,321,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateNewAccount" RenderTransformOrigin="0.889,0.486" ToolTip="create and register new user"/>
-        <Button Content="Return" Height="30" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="150" Click="Button_ReturnToLogin" ToolTip="return to LoginWindow"/>
+        <Button Content="Return" Height="30" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="150" Click="Button_ReturnToLogin" ToolTip="return to Login"/>
         <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,369,0,0" VerticalAlignment="Top" Width="150" Click="Button_Clear_Click" ToolTip="clear all values"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100">
             <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/View/photo_logo.png"/>
+                <BitmapImage DecodePixelWidth="300" UriSource="/Images/photo_logo.png"/>
             </Image.Source>
         </Image>
     </Grid>
