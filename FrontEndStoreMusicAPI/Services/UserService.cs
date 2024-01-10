@@ -30,8 +30,7 @@ namespace FrontEndStoreMusicAPI.Services
 
                 var response = await client.GetAsync(@$"api/login/user/{email}");
                 var user = await response.Content.ReadFromJsonAsync<UserDto>();
-                if (user.DateOfBirth == null) user.DateOfBirth = new DateTime();
-
+                
                 if (response.IsSuccessStatusCode)
                 {
                     return user;
