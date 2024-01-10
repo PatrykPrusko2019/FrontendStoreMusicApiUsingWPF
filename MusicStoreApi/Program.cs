@@ -58,6 +58,7 @@ public class Program
         builder.Services.AddScoped<IAlbumService, AlbumService>();
         builder.Services.AddScoped<ISongService, SongService>();
         builder.Services.AddScoped<IAccountService, AccountService>();
+        builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
