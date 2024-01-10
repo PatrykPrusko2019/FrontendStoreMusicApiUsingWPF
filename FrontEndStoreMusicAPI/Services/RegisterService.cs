@@ -21,17 +21,15 @@ namespace FrontEndStoreMusicAPI.Services
         {
 
             using (HttpClient client = new HttpClient())
-            { 
-                client.BaseAddress = new Uri("https://localhost:7195");
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = client.PostAsJsonAsync("api/account/register", registerUserDto).Result;
+            {
+                const string requestUri = @"api/account/register";
+                HttpResponseMessage response = HelperHttpClient.GetHttpClient(client, registerUserDto, requestUri);
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Added new user" + "\nStatus code: " +(int)response.StatusCode + " -> " + response.StatusCode);
-                    Utils.ClearValuesOfUserRegisterWindow();
+                    Reset.ClearValuesOfUserRegisterWindow();
                 }
                 else
                 {

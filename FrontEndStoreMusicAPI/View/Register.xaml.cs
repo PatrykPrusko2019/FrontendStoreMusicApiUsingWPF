@@ -60,7 +60,7 @@ namespace FrontEndStoreMusicAPI
 
         private void Button_Clear_Click(object sender, RoutedEventArgs e)
         {
-            Utils.ClearValuesOfUserRegisterWindow();
+            Reset.ClearValuesOfUserRegisterWindow();
         }
     }
 }

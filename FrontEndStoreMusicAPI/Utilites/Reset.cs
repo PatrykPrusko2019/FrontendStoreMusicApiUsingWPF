@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrontEndStoreMusicAPI.Utilites
 {
-    public static class Utils
+    public static class Reset
     {
         public static void ClearValuesOfUserRegisterWindow()
         {
@@ -18,6 +18,9 @@ namespace FrontEndStoreMusicAPI.Utilites
             Register.r.RegisterNationality.Clear();
             Register.r.RegisterDateOfBirth.Clear();
             Register.r.RegisterRole.Clear();
+           
         }
+
+
     }
 }

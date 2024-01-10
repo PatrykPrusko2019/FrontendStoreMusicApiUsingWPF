@@ -42,7 +42,6 @@ namespace FrontEndStoreMusicAPI.View
             };
             ILoginService loginService = new LoginService();
             loginService.LoginUser(loginDto);
-
         }
     }
 }
