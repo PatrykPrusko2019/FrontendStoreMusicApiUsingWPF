@@ -23,7 +23,7 @@ namespace FrontEndStoreMusicAPI.Services
             using (HttpClient client = new HttpClient())
             {
                 const string requestUri = @"api/account/register";
-                HttpResponseMessage response = HelperHttpClient.GetHttpClient(client, registerUserDto, requestUri);
+                HttpResponseMessage response = HelperHttpClient.GetHttpPost(client, registerUserDto, requestUri);
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)

@@ -1,5 +1,6 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace FrontEndStoreMusicAPI.View
             register.Show();
         }
 
-        private void Button_SignIn(object sender, RoutedEventArgs e)
+        private async void Button_SignIn(object sender, RoutedEventArgs e)
         {
             LoginDto loginDto = new LoginDto()
             {
@@ -42,11 +43,18 @@ namespace FrontEndStoreMusicAPI.View
             };
             ILoginService loginService = new LoginService();
             var responseBody = loginService.LoginUser(loginDto);
-
             string tokenJWT = responseBody.Result;
+            if (tokenJWT.IsNullOrEmpty()) return;
+
+            //get detailed information about given user
+            IUserService userService = new UserService();
+            var loginUser = userService.GetUserByEmail(loginDto.Email);
+
+            UserDto user = await loginUser;
+            user.TokenJWT = tokenJWT;
 
             //if everything is ok, go to window music store for given user
-            WindowMusicStore windowMusicStore = new WindowMusicStore(tokenJWT);
+            WindowMusicStore windowMusicStore = new WindowMusicStore(user);
             this.Visibility = Visibility.Hidden;
             windowMusicStore.Show();
         }

@@ -21,12 +21,11 @@ namespace FrontEndStoreMusicAPI.Services
             using (HttpClient client = new HttpClient()) 
             {
                 const string requestUri = @"api/account/login";
-                HttpResponseMessage response = HelperHttpClient.GetHttpClient(client, loginDto, requestUri);
+                HttpResponseMessage response = HelperHttpClient.GetHttpPost(client, loginDto, requestUri);
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode) 
                 {
-                    // MessageBox.Show("Generated Token JWT: " + responseBody + "\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode);
                     return responseBody;
                 }
                 else

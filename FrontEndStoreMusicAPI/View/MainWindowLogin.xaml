@@ -14,10 +14,6 @@
         <TextBox Name="LoginEmail" HorizontalAlignment="Left" Margin="402,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct email format: something@something"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,176,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>
         <PasswordBox Name="LoginPassword" MaxLength="32" PasswordChar="*" HorizontalAlignment="Left" Margin="402,175,0,0" VerticalAlignment="Top" Width="194" ToolTip="Password must have a minimum of 6 characters"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/Images/photo_logo.png"/>
-            </Image.Source>
-        </Image>
+        <Image x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/Images/photo_logo.png"/>
     </Grid>
 </Window>

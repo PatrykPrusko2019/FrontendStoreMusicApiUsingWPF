@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEndStoreMusicAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,12 @@ namespace FrontEndStoreMusicAPI.View
     /// </summary>
     public partial class WindowMusicStore : Window
     {
-        private readonly string TOKEN_JWT;
-        public WindowMusicStore(string tokenJWT)
+        private UserDto detailsUser;
+        public WindowMusicStore(UserDto loginUser)
         {
             InitializeComponent();
-            TOKEN_JWT = tokenJWT;
+            detailsUser = loginUser;
+            DescriptionWindowMusicStore.Text += $" {detailsUser.FirstName} {detailsUser.LastName}";
         }
 
 

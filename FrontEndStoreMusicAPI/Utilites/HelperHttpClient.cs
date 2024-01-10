@@ -13,13 +13,15 @@ namespace FrontEndStoreMusicAPI.Utilites
      static class HelperHttpClient
     {
         private const string uri = @"https://localhost:7195";
-        public static HttpResponseMessage GetHttpClient<T>(HttpClient client, T modelDto, string requestUri)
+        public static HttpResponseMessage GetHttpPost<T>(HttpClient client, T modelDto, string requestUri)
         {
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = client.PostAsJsonAsync(requestUri, modelDto).Result;
             return response;
         }
+
+        
 
     }
 }
