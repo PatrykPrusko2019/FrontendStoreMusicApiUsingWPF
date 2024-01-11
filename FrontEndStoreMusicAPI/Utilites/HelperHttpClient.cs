@@ -13,7 +13,7 @@ namespace FrontEndStoreMusicAPI.Utilites
      static class HelperHttpClient
     {
         private const string uri = @"https://localhost:7195";
-        public static HttpResponseMessage GetHttpPost<T>(HttpClient client, T modelDto, string requestUri)
+        public static HttpResponseMessage PostHttp<T>(HttpClient client, T modelDto, string requestUri)
         {
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -21,7 +21,15 @@ namespace FrontEndStoreMusicAPI.Utilites
             return response;
         }
 
-        
+        public async static Task<HttpResponseMessage> GetHttp<T>(HttpClient client, T value, string requestUri)
+        {
+            client.BaseAddress = new Uri(uri);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = await client.GetAsync(@$"{requestUri}/{value}");
+            return response;
+        }
+
+
 
     }
 }

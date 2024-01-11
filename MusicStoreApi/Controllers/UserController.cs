@@ -21,5 +21,12 @@ namespace MusicStoreApi.Controllers
             UserDto user = userService.GetUserByEmail(email);
             return Ok(user);
         }
+
+        [HttpGet("{userId}/artist")]
+        public ActionResult GetArtistsByUserId([FromRoute] int userId)
+        {
+            List<ArtistDto> artists = userService.GetArtistsByUserId(userId);
+            return Ok(artists);
+        }
     }
 }

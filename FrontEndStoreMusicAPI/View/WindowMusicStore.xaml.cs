@@ -35,5 +35,25 @@ namespace FrontEndStoreMusicAPI.View
             this.Visibility = Visibility.Hidden;
             windowLogin.Show();
         }
+
+        private void Button_UserDetails(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ShowArtist(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ShowAlbums(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ShowSongs(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

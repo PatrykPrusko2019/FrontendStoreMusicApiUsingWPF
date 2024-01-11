@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MusicStoreApi.Entities;
 using MusicStoreApi.Models;
 
@@ -21,5 +22,38 @@ namespace MusicStoreApi.Services
             var userDto = mapper.Map<UserDto>(user);
             return userDto;
         }
+
+        public List<ArtistDto> GetArtistsByUserId(int id)
+        {
+            var user = GetUserById(id);
+
+            var artists = dbContext.Artists
+                .Include(a => a.Albums)
+                .Include(a => a.Address)
+                .Where(a => a.CreatedById == user.Id).ToArray();
+
+            int count = 0;
+            foreach (var artist in artists)
+            {
+                while (artist.Albums.Count > count)
+                {
+                    var searchSongs = dbContext.Songs.Where(s => s.AlbumId == artist.Albums[count].Id).ToList();
+                    artist.Albums[count++].Songs = searchSongs;
+                }
+            }
+
+            var artistsDto = mapper.Map<List<ArtistDto>>(artists);
+            return artistsDto;
+        }
+
+        public UserDto GetUserById(int id)
+        {
+            var user = dbContext.Users
+                .FirstOrDefault(u => u.Id == id);
+
+            var userDto = mapper.Map<UserDto>(user);
+            return userDto;
+        }
+
     }
 }

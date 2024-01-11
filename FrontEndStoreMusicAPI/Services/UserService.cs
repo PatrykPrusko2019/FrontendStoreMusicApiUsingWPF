@@ -24,11 +24,8 @@ namespace FrontEndStoreMusicAPI.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                const string requestUri = @"api/login/user";
-                client.BaseAddress = new Uri("https://localhost:7195");
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync(@$"api/login/user/{email}");
+                string requestUri = $@"api/login/user";
+                var response = await HelperHttpClient.GetHttp(client, email, requestUri);
                 var user = await response.Content.ReadFromJsonAsync<UserDto>();
                 
                 if (response.IsSuccessStatusCode)
