@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FrontEndStoreMusicAPI
+namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 {
     /// <summary>
-    /// Interaction logic for Artist.xaml
+    /// Interaction logic for ShowAllArtistsWindow.xaml
     /// </summary>
-    public partial class Artist : Window
+    public partial class ShowAllArtistsWindow : Window
     {
-        public Artist()
+        public ShowAllArtistsWindow()
         {
             InitializeComponent();
+            ShowAll();
+        }
+
+        private void ShowAll()
+        {
+            
         }
     }
 }

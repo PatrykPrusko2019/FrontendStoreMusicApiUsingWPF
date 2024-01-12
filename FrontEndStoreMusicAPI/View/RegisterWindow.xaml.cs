@@ -9,12 +9,12 @@ using System.Windows;
 namespace FrontEndStoreMusicAPI
 {
     /// <summary>
-    /// Interaction logic for Register.xaml
+    /// Interaction logic for RegisterWindow.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class RegisterWindow : Window
     {
-        public static Register r;
-        public Register()
+        public static RegisterWindow r;
+        public RegisterWindow()
         {
             InitializeComponent();
             r = this;

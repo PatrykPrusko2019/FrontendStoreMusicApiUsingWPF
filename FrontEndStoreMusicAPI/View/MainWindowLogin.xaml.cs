@@ -29,7 +29,7 @@ namespace FrontEndStoreMusicAPI.View
 
         private void Button_Register(object sender, RoutedEventArgs e)
         {
-            Register register = new Register();
+            RegisterWindow register = new RegisterWindow();
             this.Visibility = Visibility.Hidden;
             register.Show();
         }
@@ -54,7 +54,8 @@ namespace FrontEndStoreMusicAPI.View
             user.TokenJWT = tokenJWT;
 
             //if everything is ok, go to window music store for given user
-            WindowMusicStore windowMusicStore = new WindowMusicStore(user);
+            MusicStoreWindow.detailsUser = user;
+            MusicStoreWindow windowMusicStore = new MusicStoreWindow();
             this.Visibility = Visibility.Hidden;
             windowMusicStore.Show();
         }

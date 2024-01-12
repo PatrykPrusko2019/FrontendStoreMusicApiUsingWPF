@@ -11,26 +11,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 
 namespace FrontEndStoreMusicAPI.View
 {
     /// <summary>
-    /// Interaction logic for WindowMusicStore.xaml
+    /// Interaction logic for MusicStoreWindow.xaml
     /// </summary>
-    public partial class WindowMusicStore : Window
+    public partial class MusicStoreWindow : Window
     {
-        private UserDto detailsUser;
-        public WindowMusicStore(UserDto loginUser)
+        public static UserDto detailsUser = new UserDto();
+
+
+        public MusicStoreWindow()
         {
             InitializeComponent();
-            detailsUser = loginUser;
             DescriptionWindowMusicStore.Text += $" {detailsUser.FirstName} {detailsUser.LastName}";
         }
 
 
         private void Button_SingOut(object sender, RoutedEventArgs e)
         {
+            detailsUser = null;
             MainWindowLogin windowLogin = new MainWindowLogin();
             this.Visibility = Visibility.Hidden;
             windowLogin.Show();
@@ -41,9 +44,11 @@ namespace FrontEndStoreMusicAPI.View
 
         }
 
-        private void Button_ShowArtist(object sender, RoutedEventArgs e)
+        private void Button_ShowArtists(object sender, RoutedEventArgs e)
         {
-
+            ArtistWindow artistWindow = new ArtistWindow();
+            this.Visibility= Visibility.Hidden;
+            artistWindow.Show();
         }
 
         private void Button_ShowAlbums(object sender, RoutedEventArgs e)

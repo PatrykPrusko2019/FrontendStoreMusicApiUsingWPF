@@ -10,14 +10,14 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         public static void ClearValuesOfUserRegisterWindow()
         {
-            Register.r.RegisterFirstName.Clear();
-            Register.r.RegisterLastName.Clear();
-            Register.r.RegisterEmail.Clear();
-            Register.r.RegisterPassword.Clear();
-            Register.r.RegisterConfirmPassword.Clear();
-            Register.r.RegisterNationality.Clear();
-            Register.r.RegisterDateOfBirth.Clear();
-            Register.r.RegisterRole.Clear();
+            RegisterWindow.r.RegisterFirstName.Clear();
+            RegisterWindow.r.RegisterLastName.Clear();
+            RegisterWindow.r.RegisterEmail.Clear();
+            RegisterWindow.r.RegisterPassword.Clear();
+            RegisterWindow.r.RegisterConfirmPassword.Clear();
+            RegisterWindow.r.RegisterNationality.Clear();
+            RegisterWindow.r.RegisterDateOfBirth.Clear();
+            RegisterWindow.r.RegisterRole.Clear();
            
         }
 
