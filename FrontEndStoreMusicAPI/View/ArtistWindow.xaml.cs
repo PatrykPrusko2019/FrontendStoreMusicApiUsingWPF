@@ -23,6 +23,7 @@ namespace FrontEndStoreMusicAPI.View
         public ArtistWindow()
         {
             InitializeComponent();
+            DescriptionArtistWindow.Text += $" {MusicStoreWindow.detailsUser.FirstName} {MusicStoreWindow.detailsUser.LastName}";
         }
 
         private void Button_ReturnToMusicStoreWindow(object sender, RoutedEventArgs e)

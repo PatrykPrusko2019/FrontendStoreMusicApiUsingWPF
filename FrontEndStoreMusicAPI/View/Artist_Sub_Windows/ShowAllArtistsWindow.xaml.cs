@@ -41,9 +41,15 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 
         private void Button_UpdateArtist(object sender, RoutedEventArgs e)
         {
+            int artistId;
             var indexItem = DataGridArtists.SelectedIndex;
-            int artistId = artists[indexItem].Id;
+            if (indexItem != -1) { artistId = artists[indexItem].Id; }
+            else { MessageBox.Show("Select any record to be updated !"); return; }
 
+            UpdateArtist updateArtist = new UpdateArtist();
+            updateArtist.ArtistId = artistId;
+            this.Visibility = Visibility.Hidden;
+            updateArtist.Show();
         }
 
         //5, 10, 15 -> records 

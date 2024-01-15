@@ -43,6 +43,7 @@ namespace FrontEndStoreMusicAPI.View
             ILoginService loginService = new LoginService();
             var responseBody = loginService.LoginUser(loginDto);
             string tokenJWT = responseBody.Result;
+
             if (tokenJWT == null || tokenJWT.Count() == 0) return;
 
             //get detailed information about given user

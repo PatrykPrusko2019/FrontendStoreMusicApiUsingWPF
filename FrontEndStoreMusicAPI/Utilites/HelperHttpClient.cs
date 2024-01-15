@@ -1,4 +1,5 @@
 ﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FrontEndStoreMusicAPI.Utilites
 {
@@ -16,11 +18,17 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         private const string uri = @"https://localhost:7195";
 
-        public static HttpResponseMessage PutHttp<T>(HttpClient client, T modelDto, string requestUri)
+        public async static Task<HttpResponseMessage> PutHttp<T>(HttpClient client, T modelDto, string requestUri)
         {
+            string tokenJWT = "";
+            if (MusicStoreWindow.detailsUser != null) tokenJWT = $@"{MusicStoreWindow.detailsUser.TokenJWT}";
+
+            tokenJWT = tokenJWT.Substring(1, tokenJWT.Count() - 2);
+
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.PostAsJsonAsync(requestUri, modelDto).Result;
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+            HttpResponseMessage response = client.PutAsJsonAsync(requestUri, modelDto).Result;
             return response;
         }
         public static HttpResponseMessage PostHttp<T>(HttpClient client, T modelDto, string requestUri)
@@ -48,6 +56,20 @@ namespace FrontEndStoreMusicAPI.Utilites
               var  response = await client.GetAsync(requestUri);
            
             return response;
+        }
+
+        public async static void GetResponseBodyError(HttpResponseMessage response)
+        {
+            string responseBody = await response.Content.ReadAsStringAsync();
+            int startIndex = responseBody.IndexOf("\"errors\"", StringComparison.OrdinalIgnoreCase);
+            if (startIndex != -1) responseBody = responseBody.Substring(startIndex);
+            MessageBox.Show("Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nErrors: " + responseBody);
+        }
+
+        public async static void GetResponseBodyOk(HttpResponseMessage response, string extendText)
+        {
+            string responseBody = await response.Content.ReadAsStringAsync();
+            MessageBox.Show($"{extendText}Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nResponse Body: " + responseBody);
         }
 
         internal static List<ArtistDto> GenerateAlbumsSongs(List<ArtistDto> artists)

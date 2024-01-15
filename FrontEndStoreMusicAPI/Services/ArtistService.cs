@@ -1,6 +1,7 @@
 ﻿
 using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Utilites;
+using FrontEndStoreMusicAPI.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace FrontEndStoreMusicAPI.Services
     interface IArtistService
     {
         Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery);
+        void Update(UpdateArtistDto updateArtistDto);
     }
 
     class ArtistService : IArtistService
@@ -36,27 +38,31 @@ namespace FrontEndStoreMusicAPI.Services
                     artists.Items = HelperHttpClient.GenerateAlbumsSongs(artists.Items);
                     return artists;
                 }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);  
+                }
                 return null;
             }
         }
 
         
-        public async Task<ArtistDto> Update(UpdateArtistDto updateArtistDto)
+        public async void Update(UpdateArtistDto updateArtistDto)
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUri = $@"api/artist";
+                string requestUri = $@"api/artist/{updateArtistDto.Id}";
 
-                var response = HelperHttpClient.PutHttp(client, updateArtistDto, requestUri);
-
-                var artists = await response.Content.ReadFromJsonAsync<PageResult<ArtistDto>>();
+                var response = await HelperHttpClient.PutHttp(client, updateArtistDto, requestUri);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    artists.Items = HelperHttpClient.GenerateAlbumsSongs(artists.Items);
-                    return null;
+                    HelperHttpClient.GetResponseBodyOk(response, "Updated Artist");
                 }
-                return null;
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
             }
         }
     }

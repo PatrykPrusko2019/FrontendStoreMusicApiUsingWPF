@@ -8,7 +8,7 @@
         Title="ArtistWindow" Height="450" Width="800">
     <Grid x:Name="sdfsd" Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
-        <TextBlock FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="248,108,0,0" TextWrapping="Wrap" Text="WELCOME TO MUSIC SHOP OF USER: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="DescriptionArtistWindow" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="248,108,0,0" TextWrapping="Wrap" Text="WELCOME TO MUSIC SHOP OF USER: " VerticalAlignment="Top"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="248,150,0,0" TextWrapping="Wrap" Text="You are in the Artists section " VerticalAlignment="Top"/>
         <Button x:Name="ReturnToMusicStoreWindow" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="150" Click="Button_ReturnToMusicStoreWindow" ToolTip="return to Music Store"/>
         <TextBlock Name="ShowArtists" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="212,184,0,0" TextWrapping="Wrap" Text="Show Artists" VerticalAlignment="Top"/>
