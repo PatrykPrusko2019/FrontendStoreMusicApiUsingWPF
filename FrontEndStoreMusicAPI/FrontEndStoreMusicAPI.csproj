@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MusicStoreApi\MusicStoreApi.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="View\Images\photo_logo.png" />
   </ItemGroup>
 

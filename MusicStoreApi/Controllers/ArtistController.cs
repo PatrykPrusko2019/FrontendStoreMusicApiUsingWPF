@@ -50,7 +50,7 @@ namespace MusicStoreApi.Controllers
         [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<ArtistDto>> GetAll([FromQuery]ArtistQuery artistQuery)
-        {
+        {   
             var artistsDtos = artistService.GetAll(artistQuery);
 
             return Ok(artistsDtos);

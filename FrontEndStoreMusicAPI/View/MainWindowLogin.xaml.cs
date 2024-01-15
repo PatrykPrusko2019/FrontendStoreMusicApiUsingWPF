@@ -1,6 +1,5 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +43,7 @@ namespace FrontEndStoreMusicAPI.View
             ILoginService loginService = new LoginService();
             var responseBody = loginService.LoginUser(loginDto);
             string tokenJWT = responseBody.Result;
-            if (tokenJWT.IsNullOrEmpty()) return;
+            if (tokenJWT == null || tokenJWT.Count() == 0) return;
 
             //get detailed information about given user
             IUserService userService = new UserService();

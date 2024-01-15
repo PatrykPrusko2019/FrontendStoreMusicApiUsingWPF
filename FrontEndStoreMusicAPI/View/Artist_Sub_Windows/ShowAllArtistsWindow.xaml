@@ -5,8 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Artist_Sub_Windows"
         mc:Ignorable="d"
-        Title="ShowAllArtistsWindow" Height="450" Width="800">
+        Title="ShowAllArtistsWindow" Height="650" Width="920">
     <Grid Background="#008080">
-        
+        <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
+        <Button x:Name="ReturnToArtists" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToArtists" ToolTip="return to Artists"/>
+        <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="5,138,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
+        <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
+
+        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="display all Artists"/>
+        <Button Content="Update" Height="30" HorizontalAlignment="left" Margin="670,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist"  ToolTip="display all Artists" />
+        <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="670,100,0,0" VerticalAlignment="Top" Width="150"  ToolTip="display all Artists"/>
+        <Button Content="Details Artist" Height="30" HorizontalAlignment="Left" Margin="670,137,0,0" VerticalAlignment="Top" Width="150"  ToolTip="display all Artists"/>
+
+        <StackPanel Grid.ColumnSpan="1" Margin="5">
+            <DataGrid Name="DataGridArtists" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,172,0,37" Height="293" Width="886" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="KindOfMusic" Binding="{Binding KindOfMusic}" />
+                    <DataGridTextColumn Header="Country"  Binding="{Binding Country}" />
+                    <DataGridTextColumn Header="City"  Binding="{Binding City}" />
+                    <DataGridTextColumn Header="AlbumsAndSongs"  Binding="{Binding AlbumsSongs}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.ColumnSpan="2" Margin="5" Height="50">
+                <DataGrid x:Name="DataGridArtistsResults" Background="#008050" RowBackground="#008050" Height="50" Margin="0,-20,0,10" AutoGenerateColumns="false" ItemsSource="{Binding}" Width="300">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="TotalPages" Binding="{Binding TotalPages}"/>
+                        <DataGridTextColumn Header="ItemFrom" Binding="{Binding ItemFrom}"/>
+                        <DataGridTextColumn Header="ItemTo" Binding="{Binding ItemTo}"/>
+                        <DataGridTextColumn Header="TotalItemsCount" Binding="{Binding TotalItemsCount}"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,559,0,10" Width="792">
+            <TextBlock Foreground="GreenYellow" Text="Records per page" VerticalAlignment="Center" />
+            <ComboBox x:Name="RecordsPerPage" Margin="10,10,10,10"  Width="40" SelectionChanged="ComboBox_ChangeRecordsPerPage">
+                <ComboBoxItem Content="5"/>
+                <ComboBoxItem Content="10"/>
+                <ComboBoxItem Content="15"/>
+                
+            </ComboBox>
+            <TextBlock x:Name="CurrentPage" Foreground="GreenYellow" VerticalAlignment="Center" Text="1 of _" Margin="40,10,0,10" />
+            <Button x:Name="PreviousPage" Margin="10,10,0,10" Content="&lt;" Width="40" Click="Button_PreviousPage"/>
+            <Button x:Name="NextPage" Content=">" Margin="10,10,10,10" Width="40" Click="Button_NextPage"/>
+
+            <TextBlock Foreground="GreenYellow" Text="Sort Direction" VerticalAlignment="Center" Margin="40,10,10,10"/>
+            <ComboBox x:Name="SortDirection" Margin="0,10,10,10" Width="60" SelectionChanged="ComboBox_ChangeSortDirection">
+                <ComboBoxItem Content="ASC"/>
+                <ComboBoxItem Content="DESC"/>
+                <ComboBoxItem Content=""/>
+            </ComboBox>
+            <TextBlock Foreground="GreenYellow" Text="Sort By" VerticalAlignment="Center" Margin="40,10,10,10" />
+            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy">
+                <ComboBoxItem Content="Name"/>
+                <ComboBoxItem Content="Description"/>
+                <ComboBoxItem Content="KindOfMusic"/>
+                <ComboBoxItem Content=""/>
+            </ComboBox>
+        </StackPanel>
+
+
+
     </Grid>
 </Window>
