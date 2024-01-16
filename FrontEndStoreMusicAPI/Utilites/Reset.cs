@@ -23,13 +23,13 @@ namespace FrontEndStoreMusicAPI.Utilites
 
         public static void ClearValuesOfUpdateArtist()
         {
-            UpdateArtist.c.ArtistUpdateName.Clear();
-            UpdateArtist.c.ArtistUpdateDescription.Clear();
-            UpdateArtist.c.ArtistUpdateKindOfMusic.Clear();
-            UpdateArtist.c.ArtistUpdateConctactEmail.Clear();
-            UpdateArtist.c.ArtistUpdateContactPhone.Clear();
-            UpdateArtist.c.ArtistUpdateCountry.Clear();
-            UpdateArtist.c.ArtistUpdateCity.Clear();
+            UpdateCreateArtist.c.ArtistUpdateName.Clear();
+            UpdateCreateArtist.c.ArtistUpdateDescription.Clear();
+            UpdateCreateArtist.c.ArtistUpdateKindOfMusic.Clear();
+            UpdateCreateArtist.c.ArtistUpdateConctactEmail.Clear();
+            UpdateCreateArtist.c.ArtistUpdateContactPhone.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCountry.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCity.Clear();
         }
 
 

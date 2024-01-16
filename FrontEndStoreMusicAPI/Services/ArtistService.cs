@@ -16,6 +16,7 @@ namespace FrontEndStoreMusicAPI.Services
 {
     interface IArtistService
     {
+        bool Create(CreateArtistDto createArtistDto);
         Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery);
         Task<DetailsArtistDto> GetDetails(int id);
         bool Update(UpdateArtistDto updateArtistDto);
@@ -23,6 +24,26 @@ namespace FrontEndStoreMusicAPI.Services
 
     class ArtistService : IArtistService
     {
+        public bool Create(CreateArtistDto createArtistDto)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = @"api/artist";
+
+                var response = HelperHttpClient.PostHttp(client, createArtistDto, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HelperHttpClient.GetResponseBodyOk(response, "Created and Added new Artist");
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+                return response.IsSuccessStatusCode;
+            }
+        }
+
         public async Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery)
         {
             using (HttpClient client = new HttpClient())

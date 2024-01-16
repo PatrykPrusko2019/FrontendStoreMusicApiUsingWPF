@@ -12,13 +12,13 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         public static void FillValuesOfUpdateArtist(DetailsArtistDto updateArtist)
         {
-            UpdateArtist.c.ArtistUpdateName.Text = updateArtist.Name;
-            UpdateArtist.c.ArtistUpdateDescription.Text = updateArtist.Description;
-            UpdateArtist.c.ArtistUpdateKindOfMusic.Text = updateArtist.KindOfMusic;
-            UpdateArtist.c.ArtistUpdateConctactEmail.Text = updateArtist.ContactEmail;
-            UpdateArtist.c.ArtistUpdateContactPhone.Text = updateArtist.ContactNumber;
-            UpdateArtist.c.ArtistUpdateCountry.Text = updateArtist.Country;
-            UpdateArtist.c.ArtistUpdateCity.Text = updateArtist.City;
+            UpdateCreateArtist.c.ArtistUpdateName.Text = updateArtist.Name;
+            UpdateCreateArtist.c.ArtistUpdateDescription.Text = updateArtist.Description;
+            UpdateCreateArtist.c.ArtistUpdateKindOfMusic.Text = updateArtist.KindOfMusic;
+            UpdateCreateArtist.c.ArtistUpdateConctactEmail.Text = updateArtist.ContactEmail;
+            UpdateCreateArtist.c.ArtistUpdateContactPhone.Text = updateArtist.ContactNumber;
+            UpdateCreateArtist.c.ArtistUpdateCountry.Text = updateArtist.Country;
+            UpdateCreateArtist.c.ArtistUpdateCity.Text = updateArtist.City;
         }
     }
 }

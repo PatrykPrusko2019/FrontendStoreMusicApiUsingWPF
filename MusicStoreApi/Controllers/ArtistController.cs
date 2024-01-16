@@ -62,7 +62,6 @@ namespace MusicStoreApi.Controllers
             return Ok(artistDto);
         }
 
-        [AllowAnonymous]
         [HttpGet("details/{id}")]
         public ActionResult<DetailsArtistDto> GetDetails([FromRoute] int id)
 

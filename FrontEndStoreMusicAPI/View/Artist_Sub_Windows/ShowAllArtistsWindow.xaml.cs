@@ -42,7 +42,10 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 
         private void Button_CreateArtist(object sender, RoutedEventArgs e)
         {
-
+            UpdateCreateArtist createArtist = new UpdateCreateArtist();
+            createArtist.DescriptionUpdateCreateArtist.Text = "You are in the Create Artist section";
+            this.Visibility = Visibility.Hidden;
+            createArtist.Show();
         }
 
         private async void Button_UpdateArtist(object sender, RoutedEventArgs e)
@@ -58,8 +61,9 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             }
             else { MessageBox.Show("Select any record to be updated !"); return; }
 
-            UpdateArtist updateArtist = new UpdateArtist();
-            updateArtist.ArtistId = artistId;
+            UpdateCreateArtist updateArtist = new UpdateCreateArtist();
+            updateArtist.artistId = artistId;
+            updateArtist.DescriptionUpdateCreateArtist.Text = "You are in the Update Artist section";
             Fill.FillValuesOfUpdateArtist(selectedArtist);
             this.Visibility = Visibility.Hidden;
             updateArtist.Show();

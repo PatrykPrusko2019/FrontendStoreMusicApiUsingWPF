@@ -18,23 +18,36 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         private const string uri = @"https://localhost:7195";
 
-        public static HttpResponseMessage PutHttp<T>(HttpClient client, T modelDto, string requestUri)
+        private static string GetTokenJWT()
         {
             string tokenJWT = "";
-            if (MusicStoreWindow.detailsUser != null) tokenJWT = $@"{MusicStoreWindow.detailsUser.TokenJWT}";
+            if (MusicStoreWindow.detailsUser != null && MusicStoreWindow.detailsUser.TokenJWT != null)
+            {
+                tokenJWT = $@"{MusicStoreWindow.detailsUser.TokenJWT}";
+                tokenJWT = tokenJWT.Substring(1, tokenJWT.Count() - 2);
+                return tokenJWT;
+            }
+            return null;
+        }
 
-            tokenJWT = tokenJWT.Substring(1, tokenJWT.Count() - 2);
-
+        public static HttpResponseMessage PutHttp<T>(HttpClient client, T modelDto, string requestUri)
+        {
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+            string tokenJWT = GetTokenJWT();
+            if (tokenJWT != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+
             HttpResponseMessage response = client.PutAsJsonAsync(requestUri, modelDto).Result;
             return response;
         }
+
         public static HttpResponseMessage PostHttp<T>(HttpClient client, T modelDto, string requestUri)
         {
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string tokenJWT = GetTokenJWT();
+            if (tokenJWT != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+
             HttpResponseMessage response = client.PostAsJsonAsync(requestUri, modelDto).Result;
             return response;
         }
@@ -43,6 +56,9 @@ namespace FrontEndStoreMusicAPI.Utilites
         {
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string tokenJWT = GetTokenJWT();
+            if (tokenJWT != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+
             var response = await client.GetAsync(@$"{requestUri}/{value}");
             return response;
         }
@@ -52,8 +68,10 @@ namespace FrontEndStoreMusicAPI.Utilites
             requestUri +=  @$"?SearchWord={value.SearchWord}&PageSize={value.PageSize}&PageNumber={value.PageNumber}&SortDirection={value.SortDirection}&SortBy={value.SortBy}";
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string tokenJWT = GetTokenJWT();
+            if (tokenJWT != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
 
-              var  response = await client.GetAsync(requestUri);
+            var  response = await client.GetAsync(requestUri);
            
             return response;
         }
@@ -69,7 +87,7 @@ namespace FrontEndStoreMusicAPI.Utilites
         public async static void GetResponseBodyOk(HttpResponseMessage response, string extendText)
         {
             string responseBody = await response.Content.ReadAsStringAsync();
-            MessageBox.Show($"{extendText}Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nResponse Body: " + responseBody);
+            MessageBox.Show($"{extendText}\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode + (responseBody = responseBody != null ? "\nResponse Body: " + responseBody : ""));
         }
 
         internal static List<ArtistDto> GenerateAlbumsSongs(List<ArtistDto> artists)
