@@ -138,6 +138,25 @@ namespace MusicStoreApi.Services
             return artistDto;
         }
 
+        public DetailsArtistDto GetDetailsById(int id)
+        {
+            var artist = GetArtistById(id);
+
+            if (artist.Albums is not null)
+            {
+                int count = 0;
+                while (artist.Albums.Count > count)
+                {
+                    var searchSongs = dbContext.Songs.Where(s => s.AlbumId == artist.Albums[count].Id).ToList();
+                    artist.Albums[count++].Songs = searchSongs;
+                }
+            }
+
+            var artistDto = mapper.Map<DetailsArtistDto>(artist);
+
+            return artistDto;
+        }
+
         public void Update(int id, UpdateArtistDto updatedArtistDto) 
         {
             var artist = GetArtistById(id);

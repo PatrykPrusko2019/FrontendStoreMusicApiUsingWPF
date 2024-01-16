@@ -40,6 +40,11 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
 
+        private void Button_CreateArtist(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private async void Button_UpdateArtist(object sender, RoutedEventArgs e)
         {
             int artistId;

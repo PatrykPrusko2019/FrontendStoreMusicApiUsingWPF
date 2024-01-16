@@ -26,6 +26,10 @@ namespace MusicStoreApi
 
             CreateMap<User, UserDto>();
 
+            CreateMap<Artist, DetailsArtistDto>()
+                .ForMember(m => m.City, c => c.MapFrom(a => a.Address.City))
+                .ForMember(m => m.Country, c => c.MapFrom(a => a.Address.Country));
+
         }
     }
 }

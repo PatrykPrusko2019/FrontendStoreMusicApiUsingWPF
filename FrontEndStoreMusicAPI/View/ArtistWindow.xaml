@@ -13,14 +13,8 @@
         <Button x:Name="ReturnToMusicStoreWindow" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="150" Click="Button_ReturnToMusicStoreWindow" ToolTip="return to Music Store"/>
         <TextBlock Name="ShowArtists" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="212,184,0,0" TextWrapping="Wrap" Text="Show Artists" VerticalAlignment="Top"/>
         <Button Content="Show All" Height="30" HorizontalAlignment="Left" Margin="341,182,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="go to display all Artists"/>
-        <TextBlock x:Name="ShowArtist" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="216,225,0,0" TextWrapping="Wrap" Text="Show Artist" VerticalAlignment="Top"/>
-        <Button x:Name="ShowOneArtist"  Content="Show One" Height="30" HorizontalAlignment="Left" Margin="341,223,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowOneArtist" ToolTip="go to display one Artist"/>
-        <TextBlock x:Name="Add" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="228,271,0,0" TextWrapping="Wrap" Text="Add Artist" VerticalAlignment="Top"/>
-        <Button x:Name="AddArtist" Content="Add" Height="30" HorizontalAlignment="Left" Margin="341,269,0,0" VerticalAlignment="Top" Width="150" Click="Button_AddArtist" ToolTip="go to add a new artist"/>
-        <TextBlock x:Name="UpdateArtist" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="204,317,0,0" TextWrapping="Wrap" Text="Update Artist" VerticalAlignment="Top"/>
-        <Button x:Name="Update_Artist" Content="Update" Height="30"  HorizontalAlignment="Left" Margin="341,315,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist" ToolTip="go to update Artist"/>
-        <TextBlock x:Name="DeleteArtist" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="207,367,0,0" TextWrapping="Wrap" Text="Delete Artist" VerticalAlignment="Top"/>
-        <Button x:Name="Delete" Content="Delete" Height="30" HorizontalAlignment="Left" Margin="341,365,0,0" VerticalAlignment="Top" Width="150" Click="Button_DeleteArtist" ToolTip="go to delete Artist"/>
+        <TextBlock x:Name="Add" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="222,240,0,0" TextWrapping="Wrap" Text="Add Artist" VerticalAlignment="Top"/>
+        <Button x:Name="AddArtist" Content="Add" Height="30" HorizontalAlignment="Left" Margin="341,238,0,0" VerticalAlignment="Top" Width="150" Click="Button_AddArtist" ToolTip="go to add a new artist"/>
 
 
 

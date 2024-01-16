@@ -14,9 +14,10 @@
         <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 
         <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="display all Artists"/>
-        <Button Content="Update" Height="30" HorizontalAlignment="left" Margin="670,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist"  ToolTip="display all Artists" />
-        <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="670,100,0,0" VerticalAlignment="Top" Width="150"  ToolTip="display all Artists"/>
-        <Button Content="Details Artist" Height="30" HorizontalAlignment="Left" Margin="670,137,0,0" VerticalAlignment="Top" Width="150"  ToolTip="display all Artists"/>
+        <Button Content="Add" Height="30" HorizontalAlignment="left" Margin="670,20,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateArtist"  ToolTip="go to create Artist" />
+        <Button Content="Update" Height="30" HorizontalAlignment="left" Margin="670,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist"  ToolTip="go to update Artist" />
+        <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="670,100,0,0" VerticalAlignment="Top" Width="150"  ToolTip="delete Artist"/>
+        <Button Content="Details Artist" Height="30" HorizontalAlignment="Left" Margin="670,137,0,0" VerticalAlignment="Top" Width="150"  ToolTip="go to details of the artistt"/>
 
         <StackPanel Grid.ColumnSpan="1" Margin="5">
             <DataGrid Name="DataGridArtists" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,172,0,37" Height="293" Width="886" >
@@ -47,24 +48,24 @@
 
         <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,559,0,10" Width="792">
             <TextBlock Foreground="GreenYellow" Text="Records per page" VerticalAlignment="Center" />
-            <ComboBox x:Name="RecordsPerPage" Margin="10,10,10,10"  Width="40" SelectionChanged="ComboBox_ChangeRecordsPerPage">
+            <ComboBox x:Name="RecordsPerPage" Margin="10,10,10,10"  Width="40" SelectionChanged="ComboBox_ChangeRecordsPerPage" ToolTip="choose 5, 10, 15">
                 <ComboBoxItem Content="5"/>
                 <ComboBoxItem Content="10"/>
                 <ComboBoxItem Content="15"/>
                 
             </ComboBox>
             <TextBlock x:Name="CurrentPage" Foreground="GreenYellow" VerticalAlignment="Center" Text="1 of _" Margin="40,10,0,10" />
-            <Button x:Name="PreviousPage" Margin="10,10,0,10" Content="&lt;" Width="40" Click="Button_PreviousPage"/>
-            <Button x:Name="NextPage" Content=">" Margin="10,10,10,10" Width="40" Click="Button_NextPage"/>
+            <Button x:Name="PreviousPage" Margin="10,10,0,10" Content="&lt;" Width="40" Click="Button_PreviousPage" ToolTip="previous page"/>
+            <Button x:Name="NextPage" Content=">" Margin="10,10,10,10" Width="40" Click="Button_NextPage" ToolTip="next page"/>
 
             <TextBlock Foreground="GreenYellow" Text="Sort Direction" VerticalAlignment="Center" Margin="40,10,10,10"/>
-            <ComboBox x:Name="SortDirection" Margin="0,10,10,10" Width="60" SelectionChanged="ComboBox_ChangeSortDirection">
+            <ComboBox x:Name="SortDirection" Margin="0,10,10,10" Width="60" SelectionChanged="ComboBox_ChangeSortDirection" ToolTip="choose ASC, DESC">
                 <ComboBoxItem Content="ASC"/>
                 <ComboBoxItem Content="DESC"/>
                 <ComboBoxItem Content=""/>
             </ComboBox>
             <TextBlock Foreground="GreenYellow" Text="Sort By" VerticalAlignment="Center" Margin="40,10,10,10" />
-            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy">
+            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy" ToolTip="choose Name, Description, KindOfMusic">
                 <ComboBoxItem Content="Name"/>
                 <ComboBoxItem Content="Description"/>
                 <ComboBoxItem Content="KindOfMusic"/>

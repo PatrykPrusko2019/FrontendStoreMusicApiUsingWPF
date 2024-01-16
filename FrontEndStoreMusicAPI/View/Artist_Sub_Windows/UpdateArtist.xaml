@@ -11,21 +11,21 @@
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Update Artist section " VerticalAlignment="Top"/>
         <Button x:Name="ReturnToArtists" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToShowAllArtists" ToolTip="return to show all Artists"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="356,162,0,0" TextWrapping="Wrap" Text="NAME" VerticalAlignment="Top"/>
-        <TextBox Name="ArtistUpdateName" HorizontalAlignment="Left" Margin="400,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateName" HorizontalAlignment="Left" Margin="400,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter name"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="317,185,0,0" TextWrapping="Wrap" Text="DESCRIPTION" VerticalAlignment="Top"/>
-        <TextBox Name="ArtistUpdateDescription" HorizontalAlignment="Left" Margin="400,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateDescription" HorizontalAlignment="Left" Margin="400,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter description"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="305,0,0,0" TextWrapping="Wrap" Text="KIND OF MUSIC" VerticalAlignment="Center"/>
-        <TextBox Name="ArtistUpdateKindOfMusic" HorizontalAlignment="Left" Margin="400,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateKindOfMusic" HorizontalAlignment="Left" Margin="400,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter kind of music"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="301,232,0,0" TextWrapping="Wrap" Text="CONTACT EMAIL" VerticalAlignment="Top"/>
-        <TextBox Name="ArtistUpdateConctactEmail" HorizontalAlignment="Left" Margin="400,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateConctactEmail" HorizontalAlignment="Left" Margin="400,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct email format: something@something"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="296,255,0,0" TextWrapping="Wrap" Text="CONTACT PHONE" VerticalAlignment="Top"/>
-        <TextBox Name="ArtistUpdateContactPhone" HorizontalAlignment="Left" Margin="400,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateContactPhone" HorizontalAlignment="Left" Margin="400,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct contact phone format: 777777777"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="336,278,0,0" TextWrapping="Wrap" Text="COUNTRY" VerticalAlignment="Top"/>
-        <TextBox Name="ArtistUpdateCountry" HorizontalAlignment="Left" Margin="400,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateCountry" HorizontalAlignment="Left" Margin="400,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter country"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="361,301,0,0" TextWrapping="Wrap" Text="CITY" VerticalAlignment="Top"/>
-        <TextBox Name="ArtistUpdateCity" HorizontalAlignment="Left" Margin="400,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="ArtistUpdateCity" HorizontalAlignment="Left" Margin="400,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter city"/>
 
-        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,342,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveArtist" RenderTransformOrigin="0.889,0.486" ToolTip="update artist"/>
-        <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,386,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearArtistUpdate" ToolTip="clear all values"/>
+        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,332,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveArtist" RenderTransformOrigin="0.889,0.486" ToolTip="update artist"/>
+        <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,373,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearArtistUpdate" ToolTip="clear all values"/>
     </Grid>
 </Window>

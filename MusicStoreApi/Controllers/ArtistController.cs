@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using MusicStoreApi.Entities;
 using MusicStoreApi.Models;
 using MusicStoreApi.Services;
-using System.Security.Claims;
 
 namespace MusicStoreApi.Controllers
 {
@@ -64,6 +60,16 @@ namespace MusicStoreApi.Controllers
             var artistDto = artistService.GetById(id);
 
             return Ok(artistDto);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("details/{id}")]
+        public ActionResult<DetailsArtistDto> GetDetails([FromRoute] int id)
+
+        {
+            var detailsArtistDto = artistService.GetDetailsById(id);
+
+            return Ok(detailsArtistDto);
         }
 
     }
