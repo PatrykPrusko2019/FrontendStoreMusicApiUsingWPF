@@ -1,0 +1,32 @@
+﻿<Window x:Class="FrontEndStoreMusicAPI.View.Artist_Sub_Windows.DetailsArtist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Artist_Sub_Windows"
+        mc:Ignorable="d"
+        Title="DetailsArtist" Height="650" Width="1200">
+    <Grid Background="#008080">
+        <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
+        <Button x:Name="ReturnToArtists" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllArtists" ToolTip="return to All Artists"/>
+        <DataGrid x:Name="DataGridDetailsArtist" ItemsSource="{Binding}" Background="#008050" RowBackground="#008050" Margin="10,148,10,10" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="KindOfMusic" Binding="{Binding KindOfMusic}" />
+                <DataGridTextColumn Header="Country"  Binding="{Binding Country}" />
+                <DataGridTextColumn Header="City"  Binding="{Binding City}" />
+                <DataGridTextColumn Header="ContactEmail"  Binding="{Binding ContactEmail}" />
+                <DataGridTextColumn Header="ContactNumber"  Binding="{Binding ContactNumber}" />
+                <DataGridTextColumn Header="AlbumsSongs"  Binding="{Binding AlbumsSongs}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+
+    </Grid>
+</Window>

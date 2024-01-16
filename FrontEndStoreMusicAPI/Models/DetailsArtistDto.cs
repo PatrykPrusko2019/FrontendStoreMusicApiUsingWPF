@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrontEndStoreMusicAPI.Models
 {
-    class DetailsArtistDto : ArtistDto
+    public class DetailsArtistDto : ArtistDto
     {
         public string ContactEmail { get; set; }
         public string ContactNumber { get; set; }

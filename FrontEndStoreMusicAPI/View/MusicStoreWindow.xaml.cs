@@ -21,7 +21,7 @@ namespace FrontEndStoreMusicAPI.View
     /// </summary>
     public partial class MusicStoreWindow : Window
     {
-        public static UserDto detailsUser = new UserDto();
+        public static UserDto? detailsUser;
 
 
         public MusicStoreWindow()

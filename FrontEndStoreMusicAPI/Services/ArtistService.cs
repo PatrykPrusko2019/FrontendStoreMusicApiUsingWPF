@@ -17,6 +17,7 @@ namespace FrontEndStoreMusicAPI.Services
     interface IArtistService
     {
         bool Create(CreateArtistDto createArtistDto);
+        void Delete(int artistId);
         Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery);
         Task<DetailsArtistDto> GetDetails(int id);
         bool Update(UpdateArtistDto updateArtistDto);
@@ -44,6 +45,25 @@ namespace FrontEndStoreMusicAPI.Services
             }
         }
 
+        public void Delete(int artistId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = @"api/artist";
+
+                var response = HelperHttpClient.DeleteHttp(client, artistId, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HelperHttpClient.GetResponseBodyOk(response, "Deleted Artist");
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+            }
+        }
+
         public async Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery)
         {
             using (HttpClient client = new HttpClient())
@@ -56,7 +76,7 @@ namespace FrontEndStoreMusicAPI.Services
 
                 if (response.IsSuccessStatusCode)
                 {   
-                    artists.Items = HelperHttpClient.GenerateAlbumsSongs(artists.Items);
+                    artists.Items = HelperHttpClient.GenerateAlbumsSongsForArtists(artists.Items);
                     return artists;
                 }
                 else

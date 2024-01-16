@@ -35,10 +35,61 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             artistWindow.Show();
         }
 
+
+        private void Button_DeleteArtist(object sender, RoutedEventArgs e)
+        {
+            int artistId;
+            var indexItem = DataGridArtists.SelectedIndex;
+            if (indexItem != -1 && MusicStoreWindow.detailsUser != null) // user logged in
+            {
+                artistId = artists[indexItem].Id;
+                IArtistService artistService = new ArtistService();
+                artistService.Delete(artistId);
+
+                GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
+            }
+            else if (indexItem != -1 && MusicStoreWindow.detailsUser == null) // no user logged in
+            {
+               
+            }
+            else { MessageBox.Show("Select any record to display Details of Artist !"); return; }
+
+            
+        }
+
         private void Button_ShowAllArtist(object sender, RoutedEventArgs e)
         {
             GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
+
+        private async void Button_DetailsArtist(object sender, RoutedEventArgs e)
+        {
+            DetailsArtist detailsArtist = new DetailsArtist();
+
+            int artistId;
+            DetailsArtistDto selectedArtist;
+            var indexItem = DataGridArtists.SelectedIndex;
+            if (indexItem != -1 && MusicStoreWindow.detailsUser != null) // user logged in
+            {
+                artistId = artists[indexItem].Id;
+                IArtistService artistService = new ArtistService();
+                selectedArtist = await artistService.GetDetails(artistId);
+                var resultAlbumsSongs = HelperHttpClient.GenerateAlbumsSongsForArtist(artists[indexItem]);
+                selectedArtist.AlbumsSongs = resultAlbumsSongs.AlbumsSongs;
+
+                detailsArtist.FillDetailsArray(selectedArtist);
+            }
+            else if (indexItem != -1 && MusicStoreWindow.detailsUser == null) // no user logged in
+            {
+                ArtistDto artistDto = artists[indexItem];
+                detailsArtist.FillArray(artistDto);
+            }
+            else { MessageBox.Show("Select any record to display Details of Artist !"); return; }
+
+            this.Visibility = Visibility.Hidden;
+            detailsArtist.Show();
+        }
+
 
         private void Button_CreateArtist(object sender, RoutedEventArgs e)
         {
@@ -144,15 +195,9 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             CurrentPage.Text = string.Join(" ", strings);
             RecordsPerPage.Text = query.PageSize.ToString();
 
-            ObservableCollection<AlbumDto> Albums = new ObservableCollection<AlbumDto>();
-
             foreach (var artist in artistsResult.Items)
             {
                 artists.Add(artist);
-                foreach (var album in artist.Albums)
-                {
-                    Albums.Add(album);
-                }
             }
 
             DataGridArtists.DataContext = artists;

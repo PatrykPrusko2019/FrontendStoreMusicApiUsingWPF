@@ -21,13 +21,24 @@ namespace FrontEndStoreMusicAPI.Utilites
         private static string GetTokenJWT()
         {
             string tokenJWT = "";
-            if (MusicStoreWindow.detailsUser != null && MusicStoreWindow.detailsUser.TokenJWT != null)
+            if (MusicStoreWindow.detailsUser != null)
             {
                 tokenJWT = $@"{MusicStoreWindow.detailsUser.TokenJWT}";
                 tokenJWT = tokenJWT.Substring(1, tokenJWT.Count() - 2);
                 return tokenJWT;
             }
             return null;
+        }
+
+        public static HttpResponseMessage DeleteHttp(HttpClient client, int artistId, string requestUri)
+        {
+            client.BaseAddress = new Uri(uri);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string tokenJWT = GetTokenJWT();
+            if (tokenJWT != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+
+            var response = client.DeleteAsync(@$"{requestUri}/{artistId}").Result;
+            return response;
         }
 
         public static HttpResponseMessage PutHttp<T>(HttpClient client, T modelDto, string requestUri)
@@ -90,16 +101,26 @@ namespace FrontEndStoreMusicAPI.Utilites
             MessageBox.Show($"{extendText}\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode + (responseBody = responseBody != null ? "\nResponse Body: " + responseBody : ""));
         }
 
-        internal static List<ArtistDto> GenerateAlbumsSongs(List<ArtistDto> artists)
+        public static List<ArtistDto> GenerateAlbumsSongsForArtists(List<ArtistDto> artists)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var artist in artists) 
+            for (int i = 0; i < artists.Count; i++)
             {
+                var artist = artists[i];
+                artist = GenerateAlbumsSongsForArtist(artist);
+            }
+            return artists;
+        }
+
+        public static ArtistDto GenerateAlbumsSongsForArtist(ArtistDto artist)
+        {
+            StringBuilder sb = new StringBuilder();
+            
                 for (var i = 0; i < artist.Albums.Count; i++)
                 {
                     sb.Append("\nAlbum:\n");
                     var album = artist.Albums[i];
-                    sb.Append( $"{i+1}. Id: {album.Id}, Title: {album.Title}, Length: {album.Length}, NumbersOfSongs: {album.NumberOfSongs}, Price: {album.Price}\n");
+                    sb.Append($"{i + 1}. Id: {album.Id}, Title: {album.Title}, Length: {album.Length}, NumbersOfSongs: {album.NumberOfSongs}, Price: {album.Price}\n");
                     if (artist.Albums != null || artist.Albums.Count != 0) sb = artist.Albums.Count == 1 ? sb.Append("Song:\n") : sb.Append("Songs:\n");
                     for (int j = 0; j < album.Songs.Count; j++)
                     {
@@ -109,10 +130,9 @@ namespace FrontEndStoreMusicAPI.Utilites
 
                 }
                 artist.AlbumsSongs = sb.ToString();
-                sb.Clear();
-            }
-
-            return artists;
+               
+            return artist;
         }
+
     }
 }
