@@ -1,5 +1,4 @@
-﻿
-using FrontEndStoreMusicAPI.Models;
+﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View;
 using System;
@@ -18,7 +17,8 @@ namespace FrontEndStoreMusicAPI.Services
     interface IArtistService
     {
         Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery);
-        void Update(UpdateArtistDto updateArtistDto);
+        Task<DetailsArtistDto> GetDetails(int id);
+        bool Update(UpdateArtistDto updateArtistDto);
     }
 
     class ArtistService : IArtistService
@@ -46,14 +46,36 @@ namespace FrontEndStoreMusicAPI.Services
             }
         }
 
-        
-        public async void Update(UpdateArtistDto updateArtistDto)
+        public async Task<DetailsArtistDto> GetDetails(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/details";
+
+                var response = await HelperHttpClient.GetHttp(client, id, requestUri);
+
+                var artist = await response.Content.ReadFromJsonAsync<DetailsArtistDto>();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return artist;
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+                return null;
+            }
+        }
+
+
+        public bool Update(UpdateArtistDto updateArtistDto)
         {
             using (HttpClient client = new HttpClient())
             {
                 string requestUri = $@"api/artist/{updateArtistDto.Id}";
 
-                var response = await HelperHttpClient.PutHttp(client, updateArtistDto, requestUri);
+                var response = HelperHttpClient.PutHttp(client, updateArtistDto, requestUri);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -63,6 +85,7 @@ namespace FrontEndStoreMusicAPI.Services
                 {
                     HelperHttpClient.GetResponseBodyError(response);
                 }
+                return response.IsSuccessStatusCode;
             }
         }
     }

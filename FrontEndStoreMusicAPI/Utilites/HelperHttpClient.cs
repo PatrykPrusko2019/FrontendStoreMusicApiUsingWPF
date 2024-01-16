@@ -18,7 +18,7 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         private const string uri = @"https://localhost:7195";
 
-        public async static Task<HttpResponseMessage> PutHttp<T>(HttpClient client, T modelDto, string requestUri)
+        public static HttpResponseMessage PutHttp<T>(HttpClient client, T modelDto, string requestUri)
         {
             string tokenJWT = "";
             if (MusicStoreWindow.detailsUser != null) tokenJWT = $@"{MusicStoreWindow.detailsUser.TokenJWT}";

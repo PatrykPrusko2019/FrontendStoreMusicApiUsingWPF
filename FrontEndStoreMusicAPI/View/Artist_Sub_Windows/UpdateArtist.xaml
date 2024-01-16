@@ -25,7 +25,7 @@
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="361,301,0,0" TextWrapping="Wrap" Text="CITY" VerticalAlignment="Top"/>
         <TextBox Name="ArtistUpdateCity" HorizontalAlignment="Left" Margin="400,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
 
-        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,342,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist" RenderTransformOrigin="0.889,0.486" ToolTip="update artist"/>
+        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,342,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveArtist" RenderTransformOrigin="0.889,0.486" ToolTip="update artist"/>
         <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,386,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearArtistUpdate" ToolTip="clear all values"/>
     </Grid>
 </Window>

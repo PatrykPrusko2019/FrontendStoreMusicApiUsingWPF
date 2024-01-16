@@ -1,5 +1,6 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
+using FrontEndStoreMusicAPI.Utilites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
     /// </summary>
     public partial class UpdateArtist : Window
     {
+        public static UpdateArtist c;
         public int ArtistId { get; set; }
         public UpdateArtist()
         {
             InitializeComponent();
+            c = this;
         }
 
         private void Button_ReturnToShowAllArtists(object sender, RoutedEventArgs e)
@@ -34,7 +37,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             showAllArtistsWindow.Show();
         }
 
-        private void Button_UpdateArtist(object sender, RoutedEventArgs e)
+        private void Button_SaveArtist(object sender, RoutedEventArgs e)
         {
             UpdateArtistDto updateArtist = new UpdateArtistDto()
             {
@@ -49,12 +52,16 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             };
 
             IArtistService artistService = new ArtistService();
-            artistService.Update(updateArtist);
+            
+            if ( artistService.Update(updateArtist) )
+            {
+                Button_ReturnToShowAllArtists(sender, e);
+            }
         }
 
         private void Button_ClearArtistUpdate(object sender, RoutedEventArgs e)
         {
-
+            Reset.ClearValuesOfUpdateArtist();
         }
     }
 }

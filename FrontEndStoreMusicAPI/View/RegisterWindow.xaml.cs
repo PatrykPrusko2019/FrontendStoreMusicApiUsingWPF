@@ -13,11 +13,11 @@ namespace FrontEndStoreMusicAPI
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        public static RegisterWindow r;
+        public static RegisterWindow c;
         public RegisterWindow()
         {
             InitializeComponent();
-            r = this;
+            c = this;
         }
 
         private void Button_ReturnToLogin(object sender, RoutedEventArgs e)

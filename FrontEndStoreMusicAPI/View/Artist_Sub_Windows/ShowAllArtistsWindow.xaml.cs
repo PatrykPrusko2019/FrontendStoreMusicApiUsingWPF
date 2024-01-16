@@ -1,5 +1,6 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
+using FrontEndStoreMusicAPI.Utilites;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,15 +40,22 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
 
-        private void Button_UpdateArtist(object sender, RoutedEventArgs e)
+        private async void Button_UpdateArtist(object sender, RoutedEventArgs e)
         {
             int artistId;
+            DetailsArtistDto selectedArtist;
             var indexItem = DataGridArtists.SelectedIndex;
-            if (indexItem != -1) { artistId = artists[indexItem].Id; }
+            if (indexItem != -1) 
+            { 
+                artistId = artists[indexItem].Id;
+                IArtistService artistService = new ArtistService();
+                selectedArtist = await artistService.GetDetails(artistId);
+            }
             else { MessageBox.Show("Select any record to be updated !"); return; }
 
             UpdateArtist updateArtist = new UpdateArtist();
             updateArtist.ArtistId = artistId;
+            Fill.FillValuesOfUpdateArtist(selectedArtist);
             this.Visibility = Visibility.Hidden;
             updateArtist.Show();
         }

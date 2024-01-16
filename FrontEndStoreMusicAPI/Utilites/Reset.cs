@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,25 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         public static void ClearValuesOfUserRegisterWindow()
         {
-            RegisterWindow.r.RegisterFirstName.Clear();
-            RegisterWindow.r.RegisterLastName.Clear();
-            RegisterWindow.r.RegisterEmail.Clear();
-            RegisterWindow.r.RegisterPassword.Clear();
-            RegisterWindow.r.RegisterConfirmPassword.Clear();
-            RegisterWindow.r.RegisterNationality.Clear();
-            RegisterWindow.r.RegisterDateOfBirth.Clear();
-            RegisterWindow.r.RegisterRole.Clear();
-           
+            RegisterWindow.c.RegisterFirstName.Clear();
+            RegisterWindow.c.RegisterLastName.Clear();
+            RegisterWindow.c.RegisterEmail.Clear();
+            RegisterWindow.c.RegisterPassword.Clear();
+            RegisterWindow.c.RegisterConfirmPassword.Clear();
+            RegisterWindow.c.RegisterNationality.Clear();
+            RegisterWindow.c.RegisterDateOfBirth.Clear();
+            RegisterWindow.c.RegisterRole.Clear();
+        }
+
+        public static void ClearValuesOfUpdateArtist()
+        {
+            UpdateArtist.c.ArtistUpdateName.Clear();
+            UpdateArtist.c.ArtistUpdateDescription.Clear();
+            UpdateArtist.c.ArtistUpdateKindOfMusic.Clear();
+            UpdateArtist.c.ArtistUpdateConctactEmail.Clear();
+            UpdateArtist.c.ArtistUpdateContactPhone.Clear();
+            UpdateArtist.c.ArtistUpdateCountry.Clear();
+            UpdateArtist.c.ArtistUpdateCity.Clear();
         }
 
 

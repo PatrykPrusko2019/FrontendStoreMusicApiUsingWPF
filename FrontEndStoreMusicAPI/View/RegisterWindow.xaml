@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Register" Height="450" Width="800">
     <Grid Background="#008080">
-        <TextBox Name="RegisterFirstName" HorizontalAlignment="Left" Margin="400,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
-        <TextBox Name="RegisterLastName" HorizontalAlignment="Left" Margin="400,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="RegisterFirstName" HorizontalAlignment="Left" Margin="400,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter first name" />
+        <TextBox Name="RegisterLastName" HorizontalAlignment="Left" Margin="400,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter last name" />
         <TextBox Name="RegisterEmail" HorizontalAlignment="Left" Margin="400,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct email format: something@something"/>
         <PasswordBox Name="RegisterPassword" MaxLength="32" PasswordChar="*" HorizontalAlignment="Left" Margin="400,191,0,0" VerticalAlignment="Top" Width="194" ToolTip="Password must have a minimum of 6 characters and must be equal to the ConfirmPassword field"/>
         <PasswordBox Name="RegisterConfirmPassword" MaxLength="32" PasswordChar="*" HorizontalAlignment="Left" Margin="400,214,0,0" VerticalAlignment="Top" Width="194" ToolTip="ConfirmPassword must equal the Password field"/>
-        <TextBox Name="RegisterNationality" HorizontalAlignment="Left" Margin="400,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
+        <TextBox Name="RegisterNationality" HorizontalAlignment="Left" Margin="400,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter nationality"/>
         <TextBox Name="RegisterDateOfBirth" HorizontalAlignment="Left" Margin="400,260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct date of birth format: day-month-year (13-1-1987)"/>
         <TextBox Name="RegisterRole" HorizontalAlignment="Left" Margin="400,284,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter number: 1, 2 or 3 (1-> USER, 2-> PREMIUM_USER, 3-> ADMIN"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="319,123,0,0" TextWrapping="Wrap" Text="FIRST NAME" VerticalAlignment="Top"/>
