@@ -9,7 +9,7 @@
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
-        <Button x:Name="ReturnToArtists" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToArtists" ToolTip="return to Artists"/>
+        <Button x:Name="ReturnToMusicStore" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToMusicStore" ToolTip="return to Music Store"/>
         <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="5,138,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
         <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 

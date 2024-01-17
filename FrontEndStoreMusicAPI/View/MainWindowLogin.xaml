@@ -9,7 +9,7 @@
     <Grid Background="#008080">
         <Button Content="Register" Height="30" HorizontalAlignment="Left" Margin="424,276,0,0" VerticalAlignment="Top" Width="150" Click="Button_Register" ToolTip="register"/>
         <Button Content="Sign in" Height="30" HorizontalAlignment="Left" Margin="424,217,0,0" VerticalAlignment="Top" Width="150" Click="Button_SignIn" ToolTip="sign in"/>
-        <Button Content="Enter Without Log In" Height="30" HorizontalAlignment="Left" Margin="424,338,0,0" VerticalAlignment="Top" Width="150" ToolTip="enter as guest"/>
+        <Button Content="Enter Without Log In" Height="30" HorizontalAlignment="Left" Margin="424,338,0,0" VerticalAlignment="Top" Width="150" ToolTip="enter as guest" Click="Button_WithoutLogIn" />
         <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="350,141,0,0" TextWrapping="Wrap" Text="EMAIL" VerticalAlignment="Top"/>
         <TextBox Name="LoginEmail" HorizontalAlignment="Left" Margin="402,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct email format: something@something"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="321,176,0,0" TextWrapping="Wrap" Text="PASSWORD" VerticalAlignment="Top"/>

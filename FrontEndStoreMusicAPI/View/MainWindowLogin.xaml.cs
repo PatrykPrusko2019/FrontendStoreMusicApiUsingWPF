@@ -54,10 +54,17 @@ namespace FrontEndStoreMusicAPI.View
             user.TokenJWT = tokenJWT;
 
             //if everything is ok, go to window music store for given user
-            MusicStoreWindow.detailsUser = user;
+            MusicStoreWindow.DetailsUser = user;
             MusicStoreWindow windowMusicStore = new MusicStoreWindow();
             this.Visibility = Visibility.Hidden;
             windowMusicStore.Show();
+        }
+
+        private void Button_WithoutLogIn(object sender, RoutedEventArgs e)
+        {
+            MusicStoreWindow musicStoreWindow = new MusicStoreWindow();
+            this.Visibility = Visibility.Hidden;
+            musicStoreWindow.Show();
         }
     }
 }

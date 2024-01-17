@@ -21,9 +21,9 @@ namespace FrontEndStoreMusicAPI.Utilites
         private static string GetTokenJWT()
         {
             string tokenJWT = "";
-            if (MusicStoreWindow.detailsUser != null)
+            if (MusicStoreWindow.DetailsUser != null)
             {
-                tokenJWT = $@"{MusicStoreWindow.detailsUser.TokenJWT}";
+                tokenJWT = $@"{MusicStoreWindow.DetailsUser.TokenJWT}";
                 tokenJWT = tokenJWT.Substring(1, tokenJWT.Count() - 2);
                 return tokenJWT;
             }

@@ -1,18 +1,8 @@
 ﻿using FrontEndStoreMusicAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FrontEndStoreMusicAPI.Services;
+using FrontEndStoreMusicAPI.Utilites;
+using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.TextFormatting;
-using System.Windows.Shapes;
 
 namespace FrontEndStoreMusicAPI.View
 {
@@ -21,34 +11,85 @@ namespace FrontEndStoreMusicAPI.View
     /// </summary>
     public partial class MusicStoreWindow : Window
     {
-        public static UserDto? detailsUser;
+        public static UserDto? DetailsUser;
 
 
         public MusicStoreWindow()
         {
             InitializeComponent();
-            DescriptionWindowMusicStore.Text += $" {detailsUser.FirstName} {detailsUser.LastName}";
+
+            DescriptionWindowMusicStore.Text += DetailsUser != null ? $" {DetailsUser.FirstName}" : "Guest";
         }
 
 
         private void Button_SingOut(object sender, RoutedEventArgs e)
         {
-            detailsUser = null;
+            DetailsUser = null;
             MainWindowLogin windowLogin = new MainWindowLogin();
             this.Visibility = Visibility.Hidden;
             windowLogin.Show();
         }
 
-        private void Button_UserDetails(object sender, RoutedEventArgs e)
+        private async void Button_UserDetails(object sender, RoutedEventArgs e)
         {
+            DetailsUserWindow detailsUserWindow = new DetailsUserWindow();
+            if (DetailsUser != null) 
+            {
+                IUserService userService = new UserService();
+                var listArtists = await userService.GetDetailsArtistsByUserId(DetailsUser.Id);
+
+                foreach (var detailsArtist in listArtists)
+                {
+                    ArtistDto artistDto = detailsArtist;
+                    artistDto = HelperHttpClient.GenerateAlbumsSongsForArtist(artistDto);
+                    detailsArtist.AlbumsSongs = artistDto.AlbumsSongs;
+                }
+                switch (DetailsUser.RoleId)
+                {
+                    case 1:
+                        {
+                            DetailsUser.Role = "User";
+                            DetailsUser.RoleDescription = "You have the option to browse all artists, their albums and songs and\n view their details. You cannot create, update, delete artists, albums, songs.";
+                            break;
+                        }
+                    case 2:
+                        {
+                            DetailsUser.Role = "PremiumUser";
+                            DetailsUser.RoleDescription = "You have the option to create, browse all the artists, their albums\n and songs and view their details. You can update and delete one artist, album, song.\n" +
+                                " You can delete a given artist all albums, or a given album all songs. You cannot update, delete\n artists, albums, songs that you have not created. You can not create new\n " +
+                                "names of artists, albums, songs, so that there are no duplicates in the list of a given user.";
+                            break;
+                        }
+                    case 3:
+                        {
+                            DetailsUser.Role = "Admin";
+                            DetailsUser.RoleDescription = "You have the option to create, view, update, delete all artists,\n their albums, their songs. You cannot create new names of artists, albums, songs,\n" +
+                                " so that there are no duplicates in the list of a given user.";
+                            break;
+                        }
+                }
+                
+
+                DetailsUser.DetailsArtists = listArtists;
+                detailsUserWindow.FillDetailsArray();
+
+                this.Visibility = Visibility.Hidden;
+                detailsUserWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("You are not logged in, so you do not have access to this option !");
+            }
+            
+
 
         }
 
         private void Button_ShowArtists(object sender, RoutedEventArgs e)
         {
-            ArtistWindow artistWindow = new ArtistWindow();
+            ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
             this.Visibility= Visibility.Hidden;
-            artistWindow.Show();
+            showAllArtistsWindow.Show();
         }
 
         private void Button_ShowAlbums(object sender, RoutedEventArgs e)

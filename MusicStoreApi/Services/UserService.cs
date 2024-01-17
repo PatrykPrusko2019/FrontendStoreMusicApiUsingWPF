@@ -23,7 +23,7 @@ namespace MusicStoreApi.Services
             return userDto;
         }
 
-        public List<ArtistDto> GetArtistsByUserId(int id)
+        public List<DetailsArtistDto> GetArtistsByUserId(int id)
         {
             var user = GetUserById(id);
 
@@ -42,7 +42,7 @@ namespace MusicStoreApi.Services
                 }
             }
 
-            var artistsDto = mapper.Map<List<ArtistDto>>(artists);
+            var artistsDto = mapper.Map<List<DetailsArtistDto>>(artists);
             return artistsDto;
         }
 

@@ -16,6 +16,7 @@ namespace FrontEndStoreMusicAPI.Models
         public string City { get; set; }
         public List<AlbumDto> Albums { get; set; }
         public string AlbumsSongs { get; set; }
-        
+        public int CreatedById { get; set; }
+
     }
 }
