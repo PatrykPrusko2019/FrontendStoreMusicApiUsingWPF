@@ -1,0 +1,25 @@
+﻿<Window x:Class="FrontEndStoreMusicAPI.View.Album_Sub_Windows.UpdateCreateAlbum"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Album_Sub_Windows"
+        mc:Ignorable="d"
+        Title="UpdateCreateAlbum" Height="450" Width="800">
+    <Grid Background="#008080">
+        <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        <TextBlock x:Name="DescriptionUpdateCreateAlbum" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Button x:Name="ReturnToArtists" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllAlbums" ToolTip="return to all Albums"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="356,166,0,0" TextWrapping="Wrap" Text="TITLE" VerticalAlignment="Top"/>
+        <TextBox Name="AlbumUpdateCreateTitle" HorizontalAlignment="Left" Margin="400,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter title"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="340,189,0,0" TextWrapping="Wrap" Text="LENGTH" VerticalAlignment="Top"/>
+        <TextBox Name="AlbumUpdateCreateLength" HorizontalAlignment="Left" Margin="400,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter length"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="275,212,0,0" TextWrapping="Wrap" Text="NUMBER OF SONGS" VerticalAlignment="Top"/>
+        <TextBox Name="AlbumUpdateCreateNumberOfSongs" HorizontalAlignment="Left" Margin="400,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter number of songs"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="353,235,0,0" TextWrapping="Wrap" Text="PRICE" VerticalAlignment="Top"/>
+        <TextBox Name="AlbumUpdateCreatePrice" HorizontalAlignment="Left" Margin="400,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct price : 15 or 15.5"/>
+
+        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,334,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveAlbum" RenderTransformOrigin="0.889,0.486" ToolTip="save album"/>
+        <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,375,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearValuesOfAlbum" ToolTip="clear all values"/>
+    </Grid>
+</Window>

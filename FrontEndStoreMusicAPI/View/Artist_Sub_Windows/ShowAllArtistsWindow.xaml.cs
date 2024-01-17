@@ -1,6 +1,7 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
+using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -20,6 +21,27 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             query = new ArtistQuery();
             artists = new ObservableCollection<ArtistDto>();
             paginationResults = new ObservableCollection<PageResult<ArtistDto>>();
+        }
+
+        private void Button_ShowAllAlbums(object sender, RoutedEventArgs e)
+        {
+            var indexItem = DataGridArtists.SelectedIndex;
+            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Artist!"); return; }
+
+            var selectedAlbums = artists[indexItem].Albums;
+            if (selectedAlbums != null && selectedAlbums.Count > 0) 
+            {
+                ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
+                showAllAlbumsWindow.artistId = artists[indexItem].Id;
+                showAllAlbumsWindow.FillArrayAlbums();
+                this.Visibility = Visibility.Hidden;
+                showAllAlbumsWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("There are no Albums! Select another record, which has a Album");
+            }
+
         }
 
         private void Button_ReturnToMusicStore(object sender, RoutedEventArgs e)
@@ -193,7 +215,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             if (query.PageSize == 0) query.PageSize = 5;
 
             var artistsResult = await artistService.GetAll(query);
-            if (artistsResult.Items.Count == null || artistsResult.Items.Count == 0) { MessageBox.Show("artists not found !"); }
+            if (artistsResult.Items == null || artistsResult.Items.Count == 0) { MessageBox.Show("artists not found !"); return; }
             paginationResults.Add(artistsResult);
             DataGridArtistsResults.DataContext = paginationResults;
 

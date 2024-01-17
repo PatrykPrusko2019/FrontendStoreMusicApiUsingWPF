@@ -1,4 +1,5 @@
-﻿using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
+﻿using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
+using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,23 @@ namespace FrontEndStoreMusicAPI.Utilites
             RegisterWindow.c.RegisterRole.Clear();
         }
 
-        public static void ClearValuesOfUpdateArtist()
+        public static void ClearValuesOfUpdateCreateArtist()
         {
-            UpdateCreateArtist.c.ArtistUpdateName.Clear();
-            UpdateCreateArtist.c.ArtistUpdateDescription.Clear();
-            UpdateCreateArtist.c.ArtistUpdateKindOfMusic.Clear();
-            UpdateCreateArtist.c.ArtistUpdateConctactEmail.Clear();
-            UpdateCreateArtist.c.ArtistUpdateContactPhone.Clear();
-            UpdateCreateArtist.c.ArtistUpdateCountry.Clear();
-            UpdateCreateArtist.c.ArtistUpdateCity.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateName.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateDescription.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateKindOfMusic.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateConctactEmail.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateContactPhone.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateCountry.Clear();
+            UpdateCreateArtist.c.ArtistUpdateCreateCity.Clear();
+        }
+
+        public static void ClearValuesOfUpdateCreateAlbum()
+        {
+            UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Clear();
+            UpdateCreateAlbum.c.AlbumUpdateCreateLength.Clear();
+            UpdateCreateAlbum.c.AlbumUpdateCreateNumberOfSongs.Clear();
+            UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Clear();
         }
 
 

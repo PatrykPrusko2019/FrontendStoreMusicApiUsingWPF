@@ -42,18 +42,9 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         {
             if (artistId == 0) 
             {
-                CreateArtistDto createArtistDto = new CreateArtistDto()
-                {
-                    Id = artistId,
-                    Name = ArtistUpdateName.Text,
-                    Description = ArtistUpdateDescription.Text,
-                    KindOfMusic = ArtistUpdateKindOfMusic.Text,
-                    ContactEmail = ArtistUpdateConctactEmail.Text,
-                    ContactNumber = ArtistUpdateContactPhone.Text,
-                    Country = ArtistUpdateCountry.Text,
-                    City = ArtistUpdateCity.Text
-                };
-
+                CreateArtistDto createArtistDto = new CreateArtistDto();
+                Fill.FillValuesOfCreateUpdateArtist(createArtistDto);
+                
                 IArtistService artistService = new ArtistService();
 
                 if (artistService.Create(createArtistDto))
@@ -63,20 +54,12 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             }
             else
             {
-                UpdateArtistDto updateArtist = new UpdateArtistDto()
-                {
-                    Id = artistId,
-                    Name = ArtistUpdateName.Text,
-                    Description = ArtistUpdateDescription.Text,
-                    KindOfMusic = ArtistUpdateKindOfMusic.Text,
-                    ContactEmail = ArtistUpdateConctactEmail.Text,
-                    ContactNumber = ArtistUpdateContactPhone.Text,
-                    Country = ArtistUpdateCountry.Text,
-                    City = ArtistUpdateCity.Text
-                };
+                UpdateArtistDto updateArtist = new UpdateArtistDto();
+                Fill.FillValuesOfCreateUpdateArtist(updateArtist);
+                updateArtist.Id = artistId;
 
                 IArtistService artistService = new ArtistService();
-
+                
                 if (artistService.Update(updateArtist))
                 {
                     Button_ReturnToShowAllArtists(sender, e);
@@ -85,9 +68,9 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             
         }
 
-        private void Button_ClearArtistUpdate(object sender, RoutedEventArgs e)
+        private void Button_ClearArtist(object sender, RoutedEventArgs e)
         {
-            Reset.ClearValuesOfUpdateArtist();
+            Reset.ClearValuesOfUpdateCreateArtist();
         }
     }
 }

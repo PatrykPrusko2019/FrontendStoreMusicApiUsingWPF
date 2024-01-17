@@ -1,6 +1,7 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
+using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System.Windows;
 
@@ -94,7 +95,9 @@ namespace FrontEndStoreMusicAPI.View
 
         private void Button_ShowAlbums(object sender, RoutedEventArgs e)
         {
-
+            ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
+            this.Visibility= Visibility.Hidden;
+            showAllAlbumsWindow.Show();
         }
 
         private void Button_ShowSongs(object sender, RoutedEventArgs e)

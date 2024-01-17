@@ -134,5 +134,23 @@ namespace FrontEndStoreMusicAPI.Utilites
             return artist;
         }
 
+        internal static List<AlbumDto> GenerateAlbums(List<AlbumDto> albums)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < albums.Count; i++)
+            {
+                var album = albums[i];
+
+                for (int j = 0; j < album.Songs.Count; j++)
+                {
+                    var song = album.Songs[j];
+                    sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, AlbumId: {song.AlbumId}\n");
+                }
+                album.ListOfSongs = sb.ToString();
+                sb.Clear();
+            }
+            return albums;
+        }
     }
 }

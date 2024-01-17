@@ -14,5 +14,6 @@ namespace FrontEndStoreMusicAPI.Models
         public int NumberOfSongs { get; set; }
         public double Price { get; set; }
         public List<SongDto> Songs { get; set; }
+        public string ListOfSongs { get; set; }
     }
 }

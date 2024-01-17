@@ -12,13 +12,25 @@ namespace FrontEndStoreMusicAPI.Utilites
     {
         public static void FillValuesOfUpdateArtist(DetailsArtistDto updateArtist)
         {
-            UpdateCreateArtist.c.ArtistUpdateName.Text = updateArtist.Name;
-            UpdateCreateArtist.c.ArtistUpdateDescription.Text = updateArtist.Description;
-            UpdateCreateArtist.c.ArtistUpdateKindOfMusic.Text = updateArtist.KindOfMusic;
-            UpdateCreateArtist.c.ArtistUpdateConctactEmail.Text = updateArtist.ContactEmail;
-            UpdateCreateArtist.c.ArtistUpdateContactPhone.Text = updateArtist.ContactNumber;
-            UpdateCreateArtist.c.ArtistUpdateCountry.Text = updateArtist.Country;
-            UpdateCreateArtist.c.ArtistUpdateCity.Text = updateArtist.City;
+            UpdateCreateArtist.c.ArtistUpdateCreateName.Text = updateArtist.Name;
+            UpdateCreateArtist.c.ArtistUpdateCreateDescription.Text = updateArtist.Description;
+            UpdateCreateArtist.c.ArtistUpdateCreateKindOfMusic.Text = updateArtist.KindOfMusic;
+            UpdateCreateArtist.c.ArtistUpdateCreateConctactEmail.Text = updateArtist.ContactEmail;
+            UpdateCreateArtist.c.ArtistUpdateCreateContactPhone.Text = updateArtist.ContactNumber;
+            UpdateCreateArtist.c.ArtistUpdateCreateCountry.Text = updateArtist.Country;
+            UpdateCreateArtist.c.ArtistUpdateCreateCity.Text = updateArtist.City;
+        }
+
+        // genereted new or updated artist 
+        public static void FillValuesOfCreateUpdateArtist(BasicArtist newArtist)
+        {
+            newArtist.Name = UpdateCreateArtist.c.ArtistUpdateCreateName.Text;
+            newArtist.Description = UpdateCreateArtist.c.ArtistUpdateCreateDescription.Text;
+            newArtist.KindOfMusic = UpdateCreateArtist.c.ArtistUpdateCreateKindOfMusic.Text;
+            newArtist.ContactEmail = UpdateCreateArtist.c.ArtistUpdateCreateConctactEmail.Text;
+            newArtist.ContactNumber = UpdateCreateArtist.c.ArtistUpdateCreateContactPhone.Text;
+            newArtist.Country = UpdateCreateArtist.c.ArtistUpdateCreateCountry.Text;
+            newArtist.City = UpdateCreateArtist.c.ArtistUpdateCreateCity.Text;
         }
     }
 }
