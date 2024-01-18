@@ -1,4 +1,6 @@
-﻿using FrontEndStoreMusicAPI.Utilites;
+﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Services;
+using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     {
         public static UpdateCreateAlbum c;
         public int albumId { get; set; }
+        public int artistId { get; set; }
         public UpdateCreateAlbum()
         {
             InitializeComponent();
@@ -33,6 +36,8 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_ReturnToAllAlbums(object sender, RoutedEventArgs e)
         {
             ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
+            showAllAlbumsWindow.artistId = artistId;
+            showAllAlbumsWindow.FillArrayAlbums();
             this.Visibility = Visibility.Hidden;
             showAllAlbumsWindow.Show();
         }
@@ -46,7 +51,43 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         {
             if (albumId == 0) 
             {
-                //to do !!! next
+                CreateAlbumDto createAlbumDto = new CreateAlbumDto();
+                if (double.TryParse(AlbumUpdateCreateLength.Text, out double resultLength) && double.TryParse(AlbumUpdateCreatePrice.Text, out double resultPrice))
+                {
+                    Fill.FillValuesOfCreateUpdateAlbum(createAlbumDto);
+
+                    IAlbumService albumService = new AlbumService();
+
+                    if (albumService.Create(artistId, createAlbumDto))
+                    {
+                        Button_ReturnToAllAlbums(sender, e);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid one of the values: Price or Length, should be a numbers!");
+                    return;
+                }
+
+            } else
+            {
+                UpdateAlbumDto updateAlbumDto = new UpdateAlbumDto();
+                if (double.TryParse(AlbumUpdateCreateLength.Text, out double resultLength) && double.TryParse(AlbumUpdateCreatePrice.Text, out double resultPrice))
+                {
+                    Fill.FillValuesOfCreateUpdateAlbum(updateAlbumDto);
+
+                    IAlbumService albumService = new AlbumService();
+                    if (albumService.Update(artistId, albumId, updateAlbumDto))
+                    {
+                        Button_ReturnToAllAlbums(sender, e);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid one of the values: Price or Length, should be a numbers!");
+                    return;
+                }
             }
         }
     }

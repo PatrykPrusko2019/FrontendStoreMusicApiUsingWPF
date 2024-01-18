@@ -1,0 +1,26 @@
+﻿<Window x:Class="FrontEndStoreMusicAPI.View.Album_Sub_Windows.DetailsAlbum"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Album_Sub_Windows"
+        mc:Ignorable="d"
+        Title="DetailsAlbum" Height="450" Width="800">
+    <Grid Background="#008080">
+        <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="You are in the Details of Album section " VerticalAlignment="Top"/>
+        <Button x:Name="ReturnToAllAlbums" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllAlbums" ToolTip="return to All Artists"/>
+        <DataGrid x:Name="DataGridDetailsAlbums" ItemsSource="{Binding}" Background="#008050" RowBackground="#008050" Margin="10,148,10,10" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ArtistId"  Binding="{Binding ArtistId}" />
+                <DataGridTextColumn Header="ArtistName"  Binding="{Binding ArtistName}" />
+                <DataGridTextColumn Header="AlbumId"  Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}" />
+                <DataGridTextColumn Header="NumberOfSongs" Binding="{Binding NumberOfSongs}" />
+                <DataGridTextColumn Header="Price"  Binding="{Binding Price}" />
+                <DataGridTextColumn Header="ListOfSongs"  Binding="{Binding ListOfSongs}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

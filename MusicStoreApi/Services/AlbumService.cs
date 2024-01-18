@@ -140,6 +140,27 @@ namespace MusicStoreApi.Services
             return album;
         }
 
+        public DetailsAlbumDto GetDetailsById(int artistId, int albumId)
+        {
+            var album = GetById(artistId, albumId);
+
+            string nameArtist = dbContext.Artists.FirstOrDefault(a => a.Id == artistId).Name;
+
+            DetailsAlbumDto detailsAlbumDto = new DetailsAlbumDto()
+            {
+                Id = album.Id,
+                Title = album.Title,
+                Length = album.Length,
+                NumberOfSongs = album.NumberOfSongs,
+                Price = album.Price,
+                Songs = album.Songs,
+                ArtistId = artistId,
+                ArtistName = nameArtist
+            };
+
+            return detailsAlbumDto;
+        }
+
         private List<Album> CheckIfIdIsCorrectAndGetAlbums(int artistId,  bool isGetAlbumsOrIsCheckId)
         {
             GetAlbumById(artistId, 0, true); // checks if ids numbers are correct
@@ -177,7 +198,5 @@ namespace MusicStoreApi.Services
             var isDuplicate = artist.Albums.Any(a => a.Title == title);
             if (isDuplicate) throw new DuplicateValueException("Title : value invalid, because is on the album's list");
         }
-
-
     }
 }

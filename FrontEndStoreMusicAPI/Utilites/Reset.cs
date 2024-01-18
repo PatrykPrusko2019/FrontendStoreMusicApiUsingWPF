@@ -37,7 +37,6 @@ namespace FrontEndStoreMusicAPI.Utilites
         {
             UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Clear();
             UpdateCreateAlbum.c.AlbumUpdateCreateLength.Clear();
-            UpdateCreateAlbum.c.AlbumUpdateCreateNumberOfSongs.Clear();
             UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Clear();
         }
 

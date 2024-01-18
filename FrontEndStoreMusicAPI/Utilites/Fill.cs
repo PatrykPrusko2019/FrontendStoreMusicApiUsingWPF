@@ -1,4 +1,6 @@
 ﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Models.BasicAlbum;
+using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,7 @@ namespace FrontEndStoreMusicAPI.Utilites
         }
 
         // genereted new or updated artist 
-        public static void FillValuesOfCreateUpdateArtist(BasicArtist newArtist)
+        public static void FillValuesOfCreateUpdateArtist(BasicArtistDto newArtist)
         {
             newArtist.Name = UpdateCreateArtist.c.ArtistUpdateCreateName.Text;
             newArtist.Description = UpdateCreateArtist.c.ArtistUpdateCreateDescription.Text;
@@ -31,6 +33,13 @@ namespace FrontEndStoreMusicAPI.Utilites
             newArtist.ContactNumber = UpdateCreateArtist.c.ArtistUpdateCreateContactPhone.Text;
             newArtist.Country = UpdateCreateArtist.c.ArtistUpdateCreateCountry.Text;
             newArtist.City = UpdateCreateArtist.c.ArtistUpdateCreateCity.Text;
+        }
+
+        public static void FillValuesOfCreateUpdateAlbum(BasicAlbumDto newAlbum)
+        {
+            newAlbum.Title = UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Text;
+            newAlbum.Length = double.Parse(UpdateCreateAlbum.c.AlbumUpdateCreateLength.Text);
+            newAlbum.Price = double.Parse(UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Text);
         }
     }
 }

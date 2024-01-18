@@ -14,10 +14,11 @@
         <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 
         <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_SearchAlbums" ToolTip="display all Albums by given Artist"/>
-        <Button Content="Add" Height="30" HorizontalAlignment="left" Margin="670,20,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateAlbum"  ToolTip="go to create Album" />
-        <Button Content="Update" Height="30" HorizontalAlignment="left" Margin="670,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateAlbum"  ToolTip="go to update Album" />
-        <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="670,100,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAlbum" ToolTip="delete Album"/>
-        <Button Content="Details Album" Height="30" HorizontalAlignment="Left" Margin="670,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsAlbum"  ToolTip="go to details of the Album"/>
+        <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="640,6,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateAlbum"  ToolTip="go to create Album" />
+        <Button Content="Update" Height="30" HorizontalAlignment="Left" Margin="640,41,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateAlbum"  ToolTip="go to update Album" />
+        <Button Content="Delete One" Height="30" HorizontalAlignment="Left" Margin="640,76,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAlbumById" ToolTip="delete one Album"/>
+        <Button Content="Delete All" Height="30" HorizontalAlignment="Left" Margin="640,111,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAllAlbums" ToolTip="delete all Albums"/>
+        <Button Content="Details Album" Height="30" HorizontalAlignment="Left" Margin="640,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsAlbum"  ToolTip="go to details of the Album"/>
         <DataGrid Name="DataGridAlbums" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="10,182,10,10" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
@@ -28,6 +29,7 @@
                 <DataGridTextColumn Header="Songs"  Binding="{Binding ListOfSongs}" />
             </DataGrid.Columns>
         </DataGrid>
+        
 
     </Grid>
 </Window>

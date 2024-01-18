@@ -8,7 +8,7 @@
         Title="DetailsArtist" Height="500" Width="1250">
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
-        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
+        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="You are in the Details of Artist section " VerticalAlignment="Top"/>
         <Button x:Name="ReturnToArtists" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllArtists" ToolTip="return to All Artists"/>
         <DataGrid x:Name="DataGridDetailsArtist" ItemsSource="{Binding}" Background="#008050" RowBackground="#008050" Margin="10,148,10,10" AutoGenerateColumns="False">
             <DataGrid.Columns>

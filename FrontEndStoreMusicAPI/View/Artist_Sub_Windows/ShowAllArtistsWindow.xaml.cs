@@ -56,7 +56,10 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         {
             int artistId;
             var indexItem = DataGridArtists.SelectedIndex;
-            if (indexItem != -1 && MusicStoreWindow.DetailsUser != null) // user logged in
+
+            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Artist !"); return; }
+            else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete!"); } // no user logged in
+            else
             {
                 artistId = artists[indexItem].Id;
                 IArtistService artistService = new ArtistService();
@@ -64,13 +67,6 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 
                 GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
             }
-            else if (MusicStoreWindow.DetailsUser == null) // no user logged in
-            {
-                MessageBox.Show("You are not logged in, so you do not have access to this option : Delete!");
-            }
-            else { MessageBox.Show("Select any record to display Details of Artist !"); return; }
-
-            
         }
 
         private void Button_ShowAllArtist(object sender, RoutedEventArgs e)
@@ -85,7 +81,9 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             int artistId;
             DetailsArtistDto selectedArtist;
             var indexItem = DataGridArtists.SelectedIndex;
-            if (indexItem != -1 && MusicStoreWindow.DetailsUser != null && MusicStoreWindow.DetailsUser.Id == artists[indexItem].CreatedById) // user logged in and artist created by this artist
+
+            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Artist !"); return; }
+            else if (MusicStoreWindow.DetailsUser != null && MusicStoreWindow.DetailsUser.Id == artists[indexItem].CreatedById) // user logged in and artist created by this artist
             {
                 artistId = artists[indexItem].Id;
                 IArtistService artistService = new ArtistService();
@@ -95,13 +93,12 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 
                 detailsArtist.FillDetailsArray(selectedArtist); // plus 2 columns to display: ContactEmail, ContactNumber
             }
-            else if (indexItem != -1) // for all users and non-loggers
+            else // for all users and non-loggers
             {
                 ArtistDto artistDto = artists[indexItem];
                 detailsArtist.FillArray(artistDto); // without 2 columns to display : ContactEmail, ContactNumber
             }
-            else { MessageBox.Show("Select any record to display Details of Artist !"); return; }
-
+            
             this.Visibility = Visibility.Hidden;
             detailsArtist.Show();
         }
@@ -128,18 +125,19 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             int artistId;
             DetailsArtistDto selectedArtist;
             var indexItem = DataGridArtists.SelectedIndex;
-            if (MusicStoreWindow.DetailsUser == null)
+
+            if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
+            else if (MusicStoreWindow.DetailsUser == null) 
             {
                 MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
                 return;
             }
-            else if (indexItem != -1) 
+            else
             { 
                 artistId = artists[indexItem].Id;
                 IArtistService artistService = new ArtistService();
                 selectedArtist = await artistService.GetDetails(artistId);
             }
-            else { MessageBox.Show("Select any record to be updated !"); return; }
 
             UpdateCreateArtist updateArtist = new UpdateCreateArtist();
             updateArtist.artistId = artistId;

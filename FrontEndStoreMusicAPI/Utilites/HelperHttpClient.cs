@@ -41,6 +41,17 @@ namespace FrontEndStoreMusicAPI.Utilites
             return response;
         }
 
+        public static HttpResponseMessage DeleteAllHttp(HttpClient client, string requestUri)
+        {
+            client.BaseAddress = new Uri(uri);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string tokenJWT = GetTokenJWT();
+            if (tokenJWT != null) client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $@"{tokenJWT}");
+
+            var response = client.DeleteAsync(requestUri).Result;
+            return response;
+        }
+
         public static HttpResponseMessage PutHttp<T>(HttpClient client, T modelDto, string requestUri)
         {
             client.BaseAddress = new Uri(uri);
@@ -151,6 +162,18 @@ namespace FrontEndStoreMusicAPI.Utilites
                 sb.Clear();
             }
             return albums;
+        }
+
+        internal static DetailsAlbumDto GenerateSongsForAlbum(DetailsAlbumDto detailsAlbumDto)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < detailsAlbumDto.Songs.Count; j++)
+            {
+                var song = detailsAlbumDto.Songs[j];
+                sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, AlbumId: {song.AlbumId}\n");
+            }
+            detailsAlbumDto.ListOfSongs = sb.ToString();
+            return detailsAlbumDto;
         }
     }
 }

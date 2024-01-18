@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEndStoreMusicAPI.Models.BasicAlbum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FrontEndStoreMusicAPI.Models
 {
-    internal class CreateArtistDto : BasicArtistDto
+    class CreateAlbumDto : BasicAlbumDto
     {
     }
 }

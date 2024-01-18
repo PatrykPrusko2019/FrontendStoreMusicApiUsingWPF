@@ -14,12 +14,10 @@
         <TextBox Name="AlbumUpdateCreateTitle" HorizontalAlignment="Left" Margin="400,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter title"/>
         <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="340,189,0,0" TextWrapping="Wrap" Text="LENGTH" VerticalAlignment="Top"/>
         <TextBox Name="AlbumUpdateCreateLength" HorizontalAlignment="Left" Margin="400,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter length"/>
-        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="275,212,0,0" TextWrapping="Wrap" Text="NUMBER OF SONGS" VerticalAlignment="Top"/>
-        <TextBox Name="AlbumUpdateCreateNumberOfSongs" HorizontalAlignment="Left" Margin="400,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter number of songs"/>
-        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="353,235,0,0" TextWrapping="Wrap" Text="PRICE" VerticalAlignment="Top"/>
-        <TextBox Name="AlbumUpdateCreatePrice" HorizontalAlignment="Left" Margin="400,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct price : 15 or 15.5"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="353,212,0,0" TextWrapping="Wrap" Text="PRICE" VerticalAlignment="Top"/>
+        <TextBox Name="AlbumUpdateCreatePrice" HorizontalAlignment="Left" Margin="400,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter correct price : 15 or 15.5"/>
 
-        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,334,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveAlbum" RenderTransformOrigin="0.889,0.486" ToolTip="save album"/>
-        <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,375,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearValuesOfAlbum" ToolTip="clear all values"/>
+        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,249,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveAlbum" RenderTransformOrigin="0.889,0.486" ToolTip="save album"/>
+        <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,298,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearValuesOfAlbum" ToolTip="clear all values"/>
     </Grid>
 </Window>
