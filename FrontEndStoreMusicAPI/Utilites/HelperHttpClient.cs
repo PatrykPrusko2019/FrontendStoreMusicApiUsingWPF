@@ -85,9 +85,19 @@ namespace FrontEndStoreMusicAPI.Utilites
             return response;
         }
 
-        public async static Task<HttpResponseMessage> SecondGetHttp(HttpClient client, ArtistQuery value, string requestUri)
+        public async static Task<HttpResponseMessage> SecondGetHttp<T>(HttpClient client, T value, string requestUri)
         {
-            requestUri +=  @$"?SearchWord={value.SearchWord}&PageSize={value.PageSize}&PageNumber={value.PageNumber}&SortDirection={value.SortDirection}&SortBy={value.SortBy}";
+            if (value == null) throw new ArgumentNullException("value");
+            if (value.GetType() == typeof(ArtistQuery))
+            {
+                ArtistQuery query = value as ArtistQuery;
+                requestUri += @$"?SearchWord={query.SearchWord}&PageSize={query.PageSize}&PageNumber={query.PageNumber}&SortDirection={query.SortDirection}&SortBy={query.SortBy}";
+            }
+            else if (value.GetType() == typeof(AlbumQuery))
+            {
+                AlbumQuery query = value as AlbumQuery;
+                requestUri += @$"?SearchWord={query.SearchWord}&SortDirection={query.SortDirection}&SortBy={query.SortBy}";
+            }
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             string tokenJWT = GetTokenJWT();

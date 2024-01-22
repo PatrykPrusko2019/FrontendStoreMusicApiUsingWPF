@@ -4,9 +4,11 @@ using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
@@ -18,20 +20,32 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     {
         public int artistId { get; set; }
         private ObservableCollection<AlbumDto> albums;
+        private AlbumQuery query;
         public ShowAllAlbumsWindow()
         {
             artistId = -1;
             InitializeComponent();
             albums = new ObservableCollection<AlbumDto>();
+            query = new AlbumQuery();
         }
 
         public async void FillArrayAlbums()
         {
+            query.SearchWord = SearchWord.Text;
+            List<AlbumDto> allAlbums;
             albums.Clear();
             if (artistId == -1) { MessageBox.Show("Not Albums found"); return; }
 
             IAlbumService albumService = new AlbumService();
-            var allAlbums = await albumService.GetAll(artistId);
+            if (query.SearchWord != "" || query.SortBy == "Title" || query.SortDirection == Models.SortDirection.ASC || query.SortDirection == Models.SortDirection.DESC)
+            {
+
+                allAlbums = await albumService.GetAll(artistId, query);
+            }
+            else
+            {
+                allAlbums = await albumService.GetAll(artistId);
+            }
 
             if (allAlbums == null || allAlbums.Count == 0) return;
             allAlbums.ForEach(album => albums.Add(album));
@@ -48,7 +62,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
         private void Button_SearchAlbums(object sender, RoutedEventArgs e)
         {
-
+            FillArrayAlbums();
         }
 
         private void Button_CreateAlbum(object sender, RoutedEventArgs e)
@@ -144,5 +158,17 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             details.Show();
         }
 
+        private void ComboBox_ChangeSortDirection(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortDirection.SelectedIndex == 0) query.SortDirection = Models.SortDirection.NULL;
+            else if (SortDirection.SelectedIndex == 1) query.SortDirection = Models.SortDirection.ASC;
+            else if (SortDirection.SelectedIndex == 2) query.SortDirection = Models.SortDirection.DESC;
+        }
+
+        private void ComboBox_ChangeSortBy(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortBy.SelectedIndex == 0) query.SortBy = "";
+            else if (SortBy.SelectedIndex == 1) query.SortBy = "Title";
+        }
     }
 }

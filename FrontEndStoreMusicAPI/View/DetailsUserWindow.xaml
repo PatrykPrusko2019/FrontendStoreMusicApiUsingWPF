@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View"
         mc:Ignorable="d"
-        Title="DetailsUserWindow" Height="700" Width="1100">
+        Title="DetailsUserWindow" Height="700" Width="1100" ResizeMode="CanMinimize">
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" Margin="0,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <Button x:Name="ReturnToMusicStore" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToMusicStore" ToolTip="return to Music Store"/>

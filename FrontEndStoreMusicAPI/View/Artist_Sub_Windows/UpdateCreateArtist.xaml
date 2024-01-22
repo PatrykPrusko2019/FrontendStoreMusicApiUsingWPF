@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Artist_Sub_Windows"
         mc:Ignorable="d"
-        Title="UpdateCreateArtist" Height="450" Width="800">
+        Title="UpdateCreateArtist" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <TextBlock x:Name="DescriptionUpdateCreateArtist" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>

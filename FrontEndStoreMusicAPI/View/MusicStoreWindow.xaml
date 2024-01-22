@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View"
         mc:Ignorable="d"
-        Title="WindowMusicStore" Height="450" Width="800">
+        Title="WindowMusicStore" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <TextBlock Name="DescriptionWindowMusicStore" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="248,108,0,0" TextWrapping="Wrap" Text="WELCOME TO MUSIC SHOP OF USER: " VerticalAlignment="Top"/>
         <Button Content="Sing out" Height="30" HorizontalAlignment="Left" Margin="640,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_SingOut" ToolTip="sing out and return to Login"/>
         <Button Content="User Details" Height="30" HorizontalAlignment="Left" Margin="640,53,0,0" VerticalAlignment="Top" Width="150" Click="Button_UserDetails" ToolTip="go to display User Details"/>
-        <TextBlock Name="Artist" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="211,219,0,0" TextWrapping="Wrap" Text="Show Artists Album" VerticalAlignment="Top"/>
+        <TextBlock Name="Artist" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="211,219,0,0" TextWrapping="Wrap" Text="Show Artists" VerticalAlignment="Top"/>
         <Button Content="Artists" Height="30" HorizontalAlignment="Left" Margin="341,217,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowArtists" ToolTip="go to display all Artists"/>
+        <TextBlock x:Name="Albums" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="198,274,0,0" TextWrapping="Wrap" Text="Show Albums" VerticalAlignment="Top"/>
+        <Button Content="Albums" Height="30" HorizontalAlignment="Left" Margin="341,272,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAlbums" ToolTip="go to display all Albums"/>
+        <TextBlock x:Name="Songs" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="211,328,0,0" TextWrapping="Wrap" Text="Show Songs" VerticalAlignment="Top"/>
+        <Button Content="Songs" Height="30" HorizontalAlignment="Left" Margin="341,326,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowSongs" ToolTip="go to display all Songs"/>
     </Grid>
 </Window>

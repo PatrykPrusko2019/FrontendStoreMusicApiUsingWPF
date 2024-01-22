@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Artist_Sub_Windows"
         mc:Ignorable="d"
-        Title="ShowAllArtistsWindow" Height="650" Width="920">
+        Title="ShowAllArtistsWindow" Height="650" Width="920" ResizeMode="CanMinimize">
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
@@ -32,7 +32,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <StackPanel Grid.ColumnSpan="2" Margin="5" Height="50">
+            <StackPanel Margin="5" Height="50">
                 <DataGrid x:Name="DataGridArtistsResults" Background="#008050" RowBackground="#008050" Height="50" Margin="0,-20,0,10" AutoGenerateColumns="false" ItemsSource="{Binding}" Width="300">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="TotalPages" Binding="{Binding TotalPages}"/>
@@ -47,7 +47,7 @@
             <Button Content="Show Albums" Height="30" HorizontalAlignment="Left" Margin="670,-80,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllAlbums"  ToolTip="go to all Albums"/>
         </StackPanel>
 
-        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,559,0,10" Width="792">
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,559,0,10" Width="792">
             <TextBlock Foreground="GreenYellow" Text="Records per page" VerticalAlignment="Center" />
             <ComboBox x:Name="RecordsPerPage" Margin="10,10,10,10"  Width="40" SelectionChanged="ComboBox_ChangeRecordsPerPage" ToolTip="choose 5, 10, 15">
                 <ComboBoxItem Content="5"/>
@@ -61,16 +61,16 @@
 
             <TextBlock Foreground="GreenYellow" Text="Sort Direction" VerticalAlignment="Center" Margin="40,10,10,10"/>
             <ComboBox x:Name="SortDirection" Margin="0,10,10,10" Width="60" SelectionChanged="ComboBox_ChangeSortDirection" ToolTip="choose ASC, DESC">
+                <ComboBoxItem Content=""/>
                 <ComboBoxItem Content="ASC"/>
                 <ComboBoxItem Content="DESC"/>
-                <ComboBoxItem Content=""/>
             </ComboBox>
             <TextBlock Foreground="GreenYellow" Text="Sort By" VerticalAlignment="Center" Margin="40,10,10,10" />
-            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy" ToolTip="choose Name, Description, KindOfMusic">
+            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="100" SelectionChanged="ComboBox_ChangeSortBy" ToolTip="choose Name, Description, KindOfMusic">
+                <ComboBoxItem Content=""/>
                 <ComboBoxItem Content="Name"/>
                 <ComboBoxItem Content="Description"/>
                 <ComboBoxItem Content="KindOfMusic"/>
-                <ComboBoxItem Content=""/>
             </ComboBox>
         </StackPanel>
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Artist_Sub_Windows"
         mc:Ignorable="d"
-        Title="DetailsArtist" Height="500" Width="1250">
+        Title="DetailsArtist" Height="500" Width="1250" ResizeMode="CanMinimize">
     <Grid Background="#008080">
         <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="You are in the Details of Artist section " VerticalAlignment="Top"/>

@@ -5,31 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Album_Sub_Windows"
         mc:Ignorable="d"
-        Title="ShowAllAlbumsWindow" Height="450" Width="800">
-    <Grid Background="#008080">
-        <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        Title="ShowAllAlbumsWindow" Height="655" Width="800" ResizeMode="CanMinimize">
+    <Grid Background="#008080" Margin="0,0,0,-6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="39*"/>
+        </Grid.ColumnDefinitions>
+        <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png" Margin="350,0,0,0"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Albums section " VerticalAlignment="Top"/>
         <Button x:Name="ReturnToAllArtist" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllArtist" ToolTip="return to Music Store"/>
-        <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="5,138,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
-        <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
+        <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="10,148,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
+        <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="93,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 
-        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_SearchAlbums" ToolTip="display all Albums by given Artist"/>
-        <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="640,6,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateAlbum"  ToolTip="go to create Album" />
-        <Button Content="Update" Height="30" HorizontalAlignment="Left" Margin="640,41,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateAlbum"  ToolTip="go to update Album" />
-        <Button Content="Delete One" Height="30" HorizontalAlignment="Left" Margin="640,76,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAlbumById" ToolTip="delete one Album"/>
-        <Button Content="Delete All" Height="30" HorizontalAlignment="Left" Margin="640,111,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAllAlbums" ToolTip="delete all Albums"/>
-        <Button Content="Details Album" Height="30" HorizontalAlignment="Left" Margin="640,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsAlbum"  ToolTip="go to details of the Album"/>
-        <DataGrid Name="DataGridAlbums" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="10,182,10,10" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
-                <DataGridTextColumn Header="Length" Binding="{Binding Length}" />
-                <DataGridTextColumn Header="NumberOfSongs" Binding="{Binding NumberOfSongs}" />
-                <DataGridTextColumn Header="Price"  Binding="{Binding Price}" />
-                <DataGridTextColumn Header="Songs"  Binding="{Binding ListOfSongs}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        
+        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="292,141,0,0" VerticalAlignment="Top" Width="150" Click="Button_SearchAlbums" ToolTip="display all Albums by given Artist"/>
+        <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="35,6,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateAlbum"  ToolTip="go to create Album" Grid.Column="1" />
+        <Button Content="Update" Height="30" HorizontalAlignment="Left" Margin="35,41,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateAlbum"  ToolTip="go to update Album" Grid.Column="1" />
+        <Button Content="Delete One" Height="30" HorizontalAlignment="Left" Margin="35,76,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAlbumById" ToolTip="delete one Album" Grid.Column="1"/>
+        <Button Content="Delete All" Height="30" HorizontalAlignment="Left" Margin="35,111,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAllAlbums" ToolTip="delete all Albums" Grid.Column="1"/>
+        <Button Content="Details Album" Height="30" HorizontalAlignment="Left" Margin="35,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsAlbum"  ToolTip="go to details of the Album" Grid.Column="1"/>
 
+        <StackPanel Grid.ColumnSpan="2" Margin="5,5,23,83">
+            <DataGrid Name="DataGridAlbums" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="10,182,10,165" Grid.ColumnSpan="2" Height="327" Width="580" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                    <DataGridTextColumn Header="Length" Binding="{Binding Length}" />
+                    <DataGridTextColumn Header="NumberOfSongs" Binding="{Binding NumberOfSongs}" />
+                    <DataGridTextColumn Header="Price"  Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="Songs"  Binding="{Binding ListOfSongs}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="62,537,-55,43">
+            <TextBlock Foreground="GreenYellow" Text="Sort Direction" VerticalAlignment="Center" Margin="40,10,10,10"/>
+            <ComboBox x:Name="SortDirection" Margin="0,10,10,10" Width="60" SelectionChanged="ComboBox_ChangeSortDirection" ToolTip="choose ASC, DESC">
+                <ComboBoxItem Content=""/>
+                <ComboBoxItem Content="ASC"/>
+                <ComboBoxItem Content="DESC"/>
+            </ComboBox>
+            <TextBlock Foreground="GreenYellow" Text="Sort By" VerticalAlignment="Center" Margin="40,10,10,10" />
+            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy" ToolTip="choose Name, Description, KindOfMusic">
+                <ComboBoxItem Content=""/>
+                <ComboBoxItem Content="Title"/>
+            </ComboBox>
+        </StackPanel>
     </Grid>
 </Window>

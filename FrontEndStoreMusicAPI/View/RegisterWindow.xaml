@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI"
         mc:Ignorable="d"
-        Title="Register" Height="450" Width="800">
+        Title="Register" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid Background="#008080">
         <TextBox Name="RegisterFirstName" HorizontalAlignment="Left" Margin="400,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter first name" />
         <TextBox Name="RegisterLastName" HorizontalAlignment="Left" Margin="400,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter last name" />

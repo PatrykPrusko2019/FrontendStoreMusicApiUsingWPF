@@ -4,6 +4,7 @@ using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 {
@@ -150,26 +151,29 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         }
 
         //5, 10, 15 -> records 
-        private void ComboBox_ChangeRecordsPerPage(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ComboBox_ChangeRecordsPerPage(object sender, SelectionChangedEventArgs e)
         {
             if (RecordsPerPage.SelectedIndex == 0) query.PageSize = 5;
             else if (RecordsPerPage.SelectedIndex == 1) query.PageSize = 10;
             else if (RecordsPerPage.SelectedIndex == 2) query.PageSize = 15;
         }
 
-        private void ComboBox_ChangeSortBy(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ComboBox_ChangeSortBy(object sender, SelectionChangedEventArgs e)
         {
-            if (SortBy.SelectedIndex == 0) query.SortBy = "Name";
-            else if (SortBy.SelectedIndex == 1) query.SortBy = "Description";
-            else if (SortBy.SelectedIndex == 2) query.SortBy = "KindOfMusic";
-            else if (SortBy.SelectedIndex == 3) query.SortBy = "";
+            if (SortBy.SelectedIndex == 0) query.SortBy = "";
+            else if (SortBy.SelectedIndex == 1) query.SortBy = "Name";
+            else if (SortBy.SelectedIndex == 2) query.SortBy = "Description";
+            else if (SortBy.SelectedIndex == 3) query.SortBy = "KindOfMusic";
+            GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
+
         }
 
-        private void ComboBox_ChangeSortDirection(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ComboBox_ChangeSortDirection(object sender, SelectionChangedEventArgs e)
         {
-            if (SortDirection.SelectedIndex == 0) query.SortDirection = Models.SortDirection.ASC;
-            else if (SortDirection.SelectedIndex == 1) query.SortDirection = Models.SortDirection.DESC;
-            else if (SortDirection.SelectedIndex == 2) query.SortDirection = default;
+            if (SortDirection.SelectedIndex == 0) query.SortDirection = Models.SortDirection.NULL;
+            else if (SortDirection.SelectedIndex == 1) query.SortDirection = Models.SortDirection.ASC;
+            else if (SortDirection.SelectedIndex == 2) query.SortDirection = Models.SortDirection.DESC;
+            GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
 
         private void Button_PreviousPage(object sender, RoutedEventArgs e)
