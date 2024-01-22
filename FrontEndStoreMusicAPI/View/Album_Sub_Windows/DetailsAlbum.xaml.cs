@@ -21,8 +21,8 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     /// </summary>
     public partial class DetailsAlbum : Window
     {
-        public int ArtistId;
-        public int AlbumId;
+        public int artistId;
+        public int albumId;
         ObservableCollection<DetailsAlbumDto> album;
         public DetailsAlbum()
         {
@@ -39,9 +39,9 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_ReturnToAllAlbums(object sender, RoutedEventArgs e)
         {
             ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
-            this.Visibility = Visibility.Hidden;
-            showAllAlbumsWindow.artistId = ArtistId;
+            showAllAlbumsWindow.artistId = artistId;
             showAllAlbumsWindow.FillArrayAlbums();
+            this.Visibility = Visibility.Hidden;
             showAllAlbumsWindow.Show();
         }
 

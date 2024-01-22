@@ -4,6 +4,7 @@ using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Documents;
@@ -26,11 +27,13 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
         public async void FillArrayAlbums()
         {
+            albums.Clear();
             if (artistId == -1) { MessageBox.Show("Not Albums found"); return; }
 
             IAlbumService albumService = new AlbumService();
             var allAlbums = await albumService.GetAll(artistId);
 
+            if (allAlbums == null || allAlbums.Count == 0) return;
             allAlbums.ForEach(album => albums.Add(album));
             DataGridAlbums.DataContext = albums;
         }
@@ -39,6 +42,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         {
             ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
             this.Visibility = Visibility.Hidden;
+            showAllArtistsWindow.GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
             showAllArtistsWindow.Show();
         }
 
@@ -64,8 +68,10 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             createAlbum.Show();
         }
 
-        private void Button_UpdateAlbum(object sender, RoutedEventArgs e)
+        private async void Button_UpdateAlbum(object sender, RoutedEventArgs e)
         {
+            AlbumDto selectedAlbum;
+            int albumId;
             var indexItem = DataGridAlbums.SelectedIndex;
             if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null)
@@ -75,20 +81,26 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             }
             else
             {
-                UpdateCreateAlbum updateAlbum = new UpdateCreateAlbum();
-                updateAlbum.DescriptionUpdateCreateAlbum.Text = "You are in the Update Album section";
-                updateAlbum.albumId = albums[indexItem].Id;
-                updateAlbum.artistId = artistId;
-
-                this.Visibility = Visibility.Hidden;
-                updateAlbum.Show();
+                albumId = albums[indexItem].Id;
+                IAlbumService albumService = new AlbumService();
+                selectedAlbum = await albumService.GetById(artistId, albumId);
+                if (selectedAlbum == null) return;
             }
+
+            UpdateCreateAlbum updateAlbum = new UpdateCreateAlbum();
+            updateAlbum.DescriptionUpdateCreateAlbum.Text = "You are in the Update Album section";
+            updateAlbum.albumId = albums[indexItem].Id;
+            updateAlbum.artistId = artistId;
+            Fill.GetValuesToUpdateAlbum(selectedAlbum);
+
+            this.Visibility = Visibility.Hidden;
+            updateAlbum.Show();
         }
 
         private void Button_DeleteAlbumById(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted !"); return; }
+            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted!"); return; }
             else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
             else
             {
@@ -102,7 +114,8 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_DeleteAllAlbums(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
+            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted!"); return; }
+            else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
             else
             {
                 IAlbumService albumService = new AlbumService();
@@ -118,11 +131,13 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
             IAlbumService albumService = new AlbumService();
             int albumId = albums[indexItem].Id;
-            DetailsAlbumDto detailsAlbum = await albumService.GetDetails(artistId, albumId);
+            var detailsAlbum = await albumService.GetDetails(artistId, albumId);
 
+            if (detailsAlbum == null) return;
             HelperHttpClient.GenerateSongsForAlbum(detailsAlbum);
 
             DetailsAlbum details = new DetailsAlbum();
+            details.artistId = artistId;
             details.FillDetailsArray(detailsAlbum);
 
             this.Visibility = Visibility.Hidden;

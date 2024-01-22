@@ -12,7 +12,7 @@ namespace FrontEndStoreMusicAPI.Utilites
 {
     static class Fill
     {
-        public static void FillValuesOfUpdateArtist(DetailsArtistDto updateArtist)
+        public static void GetValuesToUpdateArtist(DetailsArtistDto updateArtist)
         {
             UpdateCreateArtist.c.ArtistUpdateCreateName.Text = updateArtist.Name;
             UpdateCreateArtist.c.ArtistUpdateCreateDescription.Text = updateArtist.Description;
@@ -35,11 +35,20 @@ namespace FrontEndStoreMusicAPI.Utilites
             newArtist.City = UpdateCreateArtist.c.ArtistUpdateCreateCity.Text;
         }
 
+        // genereated new or updated album
         public static void FillValuesOfCreateUpdateAlbum(BasicAlbumDto newAlbum)
         {
             newAlbum.Title = UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Text;
             newAlbum.Length = double.Parse(UpdateCreateAlbum.c.AlbumUpdateCreateLength.Text);
             newAlbum.Price = double.Parse(UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Text);
         }
+
+        public static void GetValuesToUpdateAlbum(AlbumDto updateAlbum)
+        {
+            UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Text = updateAlbum.Title;
+            UpdateCreateAlbum.c.AlbumUpdateCreateLength.Text = updateAlbum.Length.ToString();
+            UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Text = updateAlbum.Price.ToString();
+        }
+
     }
 }

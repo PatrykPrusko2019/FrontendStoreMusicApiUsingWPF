@@ -35,6 +35,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         {
             ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
             this.Visibility = Visibility.Hidden;
+            showAllArtistsWindow.GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
             showAllArtistsWindow.Show();
         }
 

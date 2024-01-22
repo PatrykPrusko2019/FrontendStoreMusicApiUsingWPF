@@ -88,6 +88,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
                 artistId = artists[indexItem].Id;
                 IArtistService artistService = new ArtistService();
                 selectedArtist = await artistService.GetDetails(artistId);
+                if (selectedArtist == null) return;
                 var resultAlbumsSongs = HelperHttpClient.GenerateAlbumsSongsForArtist(artists[indexItem]);
                 selectedArtist.AlbumsSongs = resultAlbumsSongs.AlbumsSongs;
 
@@ -137,12 +138,13 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
                 artistId = artists[indexItem].Id;
                 IArtistService artistService = new ArtistService();
                 selectedArtist = await artistService.GetDetails(artistId);
+                if (selectedArtist == null) return;
             }
 
             UpdateCreateArtist updateArtist = new UpdateCreateArtist();
             updateArtist.artistId = artistId;
             updateArtist.DescriptionUpdateCreateArtist.Text = "You are in the Update Artist section";
-            Fill.FillValuesOfUpdateArtist(selectedArtist);
+            Fill.GetValuesToUpdateArtist(selectedArtist);
             this.Visibility = Visibility.Hidden;
             updateArtist.Show();
         }
@@ -202,7 +204,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
 
-        private async void GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults()
+        public async void GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults()
         {
             artists.Clear();
             paginationResults.Clear();

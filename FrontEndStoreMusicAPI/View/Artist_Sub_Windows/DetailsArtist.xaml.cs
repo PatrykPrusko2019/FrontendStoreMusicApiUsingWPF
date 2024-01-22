@@ -44,6 +44,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         private void Button_ReturnToAllArtists(object sender, RoutedEventArgs e)
         {
             ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
+            showAllArtistsWindow.GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
             this.Visibility = Visibility.Hidden;
             showAllArtistsWindow.Show();
         }

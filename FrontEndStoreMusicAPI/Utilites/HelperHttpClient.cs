@@ -136,7 +136,7 @@ namespace FrontEndStoreMusicAPI.Utilites
                     for (int j = 0; j < album.Songs.Count; j++)
                     {
                         var song = album.Songs[j];
-                        sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, AlbumId: {song.AlbumId}\n");
+                        sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, albumId: {song.AlbumId}\n");
                     }
 
                 }
@@ -156,7 +156,7 @@ namespace FrontEndStoreMusicAPI.Utilites
                 for (int j = 0; j < album.Songs.Count; j++)
                 {
                     var song = album.Songs[j];
-                    sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, AlbumId: {song.AlbumId}\n");
+                    sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, albumId: {song.AlbumId}\n");
                 }
                 album.ListOfSongs = sb.ToString();
                 sb.Clear();
@@ -170,7 +170,7 @@ namespace FrontEndStoreMusicAPI.Utilites
             for (int j = 0; j < detailsAlbumDto.Songs.Count; j++)
             {
                 var song = detailsAlbumDto.Songs[j];
-                sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, AlbumId: {song.AlbumId}\n");
+                sb.Append($"{j + 1}. Id: {song.Id}, Name: {song.Name}, albumId: {song.AlbumId}\n");
             }
             detailsAlbumDto.ListOfSongs = sb.ToString();
             return detailsAlbumDto;

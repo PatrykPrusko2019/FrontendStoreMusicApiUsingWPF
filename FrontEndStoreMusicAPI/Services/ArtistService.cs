@@ -72,12 +72,14 @@ namespace FrontEndStoreMusicAPI.Services
 
                 var response = await HelperHttpClient.SecondGetHttp(client, searchQuery, requestUri);
 
-                var artists = await response.Content.ReadFromJsonAsync<PageResult<ArtistDto>>();
-
                 if (response.IsSuccessStatusCode)
-                {   
-                    artists.Items = HelperHttpClient.GenerateAlbumsSongsForArtists(artists.Items);
-                    return artists;
+                {
+                    var artists = await response.Content.ReadFromJsonAsync<PageResult<ArtistDto>>();
+                    if (artists != null && artists.Items != null && artists.Items.Count > 0)
+                    {
+                        artists.Items = HelperHttpClient.GenerateAlbumsSongsForArtists(artists.Items);
+                        return artists;
+                    }
                 }
                 else
                 {
@@ -95,11 +97,10 @@ namespace FrontEndStoreMusicAPI.Services
 
                 var response = await HelperHttpClient.GetHttp(client, id, requestUri);
 
-                var artist = await response.Content.ReadFromJsonAsync<DetailsArtistDto>();
-
                 if (response.IsSuccessStatusCode)
                 {
-                    return artist;
+                    var artist = await response.Content.ReadFromJsonAsync<DetailsArtistDto>();
+                    if (artist != null) return artist;
                 }
                 else
                 {
