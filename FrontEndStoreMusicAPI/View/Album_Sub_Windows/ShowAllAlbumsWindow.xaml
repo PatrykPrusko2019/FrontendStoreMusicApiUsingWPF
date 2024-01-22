@@ -45,7 +45,7 @@
                 <ComboBoxItem Content="DESC"/>
             </ComboBox>
             <TextBlock Foreground="GreenYellow" Text="Sort By" VerticalAlignment="Center" Margin="40,10,10,10" />
-            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy" ToolTip="choose Name, Description, KindOfMusic">
+            <ComboBox x:Name="SortBy" Margin="0,10,10,10" Width="80" SelectionChanged="ComboBox_ChangeSortBy" ToolTip="choose Title">
                 <ComboBoxItem Content=""/>
                 <ComboBoxItem Content="Title"/>
             </ComboBox>
