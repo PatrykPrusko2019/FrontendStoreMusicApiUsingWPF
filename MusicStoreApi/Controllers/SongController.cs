@@ -53,9 +53,9 @@ namespace MusicStoreApi.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<List<SongDto>> GetAll([FromRoute]int artistId, [FromRoute]int albumId)
+        public ActionResult<List<SongDto>> GetAll([FromRoute]int artistId, [FromRoute]int albumId, [FromQuery] SongQuery songQuery)
         {
-            var songs = songService.GetAll(artistId, albumId);
+            var songs = songService.GetAll(artistId, albumId, songQuery);
 
             return Ok(songs);
         }

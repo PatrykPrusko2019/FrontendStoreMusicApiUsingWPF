@@ -23,12 +23,13 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
     public partial class UpdateCreateArtist : Window
     {
         public static UpdateCreateArtist c;
-        public int artistId { get; set; }
+        public int ArtistId { get; set; }
+
         public UpdateCreateArtist()
         {
             InitializeComponent();
             c = this;
-            artistId = 0;
+            ArtistId = 0;
         }
 
         private void Button_ReturnToShowAllArtists(object sender, RoutedEventArgs e)
@@ -41,7 +42,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 
         private void Button_SaveArtist(object sender, RoutedEventArgs e)
         {
-            if (artistId == 0) 
+            if (ArtistId == 0) 
             {
                 CreateArtistDto createArtistDto = new CreateArtistDto();
                 Fill.FillValuesOfCreateUpdateArtist(createArtistDto);
@@ -57,11 +58,10 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             {
                 UpdateArtistDto updateArtist = new UpdateArtistDto();
                 Fill.FillValuesOfCreateUpdateArtist(updateArtist);
-                updateArtist.Id = artistId;
-
+                
                 IArtistService artistService = new ArtistService();
                 
-                if (artistService.Update(updateArtist))
+                if (artistService.Update(ArtistId, updateArtist))
                 {
                     Button_ReturnToShowAllArtists(sender, e);
                 }

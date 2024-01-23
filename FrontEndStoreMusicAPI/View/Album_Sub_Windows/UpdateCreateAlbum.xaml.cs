@@ -24,19 +24,19 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     public partial class UpdateCreateAlbum : Window
     {
         public static UpdateCreateAlbum c;
-        public int albumId { get; set; }
-        public int artistId { get; set; }
+        public int AlbumId { get; set; }
+        public int ArtistId { get; set; }
         public UpdateCreateAlbum()
         {
             InitializeComponent();
             c = this;
-            albumId = 0;
+            AlbumId = 0;
         }
 
         private void Button_ReturnToAllAlbums(object sender, RoutedEventArgs e)
         {
             ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
-            showAllAlbumsWindow.artistId = artistId;
+            showAllAlbumsWindow.ArtistId = ArtistId;
             showAllAlbumsWindow.FillArrayAlbums();
             this.Visibility = Visibility.Hidden;
             showAllAlbumsWindow.Show();
@@ -49,7 +49,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
         private void Button_SaveAlbum(object sender, RoutedEventArgs e)
         {
-            if (albumId == 0) 
+            if (AlbumId == 0) 
             {
                 CreateAlbumDto createAlbumDto = new CreateAlbumDto();
                 if (double.TryParse(AlbumUpdateCreateLength.Text, out double resultLength) && double.TryParse(AlbumUpdateCreatePrice.Text, out double resultPrice))
@@ -58,7 +58,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
                     IAlbumService albumService = new AlbumService();
 
-                    if (albumService.Create(artistId, createAlbumDto))
+                    if (albumService.Create(ArtistId, createAlbumDto))
                     {
                         Button_ReturnToAllAlbums(sender, e);
                     }
@@ -78,7 +78,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
                     Fill.FillValuesOfCreateUpdateAlbum(updateAlbumDto);
 
                     IAlbumService albumService = new AlbumService();
-                    if (albumService.Update(artistId, albumId, updateAlbumDto))
+                    if (albumService.Update(ArtistId, AlbumId, updateAlbumDto))
                     {
                         Button_ReturnToAllAlbums(sender, e);
                     }

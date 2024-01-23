@@ -89,6 +89,7 @@ namespace FrontEndStoreMusicAPI.View
         private void Button_ShowArtists(object sender, RoutedEventArgs e)
         {
             ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
+            showAllArtistsWindow.GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
             this.Visibility= Visibility.Hidden;
             showAllArtistsWindow.Show();
         }

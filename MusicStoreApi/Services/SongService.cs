@@ -7,6 +7,7 @@ using MusicStoreApi.Authorization;
 using MusicStoreApi.Entities;
 using MusicStoreApi.Exceptions;
 using MusicStoreApi.Models;
+using System.Linq.Expressions;
 
 namespace MusicStoreApi.Services
 {
@@ -87,11 +88,29 @@ namespace MusicStoreApi.Services
             logger.LogInformation($"Removed song: {name} , api/artist/{artistId}/album/{albumId}/song/{songId}");
         }
 
-        public List<SongDto> GetAll(int artistId, int albumId) 
+        public List<SongDto> GetAll(int artistId, int albumId, SongQuery searchQuery)
         {
-            var songs = CheckIfIdIsCorrectAndGetSongs(artistId, albumId, true);
+            CheckIfIdIsCorrectAndGetSongs(artistId, albumId, true);
 
-            var songsDtos = mapper.Map<List<SongDto>>(songs);
+            var baseQuery = artistDbContext.Songs
+                .Where(s => s.AlbumId == albumId)
+                .Where(s => searchQuery.SearchWord == null || s.Name.ToLower().Contains(searchQuery.SearchWord.ToLower()));
+                
+            if (!string.IsNullOrEmpty(searchQuery.SortBy))
+            {
+                var columnsSelectors = new Dictionary<string, Expression<Func<Song, object>>>
+                {
+                    { nameof(Song.Name), a => a.Name }
+                };
+
+                var selectedColumn = columnsSelectors[searchQuery.SortBy];
+
+                baseQuery = searchQuery.SortDirection == SortDirection.ASC
+                    ? baseQuery.OrderBy(selectedColumn)
+                    : baseQuery.OrderByDescending(selectedColumn);
+            }
+
+            var songsDtos = mapper.Map<List<SongDto>>(baseQuery);
             return songsDtos;
         }
 
@@ -165,6 +184,8 @@ namespace MusicStoreApi.Services
             var isDuplicate = album.Songs.Any(a => a.Name == name);
             if (isDuplicate) throw new DuplicateValueException("Name : value invalid, because is on the songs's list");
         }
+
+        
 
     }
 }

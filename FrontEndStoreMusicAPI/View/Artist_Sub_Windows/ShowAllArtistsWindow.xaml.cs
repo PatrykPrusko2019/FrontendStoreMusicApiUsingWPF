@@ -27,13 +27,13 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         private void Button_ShowAllAlbums(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridArtists.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Artist!"); return; }
+            if (indexItem == -1) { MessageBox.Show("Select any record to display All Albums of given Artist!"); return; }
 
             var selectedAlbums = artists[indexItem].Albums;
             if (selectedAlbums != null && selectedAlbums.Count > 0) 
             {
                 ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
-                showAllAlbumsWindow.artistId = artists[indexItem].Id;
+                showAllAlbumsWindow.ArtistId = artists[indexItem].Id;
                 showAllAlbumsWindow.FillArrayAlbums();
                 this.Visibility = Visibility.Hidden;
                 showAllAlbumsWindow.Show();
@@ -58,7 +58,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             int artistId;
             var indexItem = DataGridArtists.SelectedIndex;
 
-            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Artist !"); return; }
+            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted!"); return; }
             else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete!"); } // no user logged in
             else
             {
@@ -108,18 +108,16 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
 
         private void Button_CreateArtist(object sender, RoutedEventArgs e)
         {
-            if (MusicStoreWindow.DetailsUser != null)
+            if (MusicStoreWindow.DetailsUser == null)
             {
-                UpdateCreateArtist createArtist = new UpdateCreateArtist();
+                MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
+                return;
+            }
+
+            UpdateCreateArtist createArtist = new UpdateCreateArtist();
                 createArtist.DescriptionUpdateCreateArtist.Text = "You are in the Create Artist section";
                 this.Visibility = Visibility.Hidden;
                 createArtist.Show();
-            }
-            else
-            {
-                MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
-            }
-            
         }
 
         private async void Button_UpdateArtist(object sender, RoutedEventArgs e)
@@ -143,7 +141,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             }
 
             UpdateCreateArtist updateArtist = new UpdateCreateArtist();
-            updateArtist.artistId = artistId;
+            updateArtist.ArtistId = artistId;
             updateArtist.DescriptionUpdateCreateArtist.Text = "You are in the Update Artist section";
             Fill.GetValuesToUpdateArtist(selectedArtist);
             this.Visibility = Visibility.Hidden;

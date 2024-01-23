@@ -20,7 +20,7 @@ namespace FrontEndStoreMusicAPI.Services
         void Delete(int artistId);
         Task<PageResult<ArtistDto>> GetAll(ArtistQuery searchQuery);
         Task<DetailsArtistDto> GetDetails(int id);
-        bool Update(UpdateArtistDto updateArtistDto);
+        bool Update(int id, UpdateArtistDto updateArtistDto);
     }
 
     class ArtistService : IArtistService
@@ -111,11 +111,11 @@ namespace FrontEndStoreMusicAPI.Services
         }
 
 
-        public bool Update(UpdateArtistDto updateArtistDto)
+        public bool Update(int id, UpdateArtistDto updateArtistDto)
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUri = $@"api/artist/{updateArtistDto.Id}";
+                string requestUri = $@"api/artist/{id}";
 
                 var response = HelperHttpClient.PutHttp(client, updateArtistDto, requestUri);
 

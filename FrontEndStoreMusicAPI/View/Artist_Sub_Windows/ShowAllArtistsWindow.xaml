@@ -13,7 +13,7 @@
         <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="5,138,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
         <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 
-        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="display all Artists"/>
+        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="search by word of a given Artist"/>
         <Button Content="Add" Height="30" HorizontalAlignment="left" Margin="670,20,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateArtist"  ToolTip="go to create Artist" />
         <Button Content="Update" Height="30" HorizontalAlignment="left" Margin="670,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist"  ToolTip="go to update Artist" />
         <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="670,100,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteArtist" ToolTip="delete Artist"/>
@@ -44,7 +44,7 @@
                 </DataGrid>
             </StackPanel>
 
-            <Button Content="Show Albums" Height="30" HorizontalAlignment="Left" Margin="670,-80,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllAlbums"  ToolTip="go to all Albums"/>
+            <Button Content="Show Albums" Height="30" HorizontalAlignment="Left" Margin="670,-90,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllAlbums"  ToolTip="go to all Albums"/>
         </StackPanel>
 
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,559,0,10" Width="792">

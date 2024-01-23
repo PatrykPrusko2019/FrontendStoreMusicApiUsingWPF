@@ -65,6 +65,7 @@ public class Program
         builder.Services.AddScoped<IValidator<LoginDto>, LoginUserDtoValidator>();
         builder.Services.AddScoped<IValidator<ArtistQuery>, ArtistQueryValidator>();
         builder.Services.AddScoped<IValidator<AlbumQuery>, AlbumQueryValidator>();
+        builder.Services.AddScoped<IValidator<SongQuery>, SongQueryValidator>();
 
         builder.Services.AddScoped<ErrorHandlingMiddleware>();
         builder.Services.AddScoped<RequestTimeMiddleware>();

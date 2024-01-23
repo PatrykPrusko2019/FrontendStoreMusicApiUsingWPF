@@ -39,7 +39,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_ReturnToAllAlbums(object sender, RoutedEventArgs e)
         {
             ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
-            showAllAlbumsWindow.artistId = artistId;
+            showAllAlbumsWindow.ArtistId = artistId;
             showAllAlbumsWindow.FillArrayAlbums();
             this.Visibility = Visibility.Hidden;
             showAllAlbumsWindow.Show();

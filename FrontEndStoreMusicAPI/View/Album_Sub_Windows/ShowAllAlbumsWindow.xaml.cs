@@ -3,6 +3,7 @@ using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
+using FrontEndStoreMusicAPI.View.Song_Sub_Window;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,12 +19,14 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     /// </summary>
     public partial class ShowAllAlbumsWindow : Window
     {
-        public int artistId { get; set; }
+        public int ArtistId { get; set; }
+        public int AlbumId { get; set; }
         private ObservableCollection<AlbumDto> albums;
         private AlbumQuery query;
         public ShowAllAlbumsWindow()
         {
-            artistId = -1;
+            ArtistId = -1;
+            AlbumId = -1;
             InitializeComponent();
             albums = new ObservableCollection<AlbumDto>();
             query = new AlbumQuery();
@@ -34,19 +37,12 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             query.SearchWord = SearchWord.Text;
             List<AlbumDto> allAlbums;
             albums.Clear();
-            if (artistId == -1) { MessageBox.Show("Not Albums found"); return; }
+            if (ArtistId == -1) { MessageBox.Show("Not Albums found"); return; }
 
             IAlbumService albumService = new AlbumService();
-            if (query.SearchWord != "" || query.SortBy == "Title" || query.SortDirection == Models.SortDirection.ASC || query.SortDirection == Models.SortDirection.DESC)
-            {
-
-                allAlbums = await albumService.GetAll(artistId, query);
-            }
-            else
-            {
-                allAlbums = await albumService.GetAll(artistId);
-            }
-
+            
+            allAlbums = await albumService.GetAll(ArtistId, query);
+            
             if (allAlbums == null || allAlbums.Count == 0) return;
             allAlbums.ForEach(album => albums.Add(album));
             DataGridAlbums.DataContext = albums;
@@ -75,8 +71,8 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
             UpdateCreateAlbum createAlbum = new UpdateCreateAlbum();
             createAlbum.DescriptionUpdateCreateAlbum.Text = "You are in the Create Album section";
-            createAlbum.albumId = 0;
-            createAlbum.artistId = artistId;
+            createAlbum.AlbumId = 0;
+            createAlbum.ArtistId = ArtistId;
 
             this.Visibility = Visibility.Hidden;
             createAlbum.Show();
@@ -85,7 +81,6 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private async void Button_UpdateAlbum(object sender, RoutedEventArgs e)
         {
             AlbumDto selectedAlbum;
-            int albumId;
             var indexItem = DataGridAlbums.SelectedIndex;
             if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null)
@@ -95,16 +90,16 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             }
             else
             {
-                albumId = albums[indexItem].Id;
+                AlbumId = albums[indexItem].Id;
                 IAlbumService albumService = new AlbumService();
-                selectedAlbum = await albumService.GetById(artistId, albumId);
+                selectedAlbum = await albumService.GetById(ArtistId, AlbumId);
                 if (selectedAlbum == null) return;
             }
 
             UpdateCreateAlbum updateAlbum = new UpdateCreateAlbum();
             updateAlbum.DescriptionUpdateCreateAlbum.Text = "You are in the Update Album section";
-            updateAlbum.albumId = albums[indexItem].Id;
-            updateAlbum.artistId = artistId;
+            updateAlbum.AlbumId = AlbumId;
+            updateAlbum.ArtistId = ArtistId;
             Fill.GetValuesToUpdateAlbum(selectedAlbum);
 
             this.Visibility = Visibility.Hidden;
@@ -118,9 +113,9 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
             else
             {
-                var albumId = albums[indexItem].Id;
+                AlbumId = albums[indexItem].Id;
                 IAlbumService albumService = new AlbumService();
-                albumService.DeleteById(artistId, albumId);
+                albumService.DeleteById(ArtistId, AlbumId);
                 FillArrayAlbums();
             }
         }
@@ -133,7 +128,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             else
             {
                 IAlbumService albumService = new AlbumService();
-                albumService.DeleteAll(artistId);
+                albumService.DeleteAll(ArtistId);
                 FillArrayAlbums();
             }
         }
@@ -144,18 +139,36 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Album !"); return; }
 
             IAlbumService albumService = new AlbumService();
-            int albumId = albums[indexItem].Id;
-            var detailsAlbum = await albumService.GetDetails(artistId, albumId);
+            AlbumId = albums[indexItem].Id;
+            var detailsAlbum = await albumService.GetDetails(ArtistId, AlbumId);
 
             if (detailsAlbum == null) return;
             HelperHttpClient.GenerateSongsForAlbum(detailsAlbum);
 
             DetailsAlbum details = new DetailsAlbum();
-            details.artistId = artistId;
+            details.artistId = ArtistId;
             details.FillDetailsArray(detailsAlbum);
 
             this.Visibility = Visibility.Hidden;
             details.Show();
+        }
+
+        private void Button_ShowAllSongs(object sender, RoutedEventArgs e)
+        {
+            var indexItem = DataGridAlbums.SelectedIndex;
+            if (indexItem == -1) { MessageBox.Show("Select any record to display All Songs of given Album!"); return; }
+            
+            var selectedSongs = albums[indexItem].Songs;
+            if (selectedSongs != null && selectedSongs.Count > 0)
+            {
+                ShowAllSongsWindow showAllSongsWindow = new ShowAllSongsWindow();
+                showAllSongsWindow.ArtistId = ArtistId;
+                AlbumId = albums[indexItem].Id;
+                showAllSongsWindow.AlbumId = AlbumId;
+                showAllSongsWindow.FillArraySongs();
+                this.Visibility = Visibility.Hidden;
+                showAllSongsWindow.Show();
+            }
         }
 
         private void ComboBox_ChangeSortDirection(object sender, SelectionChangedEventArgs e)

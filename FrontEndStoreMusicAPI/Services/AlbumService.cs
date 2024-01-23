@@ -13,7 +13,6 @@ namespace FrontEndStoreMusicAPI.Services
     interface IAlbumService
     {
         bool Create(int artistId, CreateAlbumDto createAlbumDto);
-        Task<List<AlbumDto>> GetAll(int artistId);
         Task<List<AlbumDto>> GetAll(int artistId, AlbumQuery searchQuery);
         Task<AlbumDto> GetById(int artistId, int albumId);
         bool Update(int artistId, int albumId, UpdateAlbumDto updateAlbumDto);
@@ -40,31 +39,6 @@ namespace FrontEndStoreMusicAPI.Services
                     HelperHttpClient.GetResponseBodyError(response);
                 }
                 return response.IsSuccessStatusCode;
-            }
-        }
-
-        public async Task<List<AlbumDto>> GetAll(int artistId)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                string requestUri = $@"api/artist";
-
-                var response = await HelperHttpClient.GetHttp(client, @$"{artistId}/album", requestUri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var albums = await response.Content.ReadFromJsonAsync<List<AlbumDto>>();
-                    if (albums != null && albums.Count > 0)
-                    {
-                        albums = HelperHttpClient.GenerateAlbums(albums);
-                        return albums;
-                    }
-                }
-                else
-                {
-                    HelperHttpClient.GetResponseBodyError(response);
-                }
-                return null;
             }
         }
 

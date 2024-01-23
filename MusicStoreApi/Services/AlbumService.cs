@@ -69,7 +69,7 @@ namespace MusicStoreApi.Services
 
             GetAuthorizationResult(dbContext.Artists.FirstOrDefault(a => a.Id == artistId), ResourceOperation.Delete);
 
-            foreach (var album in removeAlbums) dbContext.Albums.Remove(album);
+            dbContext.Albums.RemoveRange(removeAlbums);
             
             dbContext.SaveChanges();
             logger.LogInformation($"Deleted all albums: api/artist/{artistId}");
@@ -90,7 +90,7 @@ namespace MusicStoreApi.Services
 
         public List<AlbumDto> GetAll(int artistId, AlbumQuery searchQuery)
         {
-            var albums = CheckIfIdIsCorrectAndGetAlbums(artistId, true);
+            CheckIfIdIsCorrectAndGetAlbums(artistId, true);
 
             var baseQuery = dbContext.Albums
                 .Include(a => a.Songs)
