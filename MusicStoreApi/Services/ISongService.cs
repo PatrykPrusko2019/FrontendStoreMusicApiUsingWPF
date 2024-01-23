@@ -12,5 +12,6 @@ namespace MusicStoreApi.Services
         void DeleteById(int artistId, int albumId, int songId);
         List<SongDto> GetAll(int artistId, int albumId, SongQuery searchQuery);
         SongDto GetById(int artistId, int albumId, int songId);
+        DetailsSongDto GetDetailsById(int artistId, int albumId, int songId);
     }
 }

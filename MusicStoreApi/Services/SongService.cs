@@ -43,7 +43,7 @@ namespace MusicStoreApi.Services
             artistDbContext.Songs.Add(songEntity);
             artistDbContext.SaveChanges();
 
-            logger.LogInformation($"Created new song: {songEntity.Name} , api/artist/{artistId}/album/{albumId}/song/{songEntity.Id}");
+            logger.LogInformation($"Created new song: {songEntity.Name} , api/artist/{artistId}/song/{albumId}/song/{songEntity.Id}");
             return songEntity.Id;
         }
 
@@ -58,7 +58,7 @@ namespace MusicStoreApi.Services
             song.Name = createSongDto.Name;
 
             artistDbContext.SaveChanges();
-            logger.LogInformation($"Updated song: {song.Name} , api/artist/{artistId}/album/{albumId}/song/{song.Id}");
+            logger.LogInformation($"Updated song: {song.Name} , api/artist/{artistId}/song/{albumId}/song/{song.Id}");
         }
 
         public void DeleteAll(int artistId, int albumId)
@@ -71,7 +71,7 @@ namespace MusicStoreApi.Services
             foreach (var songs in deleteSongs) artistDbContext.Songs.Remove(songs);
             artistDbContext.SaveChanges();
 
-            logger.LogInformation($"Removed song: api/artist/{artistId}/album/{albumId}");
+            logger.LogInformation($"Removed song: api/artist/{artistId}/song/{albumId}");
         }
 
         public void DeleteById(int artistId, int albumId, int songId)
@@ -85,7 +85,7 @@ namespace MusicStoreApi.Services
             artistDbContext.Songs.Remove(deleteSong);
             artistDbContext.SaveChanges();
 
-            logger.LogInformation($"Removed song: {name} , api/artist/{artistId}/album/{albumId}/song/{songId}");
+            logger.LogInformation($"Removed song: {name} , api/artist/{artistId}/song/{albumId}/song/{songId}");
         }
 
         public List<SongDto> GetAll(int artistId, int albumId, SongQuery searchQuery)
@@ -141,6 +141,27 @@ namespace MusicStoreApi.Services
             return song;
         }
 
+        public DetailsSongDto GetDetailsById(int artistId, int albumId, int songId)
+        {
+            var song = GetById(artistId, albumId, songId);
+
+            string nameArtist = artistDbContext.Artists.FirstOrDefault(a => a.Id == artistId).Name;
+
+            string nameAlbum = artistDbContext.Albums.FirstOrDefault(a => a.Id == albumId).Title;
+
+            DetailsSongDto detailsSongDto = new DetailsSongDto()
+            {
+                Id = song.Id,
+                Name = song.Name,
+                AlbumId = albumId,
+                AlbumTitle = nameAlbum,
+                ArtistId = artistId,
+                ArtistName = nameArtist
+            };
+
+            return detailsSongDto;
+        }
+
         private List<Song> CheckIfIdIsCorrectAndGetSongs(int artistId, int albumId, bool isGetSongsOrIsCheckId)
         {
             GetSongById(artistId, albumId, 0, true); // checks if ids numbers are correct
@@ -184,8 +205,6 @@ namespace MusicStoreApi.Services
             var isDuplicate = album.Songs.Any(a => a.Name == name);
             if (isDuplicate) throw new DuplicateValueException("Name : value invalid, because is on the songs's list");
         }
-
-        
 
     }
 }

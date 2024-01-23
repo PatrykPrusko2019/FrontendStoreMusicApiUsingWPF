@@ -17,7 +17,7 @@ namespace FrontEndStoreMusicAPI.Services
         Task<AlbumDto> GetById(int artistId, int albumId);
         bool Update(int artistId, int albumId, UpdateAlbumDto updateAlbumDto);
         public void DeleteById(int artistId, int albumId);
-        void DeleteAll(int artistId);
+        bool DeleteAll(int artistId);
         Task<DetailsAlbumDto> GetDetails(int artistId, int albumId);
     }
     class AlbumService : IAlbumService
@@ -147,7 +147,7 @@ namespace FrontEndStoreMusicAPI.Services
             }
         }
 
-        public void DeleteAll(int artistId)
+        public bool DeleteAll(int artistId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -157,11 +157,13 @@ namespace FrontEndStoreMusicAPI.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    HelperHttpClient.GetResponseBodyOk(response, "Deleted Album");
+                    HelperHttpClient.GetResponseBodyOk(response, "Deleted Albums");
+                    return true;
                 }
                 else
                 {
                     HelperHttpClient.GetResponseBodyError(response);
+                    return false;
                 }
             }
         }

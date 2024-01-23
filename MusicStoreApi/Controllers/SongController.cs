@@ -13,6 +13,7 @@ namespace MusicStoreApi.Controllers
     public class SongController : ControllerBase
     {
         private readonly ISongService songService;
+        private object albumService;
 
         public SongController(ISongService songService)
         {
@@ -69,6 +70,14 @@ namespace MusicStoreApi.Controllers
             return Ok(song);
         }
 
+        [AllowAnonymous]
+        [HttpGet("details/{songId}")]
+        public ActionResult<DetailsSongDto> GetDetails([FromRoute] int artistId, [FromRoute] int albumId, [FromRoute] int songId)
+        {
+            var album = songService.GetDetailsById(artistId, albumId, songId);
+
+            return Ok(album);
+        }
 
     }
 }

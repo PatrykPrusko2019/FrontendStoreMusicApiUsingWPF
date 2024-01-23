@@ -13,8 +13,11 @@ namespace FrontEndStoreMusicAPI.Services
     interface ISongService
     {
         bool Create(int artistId, int albumId, CreateSongDto createSongDto);
+        bool DeleteAll(int artistId, int albumId);
+        void DeleteById(int artistId, int albumId, int songId);
         Task<List<SongDto>> GetAll(int artistId, int albumId, SongQuery searchQuery);
         Task<SongDto> GetById(int artistId, int albumId, int songId);
+        Task<DetailsSongDto> GetDetails(int artistId, int albumId, int songId);
         bool Update(int artistId, int albumId, int songId, UpdateSongDto updateSongDto);
     }
 
@@ -105,6 +108,67 @@ namespace FrontEndStoreMusicAPI.Services
             }
         }
 
-       
+        public async Task<DetailsSongDto> GetDetails(int artistId, int albumId, int songId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/{artistId}/album/{albumId}/song/details";
+
+                var response = await HelperHttpClient.GetHttp(client, songId, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var detailsSongDto = await response.Content.ReadFromJsonAsync<DetailsSongDto>();
+                    if (detailsSongDto != null) return detailsSongDto;
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+                return null;
+            }
+        }
+
+        public void DeleteById(int artistId, int albumId, int songId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/{artistId}/album/{albumId}/song";
+
+                var response = HelperHttpClient.DeleteHttp(client, songId, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HelperHttpClient.GetResponseBodyOk(response, "Deleted Song");
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+            }
+        }
+
+        public bool DeleteAll(int artistId, int albumId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/{artistId}/album/{albumId}/song";
+
+                var response = HelperHttpClient.DeleteAllHttp(client, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HelperHttpClient.GetResponseBodyOk(response, "Deleted Songs");
+                    return true;
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                    return false;
+                }
+            }
+        }
+
+        
     }
 }

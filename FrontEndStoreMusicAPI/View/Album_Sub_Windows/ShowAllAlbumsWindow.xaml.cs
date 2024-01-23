@@ -82,7 +82,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         {
             AlbumDto selectedAlbum;
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null)
             {
                 MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
@@ -109,7 +109,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_DeleteAlbumById(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted!"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to be deleted!"); return; }
             else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
             else
             {
@@ -123,20 +123,21 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_DeleteAllAlbums(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted!"); return; }
-            else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
+            if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
             else
             {
                 IAlbumService albumService = new AlbumService();
-                albumService.DeleteAll(ArtistId);
-                FillArrayAlbums();
+               if (albumService.DeleteAll(ArtistId))
+                {
+                    FillArrayAlbums();
+                }
             }
         }
 
         private async void Button_DetailsAlbum(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Album !"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to display Details of Album !"); return; }
 
             IAlbumService albumService = new AlbumService();
             AlbumId = albums[indexItem].Id;
@@ -156,7 +157,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_ShowAllSongs(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to display All Songs of given Album!"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to display All Songs of given Album!"); return; }
             
             var selectedSongs = albums[indexItem].Songs;
             if (selectedSongs != null && selectedSongs.Count > 0)
@@ -168,6 +169,10 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
                 showAllSongsWindow.FillArraySongs();
                 this.Visibility = Visibility.Hidden;
                 showAllSongsWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("There are no Songs! Select another record, which has a Song or Songs");
             }
         }
 
