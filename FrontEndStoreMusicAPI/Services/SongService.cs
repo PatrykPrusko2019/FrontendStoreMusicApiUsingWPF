@@ -12,11 +12,54 @@ namespace FrontEndStoreMusicAPI.Services
 {
     interface ISongService
     {
+        bool Create(int artistId, int albumId, CreateSongDto createSongDto);
         Task<List<SongDto>> GetAll(int artistId, int albumId, SongQuery searchQuery);
+        Task<SongDto> GetById(int artistId, int albumId, int songId);
+        bool Update(int artistId, int albumId, int songId, UpdateSongDto updateSongDto);
     }
 
     class SongService : ISongService
     {
+        public bool Create(int artistId, int albumId, CreateSongDto createSongDto)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/{artistId}/album/{albumId}/song";
+
+                var response = HelperHttpClient.PostHttp(client, createSongDto, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HelperHttpClient.GetResponseBodyOk(response, $"Created and Added new Song to id Album: {albumId}, id Artist: {artistId}");
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+                return response.IsSuccessStatusCode;
+            }
+        }
+
+        public bool Update(int artistId, int albumId, int songId, UpdateSongDto updateSongDto)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/{artistId}/album/{albumId}/song/{songId}";
+
+                var response = HelperHttpClient.PutHttp(client, updateSongDto, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HelperHttpClient.GetResponseBodyOk(response, $"Updated Song");
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+                return response.IsSuccessStatusCode;
+            }
+        }
+
         public async Task<List<SongDto>> GetAll(int artistId, int albumId, SongQuery searchQuery)
         {
             using (HttpClient client = new HttpClient())
@@ -40,5 +83,28 @@ namespace FrontEndStoreMusicAPI.Services
                 return null;
             }
         }
+
+        public async Task<SongDto> GetById(int artistId, int albumId, int songId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string requestUri = $@"api/artist/{artistId}/album/{albumId}/song";
+
+                var response = await HelperHttpClient.GetHttp(client, songId, requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var songDto = await response.Content.ReadFromJsonAsync<SongDto>();
+                    if (songDto != null) return songDto;
+                }
+                else
+                {
+                    HelperHttpClient.GetResponseBodyError(response);
+                }
+                return null;
+            }
+        }
+
+       
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
+using FrontEndStoreMusicAPI.View.Song_Sub_Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,11 @@ namespace FrontEndStoreMusicAPI.Utilites
             UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Clear();
             UpdateCreateAlbum.c.AlbumUpdateCreateLength.Clear();
             UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Clear();
+        }
+
+        public static void ClearValuesOfUpdateCreateSong()
+        {
+            UpdateCreateSong.c.SongUpdateCreateName.Clear();
         }
 
 

@@ -1,0 +1,20 @@
+﻿<Window x:Class="FrontEndStoreMusicAPI.View.Song_Sub_Window.UpdateCreateSong"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Song_Sub_Window"
+        mc:Ignorable="d"
+        Title="UpdateCreateSong" Height="450" Width="800" ResizeMode="CanMinimize">
+    <Grid Background="#008080">
+        <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        <TextBlock x:Name="DescriptionUpdateCreateSong" FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Button x:Name="ReturnToSongs" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllSongs" ToolTip="return to all Songs"/>
+        <TextBlock Foreground="GreenYellow" HorizontalAlignment="Left" Margin="356,166,0,0" TextWrapping="Wrap" Text="NAME" VerticalAlignment="Top"/>
+        <TextBox Name="SongUpdateCreateName" HorizontalAlignment="Left" Margin="400,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter title"/>
+        
+
+        <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="422,249,0,0" VerticalAlignment="Top" Width="150" Click="Button_SaveSong" RenderTransformOrigin="0.889,0.486" ToolTip="save song"/>
+        <Button x:Name="Button_Clear" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="422,298,0,0" VerticalAlignment="Top" Width="150" Click="Button_ClearValuesOfSong" ToolTip="clear all values"/>
+    </Grid>
+</Window>

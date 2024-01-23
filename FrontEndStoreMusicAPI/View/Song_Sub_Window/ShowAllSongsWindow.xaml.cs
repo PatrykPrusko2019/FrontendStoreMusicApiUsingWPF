@@ -1,5 +1,6 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Services;
+using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,12 +60,50 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
 
         private void Button_CreateSong(object sender, RoutedEventArgs e)
         {
+            if (MusicStoreWindow.DetailsUser == null)
+            {
+                MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
+                return;
+            }
 
+            UpdateCreateSong createSong = new UpdateCreateSong();
+            createSong.DescriptionUpdateCreateSong.Text = "You are in the Create Album section";
+            createSong.SongId = 0;
+            createSong.ArtistId = ArtistId;
+            createSong.AlbumId = AlbumId;
+
+            this.Visibility = Visibility.Hidden;
+            createSong.Show();
         }
 
-        private void Button_UpdateSong(object sender, RoutedEventArgs e)
+        private async void Button_UpdateSong(object sender, RoutedEventArgs e)
         {
+            SongDto selectedSong;
+            var indexItem = DataGridSongs.SelectedIndex;
+            if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
+            else if (MusicStoreWindow.DetailsUser == null)
+            {
+                MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
+                return;
+            }
+            else
+            {
+                SongId = songs[indexItem].Id;
+                AlbumId = songs[indexItem].AlbumId;
+                ISongService songService = new SongService();
+                selectedSong = await songService.GetById(ArtistId, AlbumId, SongId);
+                if (selectedSong == null) return;
+            }
 
+            UpdateCreateSong updateSong = new UpdateCreateSong();
+            updateSong.DescriptionUpdateCreateSong.Text = "You are in the Update Song section";
+            updateSong.SongId = SongId;
+            updateSong.AlbumId = AlbumId;
+            updateSong.ArtistId = ArtistId;
+            Fill.GetValuesToUpdateSong(selectedSong);
+
+            this.Visibility = Visibility.Hidden;
+            updateSong.Show();
         }
 
         private void Button_DeleteSongById(object sender, RoutedEventArgs e)

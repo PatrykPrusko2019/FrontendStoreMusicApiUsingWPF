@@ -1,7 +1,9 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Models.BasicAlbum;
+using FrontEndStoreMusicAPI.Models.BasicSong;
 using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
+using FrontEndStoreMusicAPI.View.Song_Sub_Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +50,17 @@ namespace FrontEndStoreMusicAPI.Utilites
             UpdateCreateAlbum.c.AlbumUpdateCreateTitle.Text = updateAlbum.Title;
             UpdateCreateAlbum.c.AlbumUpdateCreateLength.Text = updateAlbum.Length.ToString();
             UpdateCreateAlbum.c.AlbumUpdateCreatePrice.Text = updateAlbum.Price.ToString();
+        }
+
+        // genereated new or updated song
+        public static void FillValuesOfCreateUpdateSong(BasicSongDto newSong)
+        {
+            newSong.Name = UpdateCreateSong.c.SongUpdateCreateName.Text;
+        }
+
+        public static void GetValuesToUpdateSong(SongDto updateSong)
+        {
+            UpdateCreateSong.c.SongUpdateCreateName.Text = updateSong.Name;
         }
 
     }
