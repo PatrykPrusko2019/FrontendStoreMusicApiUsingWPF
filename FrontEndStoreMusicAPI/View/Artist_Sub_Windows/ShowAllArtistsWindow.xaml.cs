@@ -27,7 +27,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         private void Button_ShowAllAlbums(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridArtists.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to display All Albums of given Artist!"); return; }
+            if (indexItem == -1 || indexItem == artists.Count) { MessageBox.Show("Select any record to display All Albums of given Artist!"); return; }
 
             var selectedAlbums = artists[indexItem].Albums;
             if (selectedAlbums != null && selectedAlbums.Count > 0) 
@@ -40,7 +40,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             }
             else
             {
-                MessageBox.Show("There are no Albums! Select another record, which has a Album");
+                MessageBox.Show("There are no Albums! Select another record, which has a Album or Albums");
             }
 
         }
@@ -58,7 +58,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             int artistId;
             var indexItem = DataGridArtists.SelectedIndex;
 
-            if (indexItem == -1) { MessageBox.Show("Select any record to be deleted!"); return; }
+            if (indexItem == -1 || indexItem == artists.Count) { MessageBox.Show("Select any record to be deleted!"); return; }
             else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete!"); } // no user logged in
             else
             {
@@ -83,7 +83,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             DetailsArtistDto selectedArtist;
             var indexItem = DataGridArtists.SelectedIndex;
 
-            if (indexItem == -1) { MessageBox.Show("Select any record to display Details of Artist !"); return; }
+            if (indexItem == -1 || indexItem == artists.Count) { MessageBox.Show("Select any record to display Details of Artist !"); return; }
             else if (MusicStoreWindow.DetailsUser != null && MusicStoreWindow.DetailsUser.Id == artists[indexItem].CreatedById) // user logged in and artist created by this artist
             {
                 artistId = artists[indexItem].Id;
@@ -126,7 +126,7 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             DetailsArtistDto selectedArtist;
             var indexItem = DataGridArtists.SelectedIndex;
 
-            if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
+            if (indexItem == -1 || indexItem == artists.Count) { MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null) 
             {
                 MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");

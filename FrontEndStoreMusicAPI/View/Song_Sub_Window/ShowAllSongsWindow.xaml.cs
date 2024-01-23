@@ -80,7 +80,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         {
             SongDto selectedSong;
             var indexItem = DataGridSongs.SelectedIndex;
-            if (indexItem == -1) { MessageBox.Show("Select any record to be updated!"); return; }
+            if (indexItem == -1 || indexItem == songs.Count) { MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null)
             {
                 MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
@@ -108,17 +108,53 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
 
         private void Button_DeleteSongById(object sender, RoutedEventArgs e)
         {
-
+            var indexItem = DataGridSongs.SelectedIndex;
+            if (indexItem == -1 || indexItem == songs.Count) { MessageBox.Show("Select any record to be deleted!"); return; }
+            else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
+            else
+            {
+                SongId = songs[indexItem].Id;
+                AlbumId = songs[indexItem].AlbumId;
+                ISongService songService = new SongService();
+                songService.DeleteById(ArtistId, AlbumId, SongId);
+                FillArraySongs();
+            }
         }
 
         private void Button_DeleteAllSongs(object sender, RoutedEventArgs e)
         {
-
+            var indexItem = DataGridSongs.SelectedIndex;
+            if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
+            else
+            {
+                ISongService albumService = new SongService();
+                if (albumService.DeleteAll(ArtistId, AlbumId))
+                {
+                    FillArraySongs();
+                }
+            }
         }
 
-        private void Button_DetailsSong(object sender, RoutedEventArgs e)
+        private async void Button_DetailsSong(object sender, RoutedEventArgs e)
         {
+            var indexItem = DataGridSongs.SelectedIndex;
+            if (indexItem == -1 || indexItem == songs.Count) { MessageBox.Show("Select any record to display Details of Song !"); return; }
 
+            ISongService songService = new SongService();
+            SongId = songs[indexItem].Id;
+            AlbumId= songs[indexItem].AlbumId;
+            var detailsSong = await songService.GetDetails(ArtistId, AlbumId, SongId);
+
+            if (detailsSong == null) return;
+            // HelperHttpClient.GenerateSongsForAlbum(detailsSong);
+
+            DetailsSong details = new DetailsSong();
+            details.artistId = ArtistId;
+            details.albumId = AlbumId;
+            details.FillDetailsArray(detailsSong);
+
+            this.Visibility = Visibility.Hidden;
+            details.Show();
         }
 
         private void ComboBox_ChangeSortDirection(object sender, SelectionChangedEventArgs e)
