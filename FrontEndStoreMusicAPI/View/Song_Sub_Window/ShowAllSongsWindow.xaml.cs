@@ -54,7 +54,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         }
         private void Button_SearchSongs(object sender, RoutedEventArgs e)
         {
-
+            FillArraySongs();
         }
 
         private void Button_CreateSong(object sender, RoutedEventArgs e)
@@ -87,12 +87,14 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             if (SortDirection.SelectedIndex == 0) query.SortDirection = Models.SortDirection.NULL;
             else if (SortDirection.SelectedIndex == 1) query.SortDirection = Models.SortDirection.ASC;
             else if (SortDirection.SelectedIndex == 2) query.SortDirection = Models.SortDirection.DESC;
+            //FillArraySongs();
         }
 
         private void ComboBox_ChangeSortBy(object sender, SelectionChangedEventArgs e)
         {
             if (SortBy.SelectedIndex == 0) query.SortBy = "";
             else if (SortBy.SelectedIndex == 1) query.SortBy = "Name";
+            //FillArraySongs();
         }
     }
 }

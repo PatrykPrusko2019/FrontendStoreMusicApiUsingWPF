@@ -98,6 +98,11 @@ namespace FrontEndStoreMusicAPI.Utilites
                 AlbumQuery query = value as AlbumQuery;
                 requestUri += @$"?SearchWord={query.SearchWord}&SortDirection={query.SortDirection}&SortBy={query.SortBy}";
             }
+            else if (value.GetType() == typeof(SongQuery))
+            {
+                SongQuery query = value as SongQuery;
+                requestUri += @$"?SearchWord={query.SearchWord}&SortDirection={query.SortDirection}&SortBy={query.SortBy}";
+            }
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             string tokenJWT = GetTokenJWT();
