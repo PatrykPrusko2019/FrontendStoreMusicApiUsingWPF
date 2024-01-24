@@ -3,6 +3,7 @@ using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
+using FrontEndStoreMusicAPI.View.Song_Sub_Window;
 using System.Windows;
 
 namespace FrontEndStoreMusicAPI.View
@@ -98,7 +99,7 @@ namespace FrontEndStoreMusicAPI.View
         {
             ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
             showAllAlbumsWindow.ArtistId = -2;
-            showAllAlbumsWindow.GetAllArtist = true;
+            showAllAlbumsWindow.IsGetAllArtists = true;
             showAllAlbumsWindow.FillArrayAlbums();
             this.Visibility= Visibility.Hidden;
 
@@ -108,7 +109,15 @@ namespace FrontEndStoreMusicAPI.View
 
         private void Button_ShowSongs(object sender, RoutedEventArgs e)
         {
+            ShowAllSongsWindow showAllSongsWindow = new ShowAllSongsWindow();
+            showAllSongsWindow.ArtistId = -2;
+            showAllSongsWindow.AlbumId = -2;
+            showAllSongsWindow.IsGetAllSongs = true;
+            showAllSongsWindow.FillArraySongs();
+            this.Visibility = Visibility.Hidden;
 
+            showAllSongsWindow.SetButtons();
+            showAllSongsWindow.Show();
         }
     }
 }

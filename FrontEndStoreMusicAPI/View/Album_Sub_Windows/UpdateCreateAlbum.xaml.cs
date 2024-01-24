@@ -1,4 +1,5 @@
-﻿using FrontEndStoreMusicAPI.Models;
+﻿using FrontEndStoreMusicAPI.Models.Create;
+using FrontEndStoreMusicAPI.Models.Update;
 using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;

@@ -9,12 +9,12 @@ using System.Linq.Expressions;
 
 namespace MusicStoreApi.Services
 {
-    public class AllAlbumService : IAllAlbumService
+    public class AllAlbumsService : IAllAlbumsService
     {
         private readonly ArtistDbContext dbContext;
         private readonly IMapper mapper;
 
-        public AllAlbumService(ArtistDbContext dbContext, IMapper mapper, ILogger<ArtistService> logger, IUserContextService userContextService, IAuthorizationService authorizationService)
+        public AllAlbumsService(ArtistDbContext dbContext, IMapper mapper, ILogger<ArtistService> logger, IUserContextService userContextService, IAuthorizationService authorizationService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
@@ -38,9 +38,15 @@ namespace MusicStoreApi.Services
 
                 var selectedColumn = columnsSelectors[searchQuery.SortBy];
 
-                baseQuery = searchQuery.SortDirection == SortDirection.ASC
-                    ? baseQuery.OrderBy(selectedColumn)
-                    : baseQuery.OrderByDescending(selectedColumn);
+                switch (searchQuery.SortDirection)
+                {
+                    case SortDirection.ASC:
+                        baseQuery = baseQuery.OrderBy(selectedColumn);
+                        break;
+                    case SortDirection.DESC:
+                        baseQuery = baseQuery.OrderByDescending(selectedColumn);
+                        break;
+                }
             }
 
             var albumsDtos = mapper.Map<List<AlbumDto>>(baseQuery);

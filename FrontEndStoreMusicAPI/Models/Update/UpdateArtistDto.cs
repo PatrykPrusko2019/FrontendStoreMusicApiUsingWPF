@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontEndStoreMusicAPI.Models
+namespace FrontEndStoreMusicAPI.Models.Update
 {
-    internal class CreateArtistDto : BasicArtistDto
+    class UpdateArtistDto : BasicArtistDto
     {
+
     }
 }

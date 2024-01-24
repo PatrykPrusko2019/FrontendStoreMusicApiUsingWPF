@@ -13,16 +13,16 @@
         </Grid.ColumnDefinitions>
         <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png" Margin="350,6,0,0"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Songs section " VerticalAlignment="Top"/>
-        <Button x:Name="ReturnToAllArtist" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllArtists" ToolTip="return to All Songs"/>
+        <Button x:Name="ReturnToAllAlbums" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllAlbums" ToolTip="return to All Albums"/>
         <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="10,148,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
         <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="93,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 
         <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="292,141,0,0" VerticalAlignment="Top" Width="150" Click="Button_SearchSongs" ToolTip="search by word of a given Song"/>
-        <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="35,6,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateSong"  ToolTip="go to create Song" Grid.Column="1" />
-        <Button Content="Update" Height="30" HorizontalAlignment="Left" Margin="35,41,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateSong"  ToolTip="go to update Song" Grid.Column="1" />
-        <Button Content="Delete One" Height="30" HorizontalAlignment="Left" Margin="35,76,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteSongById" ToolTip="delete one Song" Grid.Column="1"/>
-        <Button Content="Delete All" Height="30" HorizontalAlignment="Left" Margin="35,111,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAllSongs" ToolTip="delete all Songs" Grid.Column="1"/>
-        <Button Content="Details Song" Height="30" HorizontalAlignment="Left" Margin="35,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsSong"  ToolTip="go to details of the Song" Grid.Column="1"/>
+        <Button Name="Add" Content="Add" Height="30" HorizontalAlignment="Left" Margin="35,6,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateSong"  ToolTip="go to create Song" Grid.Column="1" />
+        <Button Name="Update" Content="Update" Height="30" HorizontalAlignment="Left" Margin="35,41,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateSong"  ToolTip="go to update Song" Grid.Column="1" />
+        <Button Name="Delete_One" Content="Delete One" Height="30" HorizontalAlignment="Left" Margin="35,76,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteSongById" ToolTip="delete one Song" Grid.Column="1"/>
+        <Button Name="Delete_All" Content="Delete All" Height="30" HorizontalAlignment="Left" Margin="35,111,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteAllSongs" ToolTip="delete all Songs" Grid.Column="1"/>
+        <Button Name="Details_Song" Content="Details Song" Height="30" HorizontalAlignment="Left" Margin="35,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsSong"  ToolTip="go to details of the Song" Grid.Column="1"/>
 
         <StackPanel Grid.ColumnSpan="2" Margin="5,5,23,117">
             <DataGrid Name="DataGridSongs" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="10,182,10,165" Height="327" Width="607" >

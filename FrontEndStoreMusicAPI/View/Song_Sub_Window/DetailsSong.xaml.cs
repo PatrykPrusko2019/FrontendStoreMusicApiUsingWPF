@@ -1,4 +1,4 @@
-﻿using FrontEndStoreMusicAPI.Models;
+﻿using FrontEndStoreMusicAPI.Models.Details;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

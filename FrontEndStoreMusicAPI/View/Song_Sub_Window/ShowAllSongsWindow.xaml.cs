@@ -14,6 +14,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
     /// </summary>
     public partial class ShowAllSongsWindow : Window
     {
+        public bool IsGetAllSongs { get; set; }
         private SongQuery query;
         public int ArtistId { get; set; }
         public int AlbumId { get; set; }
@@ -27,6 +28,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             SongId = -1;
             songs = new ObservableCollection<SongDto>();
             query = new SongQuery();
+            IsGetAllSongs = false;
         }
 
         public async void FillArraySongs()
@@ -36,22 +38,38 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             songs.Clear();
             if (ArtistId == -1 && AlbumId == -1) { MessageBox.Show("Not Songs found"); return; }
 
-            ISongService songService = new SongService();
-
-            allSongs = await songService.GetAll(ArtistId, AlbumId, query);
-
+            if (IsGetAllSongs)
+            {
+                IAllSongsService allSongService = new AllSongsService();
+                allSongs = await allSongService.GetAll(query);
+            }
+            else
+            {
+                ISongService songService = new SongService();
+                allSongs = await songService.GetAll(ArtistId, AlbumId, query);
+            }
+            
             if (allSongs == null || allSongs.Count == 0) return;
             allSongs.ForEach(album => songs.Add(album));
             DataGridSongs.DataContext = songs;
         }
 
-        private void Button_ReturnToAllArtists(object sender, RoutedEventArgs e)
+        private void Button_ReturnToAllAlbums(object sender, RoutedEventArgs e)
         {
-            ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
-            showAllAlbumsWindow.ArtistId = ArtistId;
-            showAllAlbumsWindow.FillArrayAlbums();
-            this.Visibility = Visibility.Hidden;
-            showAllAlbumsWindow.Show();
+            if (ArtistId == -2 && AlbumId == -2) 
+            {
+                MusicStoreWindow musicStoreWindow = new MusicStoreWindow();
+                this.Visibility = Visibility.Hidden;
+                musicStoreWindow.Show();
+            }
+            else
+            {
+                ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
+                showAllAlbumsWindow.ArtistId = ArtistId;
+                showAllAlbumsWindow.FillArrayAlbums();
+                this.Visibility = Visibility.Hidden;
+                showAllAlbumsWindow.Show();
+            }
         }
         private void Button_SearchSongs(object sender, RoutedEventArgs e)
         {
@@ -146,7 +164,6 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             var detailsSong = await songService.GetDetails(ArtistId, AlbumId, SongId);
 
             if (detailsSong == null) return;
-            // HelperHttpClient.GenerateSongsForAlbum(detailsSong);
 
             DetailsSong details = new DetailsSong();
             details.artistId = ArtistId;
@@ -162,14 +179,21 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             if (SortDirection.SelectedIndex == 0) query.SortDirection = Models.SortDirection.NULL;
             else if (SortDirection.SelectedIndex == 1) query.SortDirection = Models.SortDirection.ASC;
             else if (SortDirection.SelectedIndex == 2) query.SortDirection = Models.SortDirection.DESC;
-            //FillArraySongs();
         }
 
         private void ComboBox_ChangeSortBy(object sender, SelectionChangedEventArgs e)
         {
             if (SortBy.SelectedIndex == 0) query.SortBy = "";
             else if (SortBy.SelectedIndex == 1) query.SortBy = "Name";
-            //FillArraySongs();
+        }
+
+        public void SetButtons()
+        {
+            Add.Visibility = Visibility.Hidden;
+            Update.Visibility = Visibility.Hidden;
+            Delete_One.Visibility = Visibility.Hidden;
+            Delete_All.Visibility = Visibility.Hidden;
+            Details_Song.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Models.Details;
 using FrontEndStoreMusicAPI.View;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace FrontEndStoreMusicAPI.Utilites
 {
-     static class HelperHttpClient
+    static class HelperHttpClient
     {
         private const string uri = @"https://localhost:7195";
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontEndStoreMusicAPI.Models
+namespace FrontEndStoreMusicAPI.Models.Details
 {
-     public class DetailsAlbumDto : AlbumDto
+    public class DetailsAlbumDto : AlbumDto
     {
         public int ArtistId { get; set; }
         public string ArtistName { get; set; }

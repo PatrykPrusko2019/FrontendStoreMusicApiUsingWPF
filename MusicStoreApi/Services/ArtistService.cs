@@ -81,9 +81,15 @@ namespace MusicStoreApi.Services
 
                 var selectedColumn = columnsSelectors[searchQuery.SortBy];
 
-                baseQuery = searchQuery.SortDirection == SortDirection.ASC
-                    ? baseQuery.OrderBy(selectedColumn)
-                    : baseQuery.OrderByDescending(selectedColumn);
+                switch (searchQuery.SortDirection)
+                {
+                    case SortDirection.ASC:
+                        baseQuery = baseQuery.OrderBy(selectedColumn);
+                        break;
+                    case SortDirection.DESC:
+                        baseQuery = baseQuery.OrderByDescending(selectedColumn);
+                        break;
+                }
             }
 
             var artists = baseQuery

@@ -2,7 +2,7 @@
 
 namespace MusicStoreApi.Services
 {
-    public interface IAllAlbumService
+    public interface IAllAlbumsService
     {
         List<AlbumDto> GetAll(AlbumQuery searchQuery);
     }

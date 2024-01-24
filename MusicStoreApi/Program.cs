@@ -15,7 +15,6 @@ using MusicStoreApi.Models.Validators;
 using MusicStoreApi.Middleware;
 using Microsoft.EntityFrameworkCore;
 
-
 public class Program
     {
     public static void Main(string[] args)
@@ -56,8 +55,9 @@ public class Program
         builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
         builder.Services.AddScoped<IArtistService, ArtistService>();
         builder.Services.AddScoped<IAlbumService, AlbumService>();
-        builder.Services.AddScoped<IAllAlbumService,  AllAlbumService>();
+        builder.Services.AddScoped<IAllAlbumsService,  AllAlbumsService>();
         builder.Services.AddScoped<ISongService, SongService>();
+        builder.Services.AddScoped<IAllSongsService, AllSongsService>();
         builder.Services.AddScoped<IAccountService, AccountService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();

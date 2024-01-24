@@ -1,4 +1,5 @@
 ﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Models.Details;
 using FrontEndStoreMusicAPI.Services;
 using FrontEndStoreMusicAPI.Utilites;
 using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
@@ -162,7 +163,6 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             else if (SortBy.SelectedIndex == 1) query.SortBy = "Name";
             else if (SortBy.SelectedIndex == 2) query.SortBy = "Description";
             else if (SortBy.SelectedIndex == 3) query.SortBy = "KindOfMusic";
-            GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
 
         }
 
@@ -171,7 +171,6 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             if (SortDirection.SelectedIndex == 0) query.SortDirection = Models.SortDirection.NULL;
             else if (SortDirection.SelectedIndex == 1) query.SortDirection = Models.SortDirection.ASC;
             else if (SortDirection.SelectedIndex == 2) query.SortDirection = Models.SortDirection.DESC;
-            GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
 
         private void Button_PreviousPage(object sender, RoutedEventArgs e)

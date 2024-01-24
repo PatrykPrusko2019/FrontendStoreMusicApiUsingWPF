@@ -19,7 +19,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     /// </summary>
     public partial class ShowAllAlbumsWindow : Window
     {
-        public bool GetAllArtist { get; set; }
+        public bool IsGetAllArtists { get; set; }
         public int ArtistId { get; set; }
         public int AlbumId { get; set; }
         private ObservableCollection<AlbumDto> albums;
@@ -31,7 +31,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             InitializeComponent();
             albums = new ObservableCollection<AlbumDto>();
             query = new AlbumQuery();
-            GetAllArtist = false;
+            IsGetAllArtists = false;
         }
 
         public async void FillArrayAlbums()
@@ -42,9 +42,9 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             if (ArtistId == -1) { MessageBox.Show("Not Albums found"); return; }
 
 
-            if (GetAllArtist)
+            if (IsGetAllArtists)
             {
-                IAllAlbumService allAlbumService = new AllAlbumService();
+                IAllAlbumsService allAlbumService = new AllAlbumsService();
                 allAlbums = await allAlbumService.GetAll(query); // all Albums
             }
             else
@@ -208,7 +208,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             else if (SortBy.SelectedIndex == 1) query.SortBy = "Title";
         }
 
-        internal void SetButtons()
+        public void SetButtons()
         {
              Add.Visibility = Visibility.Hidden;
              Update.Visibility = Visibility.Hidden;

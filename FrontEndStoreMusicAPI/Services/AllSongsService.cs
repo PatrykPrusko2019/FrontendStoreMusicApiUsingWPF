@@ -2,34 +2,34 @@
 using FrontEndStoreMusicAPI.Utilites;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FrontEndStoreMusicAPI.Services
 {
-
-    interface IAllAlbumService
+    interface IAllSongsService
     {
-        Task<List<AlbumDto>> GetAll(AlbumQuery searchQuery);
+        Task<List<SongDto>> GetAll(SongQuery searchQuery);
     }
-    class AllAlbumService : IAllAlbumService
+    internal class AllSongsService : IAllSongsService
     {
-        public async Task<List<AlbumDto>> GetAll(AlbumQuery searchQuery)
+        public async Task<List<SongDto>> GetAll(SongQuery searchQuery)
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUri = $@"api/album";
+                string requestUri = $@"api/song";
 
                 var response = await HelperHttpClient.SecondGetHttp(client, searchQuery, requestUri);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var albums = await response.Content.ReadFromJsonAsync<List<AlbumDto>>();
-                    if (albums != null && albums.Count > 0)
+                    var songs = await response.Content.ReadFromJsonAsync<List<SongDto>>();
+                    if (songs != null && songs.Count > 0)
                     {
-                        albums = HelperHttpClient.GenerateAlbums(albums);
-                        return albums;
+                        return songs;
                     }
                 }
                 else

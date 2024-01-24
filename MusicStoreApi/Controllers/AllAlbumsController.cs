@@ -8,11 +8,11 @@ namespace MusicStoreApi.Controllers
     [Route("api/album")]
     [ApiController]
     [Authorize]
-    public class AllAlbumController : ControllerBase
+    public class AllAlbumsController : ControllerBase
     {
-        private readonly IAllAlbumService allAlbumService;
+        private readonly IAllAlbumsService allAlbumService;
 
-        public AllAlbumController(IAllAlbumService allAlbumService)
+        public AllAlbumsController(IAllAlbumsService allAlbumService)
         {
             this.allAlbumService = allAlbumService;
         }

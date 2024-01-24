@@ -1,4 +1,7 @@
 ﻿using FrontEndStoreMusicAPI.Models;
+using FrontEndStoreMusicAPI.Models.Create;
+using FrontEndStoreMusicAPI.Models.Details;
+using FrontEndStoreMusicAPI.Models.Update;
 using FrontEndStoreMusicAPI.Utilites;
 using System;
 using System.Collections.Generic;

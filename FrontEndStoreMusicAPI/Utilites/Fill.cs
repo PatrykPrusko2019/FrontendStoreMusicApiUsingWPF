@@ -1,6 +1,7 @@
 ﻿using FrontEndStoreMusicAPI.Models;
 using FrontEndStoreMusicAPI.Models.BasicAlbum;
 using FrontEndStoreMusicAPI.Models.BasicSong;
+using FrontEndStoreMusicAPI.Models.Details;
 using FrontEndStoreMusicAPI.View.Album_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Artist_Sub_Windows;
 using FrontEndStoreMusicAPI.View.Song_Sub_Window;
