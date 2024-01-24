@@ -56,6 +56,7 @@ public class Program
         builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
         builder.Services.AddScoped<IArtistService, ArtistService>();
         builder.Services.AddScoped<IAlbumService, AlbumService>();
+        builder.Services.AddScoped<IAllAlbumService,  AllAlbumService>();
         builder.Services.AddScoped<ISongService, SongService>();
         builder.Services.AddScoped<IAccountService, AccountService>();
         builder.Services.AddScoped<IUserService, UserService>();

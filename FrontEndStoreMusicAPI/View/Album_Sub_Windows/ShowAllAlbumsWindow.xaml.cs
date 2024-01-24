@@ -19,6 +19,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
     /// </summary>
     public partial class ShowAllAlbumsWindow : Window
     {
+        public bool GetAllArtist { get; set; }
         public int ArtistId { get; set; }
         public int AlbumId { get; set; }
         private ObservableCollection<AlbumDto> albums;
@@ -30,6 +31,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             InitializeComponent();
             albums = new ObservableCollection<AlbumDto>();
             query = new AlbumQuery();
+            GetAllArtist = false;
         }
 
         public async void FillArrayAlbums()
@@ -39,10 +41,18 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             albums.Clear();
             if (ArtistId == -1) { MessageBox.Show("Not Albums found"); return; }
 
-            IAlbumService albumService = new AlbumService();
-            
-            allAlbums = await albumService.GetAll(ArtistId, query);
-            
+
+            if (GetAllArtist)
+            {
+                IAllAlbumService allAlbumService = new AllAlbumService();
+                allAlbums = await allAlbumService.GetAll(query); // all Albums
+            }
+            else
+            {
+                IAlbumService albumService = new AlbumService();
+                allAlbums = await albumService.GetAll(ArtistId, query); // Albums from given Artist
+            }
+
             if (allAlbums == null || allAlbums.Count == 0) return;
             allAlbums.ForEach(album => albums.Add(album));
             DataGridAlbums.DataContext = albums;
@@ -50,10 +60,19 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
 
         private void Button_ReturnToAllArtist(object sender, RoutedEventArgs e)
         {
-            ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
-            this.Visibility = Visibility.Hidden;
-            showAllArtistsWindow.GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
-            showAllArtistsWindow.Show();
+            if (ArtistId == -2) 
+            {
+                MusicStoreWindow musicStoreWindow = new MusicStoreWindow();
+                this.Visibility = Visibility.Hidden;
+                musicStoreWindow.Show();
+            }
+            else
+            {
+                ShowAllArtistsWindow showAllArtistsWindow = new ShowAllArtistsWindow();
+                this.Visibility = Visibility.Hidden;
+                showAllArtistsWindow.GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
+                showAllArtistsWindow.Show();
+            }
         }
 
         private void Button_SearchAlbums(object sender, RoutedEventArgs e)
@@ -187,6 +206,16 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         {
             if (SortBy.SelectedIndex == 0) query.SortBy = "";
             else if (SortBy.SelectedIndex == 1) query.SortBy = "Title";
+        }
+
+        internal void SetButtons()
+        {
+             Add.Visibility = Visibility.Hidden;
+             Update.Visibility = Visibility.Hidden;
+             Delete_One.Visibility = Visibility.Hidden;
+             Delete_All.Visibility = Visibility.Hidden;
+             Details_Album.Visibility = Visibility.Hidden;
+             Show_Songs.Visibility = Visibility.Hidden;
         }
     }
 }

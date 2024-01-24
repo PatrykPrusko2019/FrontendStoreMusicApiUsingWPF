@@ -97,7 +97,12 @@ namespace FrontEndStoreMusicAPI.View
         private void Button_ShowAlbums(object sender, RoutedEventArgs e)
         {
             ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
+            showAllAlbumsWindow.ArtistId = -2;
+            showAllAlbumsWindow.GetAllArtist = true;
+            showAllAlbumsWindow.FillArrayAlbums();
             this.Visibility= Visibility.Hidden;
+
+            showAllAlbumsWindow.SetButtons();
             showAllAlbumsWindow.Show();
         }
 

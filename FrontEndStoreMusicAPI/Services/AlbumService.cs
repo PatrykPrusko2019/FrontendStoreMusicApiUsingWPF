@@ -66,7 +66,6 @@ namespace FrontEndStoreMusicAPI.Services
                 return null;
             }
         }
-
         public async Task<AlbumDto> GetById(int artistId, int albumId)
         {
             using (HttpClient client = new HttpClient())
