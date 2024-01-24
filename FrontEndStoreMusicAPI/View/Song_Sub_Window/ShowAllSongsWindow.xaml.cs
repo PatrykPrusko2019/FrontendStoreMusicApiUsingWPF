@@ -194,6 +194,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             Delete_One.Visibility = Visibility.Hidden;
             Delete_All.Visibility = Visibility.Hidden;
             Details_Song.Visibility = Visibility.Hidden;
+            ReturnToAllAlbums.ToolTip = "return to Music Store";
         }
     }
 }

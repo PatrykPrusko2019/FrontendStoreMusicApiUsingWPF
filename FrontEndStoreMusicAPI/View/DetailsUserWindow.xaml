@@ -10,7 +10,7 @@
         <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" Margin="0,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
         <Button x:Name="ReturnToMusicStore" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToMusicStore" ToolTip="return to Music Store"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" Text="You are in the Details of user section" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DataGridDetailsGivenUser" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,135,0,413">
+        <DataGrid x:Name="DataGridDetailsGivenUser" IsReadOnly="True" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,135,0,413">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="UserId"  Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}" />
@@ -22,7 +22,7 @@
                 <DataGridTextColumn Header="RoleDescription"  Binding="{Binding RoleDescription}" />
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="DataGridDetailsArtists" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,276,0,0">
+        <DataGrid x:Name="DataGridDetailsArtists" IsReadOnly="True" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,276,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ArtistId"  Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />

@@ -10,7 +10,7 @@
         <Image  x:Name="logo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png" Margin="0,5,0,0"/>
         <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,105,0,0" TextWrapping="Wrap" Text="You are in the Details of Song section " VerticalAlignment="Top"/>
         <Button x:Name="ReturnToAllSongs" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToAllSongs" ToolTip="return to All Songs"/>
-        <DataGrid x:Name="DataGridDetailsSong" ItemsSource="{Binding}" Background="#008050" RowBackground="#008050" Margin="10,148,10,10" AutoGenerateColumns="False">
+        <DataGrid x:Name="DataGridDetailsSong" IsReadOnly="True" ItemsSource="{Binding}" Background="#008050" RowBackground="#008050" Margin="10,148,10,10" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />

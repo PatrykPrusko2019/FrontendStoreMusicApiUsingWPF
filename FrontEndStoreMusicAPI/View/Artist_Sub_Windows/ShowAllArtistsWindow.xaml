@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEndStoreMusicAPI.View.Artist_Sub_Windows"
         mc:Ignorable="d"
-        Title="ShowAllArtistsWindow" Height="650" Width="920" ResizeMode="CanMinimize">
+        Title="ShowAllArtistsWindow" Height="650" Width="950" ResizeMode="CanMinimize">
     <Grid Background="#008080">
-        <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="366,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
-        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Left" Margin="247,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
+        <Image  x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="416,3,0,0" VerticalAlignment="Top" Width="100" Source="/View/Images/photo_logo.png"/>
+        <TextBlock  FontSize="20" Foreground="GreenYellow" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" Text="You are in the Show All Artists section " VerticalAlignment="Top"/>
         <Button x:Name="ReturnToMusicStore" Content="Return" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="Button_ReturnToMusicStore" ToolTip="return to Music Store"/>
-        <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="5,138,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
-        <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="85,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
+        <TextBlock Foreground="GreenYellow"  HorizontalAlignment="Left" Margin="30,143,0,0" TextWrapping="Wrap" Text="Search Word" VerticalAlignment="Top"/>
+        <TextBox Name="SearchWord" HorizontalAlignment="Left" Margin="110,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" ToolTip="enter a search word"/>
 
-        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="295,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="search by word of a given Artist"/>
+        <Button Content="Search" Height="30" HorizontalAlignment="Left" Margin="320,137,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllArtist" ToolTip="search by word of a given Artist"/>
         <Button Content="Add" Height="30" HorizontalAlignment="left" Margin="670,20,0,0" VerticalAlignment="Top" Width="150" Click="Button_CreateArtist"  ToolTip="go to create Artist" />
         <Button Content="Update" Height="30" HorizontalAlignment="left" Margin="670,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_UpdateArtist"  ToolTip="go to update Artist" />
         <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="670,100,0,0" VerticalAlignment="Top" Width="150"  Click="Button_DeleteArtist" ToolTip="delete Artist"/>
         <Button Content="Details Artist" Height="30" HorizontalAlignment="Left" Margin="670,140,0,0" VerticalAlignment="Top" Width="150" Click="Button_DetailsArtist"  ToolTip="go to details of the artist"/>
 
         <StackPanel Grid.ColumnSpan="1" Margin="5">
-            <DataGrid Name="DataGridArtists" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,172,0,37" Height="293" Width="886" >
+            <DataGrid Name="DataGridArtists" IsReadOnly="True" SelectedItem="ClickItem" Background="#008050" RowBackground="#008050" ItemsSource="{Binding}" AutoGenerateColumns="false" Margin="0,172,0,37" Height="293" Width="918" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
@@ -47,19 +47,21 @@
             <Button Content="Show Albums" Height="30" HorizontalAlignment="Left" Margin="670,-90,0,0" VerticalAlignment="Top" Width="150" Click="Button_ShowAllAlbums"  ToolTip="go to all Albums"/>
         </StackPanel>
 
-        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,559,0,10" Width="792">
+        <StackPanel Orientation="Horizontal" Margin="26,559,26,10">
             <TextBlock Foreground="GreenYellow" Text="Records per page" VerticalAlignment="Center" />
             <ComboBox x:Name="RecordsPerPage" Margin="10,10,10,10"  Width="40" SelectionChanged="ComboBox_ChangeRecordsPerPage" ToolTip="choose 5, 10, 15">
                 <ComboBoxItem Content="5"/>
                 <ComboBoxItem Content="10"/>
                 <ComboBoxItem Content="15"/>
-                
+
             </ComboBox>
             <TextBlock x:Name="CurrentPage" Foreground="GreenYellow" VerticalAlignment="Center" Text="1 of _" Margin="40,10,0,10" />
             <Button x:Name="PreviousPage" Margin="10,10,0,10" Content="&lt;" Width="40" Click="Button_PreviousPage" ToolTip="previous page"/>
             <Button x:Name="NextPage" Content=">" Margin="10,10,10,10" Width="40" Click="Button_NextPage" ToolTip="next page"/>
+            <Button x:Name="FirstPage" Margin="10,10,0,10" Content="&lt;&lt;" Width="40" Click="Button_FirstPage" ToolTip="first page"/>
+            <Button x:Name="LastPage" Content=">>" Margin="10,10,10,10" Width="40" Click="Button_LastPage" ToolTip="last page"/>
 
-            <TextBlock Foreground="GreenYellow" Text="Sort Direction" VerticalAlignment="Center" Margin="40,10,10,10"/>
+            <TextBlock Foreground="GreenYellow" Text="Sort Direction" VerticalAlignment="Center" Margin="60,10,10,10"/>
             <ComboBox x:Name="SortDirection" Margin="0,10,10,10" Width="60" SelectionChanged="ComboBox_ChangeSortDirection" ToolTip="choose ASC, DESC">
                 <ComboBoxItem Content=""/>
                 <ComboBoxItem Content="ASC"/>

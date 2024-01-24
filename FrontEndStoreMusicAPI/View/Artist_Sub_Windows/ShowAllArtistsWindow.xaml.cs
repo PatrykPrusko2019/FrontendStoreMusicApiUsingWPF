@@ -205,6 +205,37 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
         }
 
+        private void Button_LastPage(object sender, RoutedEventArgs e)
+        {
+            string[] strings = CurrentPage.Text.Split(" ");
+
+            int currentPage = int.Parse(strings[0]);
+            int totalPage = int.Parse(strings[2]);
+
+            if (currentPage < totalPage) currentPage = totalPage;
+
+            strings[0] = currentPage.ToString();
+
+            CurrentPage.Text = string.Join(" ", strings);
+
+            query.PageNumber = currentPage;
+            GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
+        }
+
+        private void Button_FirstPage(object sender, RoutedEventArgs e)
+        {
+            string[] strings = CurrentPage.Text.Split(" ");
+
+            int currentPage = int.Parse(strings[0]);
+
+            if (currentPage > 1) currentPage = 1;
+            strings[0] = currentPage.ToString();
+
+            CurrentPage.Text = string.Join(" ", strings);
+
+            query.PageNumber = currentPage;
+            GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults();
+        }
         public async void GetAllArtistsAndSetDataGridArtistsAndSetDataGridArtistsResults()
         {
             artists.Clear();
