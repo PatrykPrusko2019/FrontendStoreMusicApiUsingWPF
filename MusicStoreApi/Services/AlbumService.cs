@@ -8,6 +8,7 @@ using MusicStoreApi.Exceptions;
 using MusicStoreApi.Models;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 
 namespace MusicStoreApi.Services
 {
@@ -35,7 +36,7 @@ namespace MusicStoreApi.Services
 
             GetAuthorizationResult(dbContext.Artists.FirstOrDefault(a => a.Id == artistId), ResourceOperation.Create);
 
-            CheckIsUnigueTitle(artistId, createAlbumDto.Title);
+            CheckIsUniqueTitle(artistId, createAlbumDto.Title, -1);
 
             var albumEntity = mapper.Map<Album>(createAlbumDto);
 
@@ -53,7 +54,7 @@ namespace MusicStoreApi.Services
 
             GetAuthorizationResult(dbContext.Artists.FirstOrDefault(a => a.Id == artistId), ResourceOperation.Update);
 
-            CheckIsUnigueTitle(artistId, updateAlbumDto.Title);
+            CheckIsUniqueTitle(artistId, updateAlbumDto.Title, albumId);
 
             album.Title = updateAlbumDto.Title;
             album.Length = updateAlbumDto.Length;
@@ -187,7 +188,7 @@ namespace MusicStoreApi.Services
             }
         }
 
-        private void CheckIsUnigueTitle(int artistId, string title)
+        private void CheckIsUniqueTitle(int artistId, string title, int albumId)
         {
             var artist = dbContext.Artists
                 .Include(a => a.Albums)
@@ -195,7 +196,22 @@ namespace MusicStoreApi.Services
 
             if (artist.Albums.IsNullOrEmpty()) return;
 
-            var isDuplicate = artist.Albums.Any(a => a.Title == title);
+
+            bool isDuplicate = false;
+
+            if (albumId != -1) //update value
+            {
+                var result = artist.Albums.Any(a => a.Title == title);
+                if (result)
+                {
+                    var albumIdDuplicate = artist.Albums.FirstOrDefault(a => a.Title == title).Id;
+                    if (albumIdDuplicate != albumId) isDuplicate = true;
+                }
+            }
+            else
+            {
+                isDuplicate = artist.Albums.Any(a => a.Title == title);
+            }
             if (isDuplicate) throw new DuplicateValueException("Title : value invalid, because is on the album's list");
         }
     }

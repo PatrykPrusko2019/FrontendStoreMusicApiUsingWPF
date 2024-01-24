@@ -34,7 +34,7 @@ namespace MusicStoreApi.Services
 
             GetAuthorizationResult(artistDbContext.Artists.FirstOrDefault(a => a.Id == artistId), ResourceOperation.Create);
 
-            CheckIsUnigueName(artistId,  albumId, createSongDto.Name);
+            CheckIsUniqueName(artistId,  albumId, createSongDto.Name, -1);
 
             var songEntity = mapper.Map<Song>(createSongDto);
             songEntity.AlbumId = albumId;
@@ -53,7 +53,7 @@ namespace MusicStoreApi.Services
 
             GetAuthorizationResult(artistDbContext.Artists.FirstOrDefault(a => a.Id == artistId), ResourceOperation.Update);
 
-            CheckIsUnigueName(artistId, albumId, createSongDto.Name);
+            CheckIsUniqueName(artistId, albumId, createSongDto.Name, songId);
 
             song.Name = createSongDto.Name;
 
@@ -195,15 +195,32 @@ namespace MusicStoreApi.Services
             }
         }
 
-        private void CheckIsUnigueName(int artistId, int albumId, string name)
+        private void CheckIsUniqueName(int artistId, int albumId, string name, int songId)
         {
             var album = artistDbContext.Albums
                 .Include(s => s.Songs)
                 .FirstOrDefault(a => a.ArtistId == artistId && a.Id == albumId);
 
             if (album.Songs.IsNullOrEmpty()) return;
-            var isDuplicate = album.Songs.Any(a => a.Name == name);
+
+            bool isDuplicate = false;
+
+            if (songId != -1) //update value
+            {
+                var result = album.Songs.Any(a => a.Name == name);
+                if (result)
+                {
+                    var songIdDuplicate = album.Songs.FirstOrDefault(a => a.Name == name).Id;
+                    if (songIdDuplicate != songId) isDuplicate = true;
+                }
+            }
+            else //create value
+            {
+                isDuplicate = album.Songs.Any(a => a.Name == name);
+            }
+
             if (isDuplicate) throw new DuplicateValueException("Name : value invalid, because is on the songs's list");
+
         }
 
     }

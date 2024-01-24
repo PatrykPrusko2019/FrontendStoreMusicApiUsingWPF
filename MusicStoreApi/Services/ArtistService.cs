@@ -33,7 +33,7 @@ namespace MusicStoreApi.Services
 
         public int Create(CreateArtistDto createdArtistDto)
         {
-            CheckIsUnigueName(createdArtistDto.Name);
+            CheckIsUniqueName(createdArtistDto.Name, -1);
 
             var createdArtist = mapper.Map<Artist>(createdArtistDto);
             createdArtist.CreatedById = userContextService.GetUserId;
@@ -165,7 +165,7 @@ namespace MusicStoreApi.Services
 
             GetAuthorizationResult(artist, ResourceOperation.Update);
 
-            CheckIsUnigueName(updatedArtistDto.Name);
+            CheckIsUniqueName(updatedArtistDto.Name, artist.Id);
 
             artist.Name = updatedArtistDto.Name;
             artist.Description = updatedArtistDto.Description;
@@ -199,16 +199,29 @@ namespace MusicStoreApi.Services
             }
         }
 
-        private void CheckIsUnigueName(string name)
+        private void CheckIsUniqueName(string name, int artistId)
         {
             var userId = int.Parse( userContextService.User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value );
-            
+            bool isDuplicate = false;
+
             if (! dbContext.Artists.IsNullOrEmpty()) 
             {
-                var isDuplicate = dbContext.Artists.Any(a => a.Name == name && a.CreatedById == userId);
-                if (isDuplicate) throw new DuplicateValueException("Name: invalid value because there is already an artist created by this user (duplicate)");
+                if (artistId != -1) //update value
+                {
+                    var result = dbContext.Artists.Any(a => a.Name == name && a.CreatedById == userId);
+                    if (result)
+                    {
+                        var artistIdDuplicate = dbContext.Artists.FirstOrDefault(a => a.Name == name && a.CreatedById == userId).Id;
+                        if (artistIdDuplicate != artistId) isDuplicate = true;
+                    }
+                }
+                else //create value
+                {
+                    isDuplicate = dbContext.Artists.Any(a => a.Name == name && a.CreatedById == userId);
+                }
+                if (isDuplicate) throw new DuplicateValueException("Name: invalid value because there is already an artist created by this user (isDuplicate)");
             }
-            
         }
+
     }
 }
