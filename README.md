@@ -1,7 +1,7 @@
 A detailed description of the application with photos is in the directory: FrontEndStoreMusicAPI
 /DescriptionOfApp.
 
-Frontend WPF application for Store Music Api application:
+FRONTEND WPF APPLICATION FOR STORE MUSIC API APPLICATION:
 
 Used: C#, WPF, .NET 6.0, Entity Framework, MS_SQL, Swagger(homepage) documentation, Microsoft Azure cloud, NLogger, JWT Token, Postman, CORS policy, Middleware.
 
