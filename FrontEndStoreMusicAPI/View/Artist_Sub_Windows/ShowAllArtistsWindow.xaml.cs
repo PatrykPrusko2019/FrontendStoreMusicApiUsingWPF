@@ -28,21 +28,19 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
         private void Button_ShowAllAlbums(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridArtists.SelectedIndex;
-            if (indexItem == -1 || indexItem == artists.Count) { MessageBox.Show("Select any record to display All Albums of given Artist!"); return; }
+            if (indexItem == -1) { MessageBox.Show("Select any record to display All Albums of given Artist!"); return; }
+            
 
             var selectedAlbums = artists[indexItem].Albums;
-            if (selectedAlbums != null && selectedAlbums.Count > 0) 
-            {
-                ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
-                showAllAlbumsWindow.ArtistId = artists[indexItem].Id;
-                showAllAlbumsWindow.FillArrayAlbums();
-                this.Visibility = Visibility.Hidden;
-                showAllAlbumsWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("There are no Albums! Select another record, which has a Album or Albums");
-            }
+            if (selectedAlbums == null || selectedAlbums.Count == 0) MessageBox.Show("There are no Albums! Add new Album to given Artist");
+
+            ShowAllAlbumsWindow showAllAlbumsWindow = new ShowAllAlbumsWindow();
+            showAllAlbumsWindow.ArtistId = artists[indexItem].Id;
+            showAllAlbumsWindow.FillArrayAlbums();
+            this.Visibility = Visibility.Hidden;
+            showAllAlbumsWindow.Show();
+            
+            
 
         }
 

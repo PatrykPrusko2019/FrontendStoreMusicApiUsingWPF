@@ -27,7 +27,7 @@ namespace FrontEndStoreMusicAPI
             login.Show();
         }
 
-        private void Button_CreateNewAccount(object sender, RoutedEventArgs e)
+        private async void Button_CreateNewAccount(object sender, RoutedEventArgs e)
         {
             string[] insertedDate = RegisterDateOfBirth.Text.Split('-').Reverse().ToArray();
             string date = string.Join("-", insertedDate);
@@ -48,7 +48,14 @@ namespace FrontEndStoreMusicAPI
                     RoleId = registerRole
                 };
                 IRegisterService registerService = new RegisterService();
-                registerService.Register(registerUserDto);
+                bool result = await registerService.Register(registerUserDto);
+                if (result)
+                {
+                    MainWindowLogin login = new MainWindowLogin();
+                    this.Visibility = Visibility.Hidden;
+                    login.Show();
+                }
+                
             }
             else
             {

@@ -179,20 +179,15 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to display All Songs of given Album!"); return; }
             
             var selectedSongs = albums[indexItem].Songs;
-            if (selectedSongs != null && selectedSongs.Count > 0)
-            {
-                ShowAllSongsWindow showAllSongsWindow = new ShowAllSongsWindow();
-                showAllSongsWindow.ArtistId = ArtistId;
-                AlbumId = albums[indexItem].Id;
-                showAllSongsWindow.AlbumId = AlbumId;
-                showAllSongsWindow.FillArraySongs();
-                this.Visibility = Visibility.Hidden;
-                showAllSongsWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("There are no Songs! Select another record, which has a Song or Songs");
-            }
+            if (selectedSongs == null || selectedSongs.Count == 0) MessageBox.Show("There are no Songs! Add new Song to given Album");
+                
+            ShowAllSongsWindow showAllSongsWindow = new ShowAllSongsWindow();
+            showAllSongsWindow.ArtistId = ArtistId;
+            AlbumId = albums[indexItem].Id;
+            showAllSongsWindow.AlbumId = AlbumId;
+            showAllSongsWindow.FillArraySongs();
+            this.Visibility = Visibility.Hidden;
+            showAllSongsWindow.Show();
         }
 
         private void ComboBox_ChangeSortDirection(object sender, SelectionChangedEventArgs e)
