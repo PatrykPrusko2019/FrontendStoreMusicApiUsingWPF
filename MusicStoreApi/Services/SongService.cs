@@ -43,7 +43,7 @@ namespace MusicStoreApi.Services
             artistDbContext.Songs.Add(songEntity);
             artistDbContext.SaveChanges();
 
-            logger.LogInformation($"Created new song: {songEntity.Name} , api/artist/{artistId}/song/{albumId}/song/{songEntity.Id}");
+            logger.LogInformation($"Created new song: {songEntity.Name} , api/artist/{artistId}/album/{albumId}/song/{songEntity.Id}");
             return songEntity.Id;
         }
 
@@ -58,7 +58,7 @@ namespace MusicStoreApi.Services
             song.Name = createSongDto.Name;
 
             artistDbContext.SaveChanges();
-            logger.LogInformation($"Updated song: {song.Name} , api/artist/{artistId}/song/{albumId}/song/{song.Id}");
+            logger.LogInformation($"Updated song: {song.Name} , api/artist/{artistId}/album/{albumId}/song/{song.Id}");
         }
 
         public void DeleteAll(int artistId, int albumId)
@@ -71,7 +71,7 @@ namespace MusicStoreApi.Services
             foreach (var songs in deleteSongs) artistDbContext.Songs.Remove(songs);
             artistDbContext.SaveChanges();
 
-            logger.LogInformation($"Removed song: api/artist/{artistId}/song/{albumId}");
+            logger.LogInformation($"Removed song: api/artist/{artistId}/album/{albumId}/song");
         }
 
         public void DeleteById(int artistId, int albumId, int songId)
@@ -85,7 +85,7 @@ namespace MusicStoreApi.Services
             artistDbContext.Songs.Remove(deleteSong);
             artistDbContext.SaveChanges();
 
-            logger.LogInformation($"Removed song: {name} , api/artist/{artistId}/song/{albumId}/song/{songId}");
+            logger.LogInformation($"Removed song: {name} , api/artist/{artistId}/album/{albumId}/song/{songId}");
         }
 
         public List<SongDto> GetAll(int artistId, int albumId, SongQuery searchQuery)

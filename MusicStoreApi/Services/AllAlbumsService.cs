@@ -14,7 +14,7 @@ namespace MusicStoreApi.Services
         private readonly ArtistDbContext dbContext;
         private readonly IMapper mapper;
 
-        public AllAlbumsService(ArtistDbContext dbContext, IMapper mapper, ILogger<ArtistService> logger, IUserContextService userContextService, IAuthorizationService authorizationService)
+        public AllAlbumsService(ArtistDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
