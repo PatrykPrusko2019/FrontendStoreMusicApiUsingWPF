@@ -45,8 +45,7 @@ to display all songs in the database or to display all songs of a given
 album.
 When hovering the mouse cursor over any button, text box, additional information appears what 
 the button is responsible for. The ability to connect the Frontend application directly to the web 
-application , which is on the Azure cloud, at the link : https://musicstore-
-api-app9.azurewebsites.net , you just need to change the uri field in the 
+application , which is on the Azure cloud, at the link : https://musicstore-api-app9.azurewebsites.net, you just need to change the uri field in the 
 Utilites/HelperHttpClient.cs directory. During the first launch locally will create records for testing 
 and 3 users also for testing.
 
