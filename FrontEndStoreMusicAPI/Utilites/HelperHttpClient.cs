@@ -18,7 +18,7 @@ namespace FrontEndStoreMusicAPI.Utilites
     static class HelperHttpClient
     {
         // private const string uri = @"https://localhost:7195"; // local connection
-         private const string uri = @"https://musicstore-api-app9.azurewebsites.net/"; // global connection
+        private const string uri = @"https://musicstore-api-app9.azurewebsites.net/"; // global connection
 
         private static string GetTokenJWT()
         {

@@ -42,7 +42,7 @@ namespace MusicStoreApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("MusicStoreApi.Entities.Album", b =>
@@ -74,7 +74,7 @@ namespace MusicStoreApi.Migrations
 
                     b.HasIndex("ArtistId");
 
-                    b.ToTable("Albums");
+                    b.ToTable("Albums", (string)null);
                 });
 
             modelBuilder.Entity("MusicStoreApi.Entities.Artist", b =>
@@ -117,7 +117,7 @@ namespace MusicStoreApi.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Artists");
+                    b.ToTable("Artists", (string)null);
                 });
 
             modelBuilder.Entity("MusicStoreApi.Entities.Role", b =>
@@ -134,7 +134,7 @@ namespace MusicStoreApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("MusicStoreApi.Entities.Song", b =>
@@ -157,7 +157,7 @@ namespace MusicStoreApi.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.ToTable("Songs");
+                    b.ToTable("Songs", (string)null);
                 });
 
             modelBuilder.Entity("MusicStoreApi.Entities.User", b =>
@@ -196,7 +196,7 @@ namespace MusicStoreApi.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("MusicStoreApi.Entities.Album", b =>
