@@ -50,11 +50,11 @@ Utilites/HelperHttpClient.cs directory. During the first launch locally will cre
 and 3 users also for testing.
 
 Additionally created / changed things in the Backend Application :
-    1. Adding a new endpoint -> GET api/login/user/{email} -> to access the user's details and the generated JWT Token, after logging into the main Music Store window.
-    2. Adding a new endpoint -> GET api/login/user/{userId}/artist -> to have access after logging into the main Music Store window to all the artists created by a given user and detailed information to display.
-    3. Adding a new endpoint -> GET api/song -> retrieves all songs from the database.
-    4. Adding a new endpoint -> GET api/album -> retrieves all albums from the database.
-    5. Changing the sorting of data, if you do not select ASC (1)-> ascending or DESC (2) descending and SearchWord, it does not sort.
-    6. Add a new endpoint -> GET api/artist/{artistId}/album/{albumId}/song/details/{songId} -> to access the details of a particular song with additional fields: AlbumTitle, ArtistId, ArtistName.
-    7. Add a new endpoint -> GET api/artist/{artistId}/album/details/{albumId} -> to access the details of a given album with additional fields: ArtistName, ArtistId.
-    8. Add a new endpoint -> GET api/artist/details/{Id} -> to access the details of a particular artist with additional fields: ContactEmail, ContactNumber.
+1. Adding a new endpoint -> GET api/login/user/{email} -> to access the user's details and the generated JWT Token, after logging into the main Music Store window.
+2. Adding a new endpoint -> GET api/login/user/{userId}/artist -> to have access after logging into the main Music Store window to all the artists created by a given user and detailed information to display.
+3. Adding a new endpoint -> GET api/song -> retrieves all songs from the database.
+4. Adding a new endpoint -> GET api/album -> retrieves all albums from the database.
+5. Changing the sorting of data, if you do not select ASC (1)-> ascending or DESC (2) descending and SearchWord, it does not sort.
+6. Add a new endpoint -> GET api/artist/{artistId}/album/{albumId}/song/details/{songId} -> to access the details of a particular song with additional fields: AlbumTitle, ArtistId, ArtistName.
+7. Add a new endpoint -> GET api/artist/{artistId}/album/details/{albumId} -> to access the details of a given album with additional fields: ArtistName, ArtistId.
+8. Add a new endpoint -> GET api/artist/details/{Id} -> to access the details of a particular artist with additional fields: ContactEmail, ContactNumber.
