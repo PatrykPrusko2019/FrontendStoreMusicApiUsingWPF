@@ -1,4 +1,4 @@
-A detailed description of the application with photos is in the directory: FrontendStoreMusicApiUsingWPF/FrontEndStoreMusicAPI
+A detailed description of the application with photos is in the directory: FrontEndStoreMusicAPI
 /DescriptionOfApp.
 
 Frontend WPF application for Store Music Api application:
