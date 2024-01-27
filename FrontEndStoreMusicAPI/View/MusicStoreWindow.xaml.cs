@@ -80,7 +80,7 @@ namespace FrontEndStoreMusicAPI.View
             }
             else
             {
-                MessageBox.Show("You are not logged in, so you do not have access to this option !");
+                Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option !");
             }
             
 

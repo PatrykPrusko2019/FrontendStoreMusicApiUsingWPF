@@ -36,7 +36,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
             query.SearchWord = SearchWord.Text;
             List<SongDto> allSongs;
             songs.Clear();
-            if (ArtistId == -1 && AlbumId == -1) { MessageBox.Show("Not Songs found"); return; }
+            if (ArtistId == -1 && AlbumId == -1) { Xceed.Wpf.Toolkit.MessageBox.Show("Not Songs found"); return; }
 
             if (IsGetAllSongs)
             {
@@ -80,12 +80,12 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         {
             if (MusicStoreWindow.DetailsUser == null)
             {
-                MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
+                Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
                 return;
             }
 
             UpdateCreateSong createSong = new UpdateCreateSong();
-            createSong.DescriptionUpdateCreateSong.Text = "You are in the Create Album section";
+            createSong.DescriptionUpdateCreateSong.Text = "You are in the Create Song section";
             createSong.SongId = 0;
             createSong.ArtistId = ArtistId;
             createSong.AlbumId = AlbumId;
@@ -98,10 +98,10 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         {
             SongDto selectedSong;
             var indexItem = DataGridSongs.SelectedIndex;
-            if (indexItem == -1 || indexItem == songs.Count) { MessageBox.Show("Select any record to be updated!"); return; }
+            if (indexItem == -1 || indexItem == songs.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null)
             {
-                MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
+                Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
                 return;
             }
             else
@@ -127,8 +127,8 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         private void Button_DeleteSongById(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridSongs.SelectedIndex;
-            if (indexItem == -1 || indexItem == songs.Count) { MessageBox.Show("Select any record to be deleted!"); return; }
-            else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
+            if (indexItem == -1 || indexItem == songs.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to be deleted!"); return; }
+            else if (MusicStoreWindow.DetailsUser == null) { Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
             else
             {
                 SongId = songs[indexItem].Id;
@@ -142,7 +142,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         private void Button_DeleteAllSongs(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridSongs.SelectedIndex;
-            if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
+            if (MusicStoreWindow.DetailsUser == null) { Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
             else
             {
                 ISongService albumService = new SongService();
@@ -156,7 +156,7 @@ namespace FrontEndStoreMusicAPI.View.Song_Sub_Window
         private async void Button_DetailsSong(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridSongs.SelectedIndex;
-            if (indexItem == -1 || indexItem == songs.Count) { MessageBox.Show("Select any record to display Details of Song !"); return; }
+            if (indexItem == -1 || indexItem == songs.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to display Details of Song !"); return; }
 
             ISongService songService = new SongService();
             SongId = songs[indexItem].Id;

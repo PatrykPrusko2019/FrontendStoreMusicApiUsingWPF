@@ -120,13 +120,13 @@ namespace FrontEndStoreMusicAPI.Utilites
             string responseBody = await response.Content.ReadAsStringAsync();
             int startIndex = responseBody.IndexOf("\"errors\"", StringComparison.OrdinalIgnoreCase);
             if (startIndex != -1) responseBody = responseBody.Substring(startIndex);
-            MessageBox.Show("Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nErrors: " + responseBody);
+            Xceed.Wpf.Toolkit.MessageBox.Show("Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode  + (responseBody != null ? "\nErrors: " + responseBody : ""));
         }
 
         public async static void GetResponseBodyOk(HttpResponseMessage response, string extendText)
         {
             string responseBody = await response.Content.ReadAsStringAsync();
-            MessageBox.Show($"{extendText}\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode + (responseBody = responseBody != null ? "\nResponse Body: " + responseBody : ""));
+            Xceed.Wpf.Toolkit.MessageBox.Show($"{extendText}\nStatus Code: " + (int)response.StatusCode + " -> " + response.StatusCode + (responseBody != null ? "\nResponse Body: " + responseBody : ""));
         }
 
         public static List<ArtistDto> GenerateAlbumsSongsForArtists(List<ArtistDto> artists)

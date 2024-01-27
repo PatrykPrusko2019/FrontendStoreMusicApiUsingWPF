@@ -39,7 +39,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
             query.SearchWord = SearchWord.Text;
             List<AlbumDto> allAlbums;
             albums.Clear();
-            if (ArtistId == -1) { MessageBox.Show("Not Albums found"); return; }
+            if (ArtistId == -1) { Xceed.Wpf.Toolkit.MessageBox.Show("Not Albums found"); return; }
 
 
             if (IsGetAllArtists)
@@ -84,7 +84,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         {
             if (MusicStoreWindow.DetailsUser == null)
             {
-                MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
+                Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Create!");
                 return;
             }
 
@@ -101,10 +101,10 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         {
             AlbumDto selectedAlbum;
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to be updated!"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to be updated!"); return; }
             else if (MusicStoreWindow.DetailsUser == null)
             {
-                MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
+                Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Update!");
                 return;
             }
             else
@@ -128,8 +128,8 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_DeleteAlbumById(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to be deleted!"); return; }
-            else if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
+            if (indexItem == -1 || indexItem == albums.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to be deleted!"); return; }
+            else if (MusicStoreWindow.DetailsUser == null) { Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Delete One!"); } // no user logged in
             else
             {
                 AlbumId = albums[indexItem].Id;
@@ -142,7 +142,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_DeleteAllAlbums(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (MusicStoreWindow.DetailsUser == null) { MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
+            if (MusicStoreWindow.DetailsUser == null) { Xceed.Wpf.Toolkit.MessageBox.Show("You are not logged in, so you do not have access to this option : Delete All!"); } // no user logged in
             else
             {
                 IAlbumService albumService = new AlbumService();
@@ -156,7 +156,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private async void Button_DetailsAlbum(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to display Details of Album !"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to display Details of Album !"); return; }
 
             IAlbumService albumService = new AlbumService();
             AlbumId = albums[indexItem].Id;
@@ -176,10 +176,10 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
         private void Button_ShowAllSongs(object sender, RoutedEventArgs e)
         {
             var indexItem = DataGridAlbums.SelectedIndex;
-            if (indexItem == -1 || indexItem == albums.Count) { MessageBox.Show("Select any record to display All Songs of given Album!"); return; }
+            if (indexItem == -1 || indexItem == albums.Count) { Xceed.Wpf.Toolkit.MessageBox.Show("Select any record to display All Songs of given Album!"); return; }
             
             var selectedSongs = albums[indexItem].Songs;
-            if (selectedSongs == null || selectedSongs.Count == 0) MessageBox.Show("There are no Songs! Add new Song to given Album");
+            if (selectedSongs == null || selectedSongs.Count == 0) Xceed.Wpf.Toolkit.MessageBox.Show("There are no Songs! Add new Song to given Album");
                 
             ShowAllSongsWindow showAllSongsWindow = new ShowAllSongsWindow();
             showAllSongsWindow.ArtistId = ArtistId;

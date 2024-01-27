@@ -59,7 +59,7 @@ namespace FrontEndStoreMusicAPI
             }
             else
             {
-                MessageBox.Show("Invalid Date Of Birth -> correct format is: day-month-year or Role -> correct choose number: 1 (USER), 2 (PREMIUM_USER), 3 (ADMIN)");
+                Xceed.Wpf.Toolkit.MessageBox.Show("Invalid Date Of Birth -> correct format is: day-month-year or Role -> correct choose number: 1 (USER), 2 (PREMIUM_USER), 3 (ADMIN)");
                 return;
             }
 

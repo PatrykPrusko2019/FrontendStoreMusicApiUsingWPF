@@ -67,7 +67,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
                 }
                 else
                 {
-                    MessageBox.Show("Invalid one of the values: Price or Length, should be a numbers!");
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Invalid one of the values: Price or Length, should be a numbers!");
                     return;
                 }
 
@@ -86,7 +86,7 @@ namespace FrontEndStoreMusicAPI.View.Album_Sub_Windows
                 }
                 else
                 {
-                    MessageBox.Show("Invalid one of the values: Price or Length, should be a numbers!");
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Invalid one of the values: Price or Length, should be a numbers!");
                     return;
                 }
             }

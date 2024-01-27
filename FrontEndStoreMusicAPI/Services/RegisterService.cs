@@ -29,14 +29,14 @@ namespace FrontEndStoreMusicAPI.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Added new user" + "\nStatus code: " +(int)response.StatusCode + " -> " + response.StatusCode);
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Added new user" + "\nStatus code: " +(int)response.StatusCode + " -> " + response.StatusCode);
                     return true;
                 }
                 else
                 {
                     int startIndex = responseBody.IndexOf("\"errors\"", StringComparison.OrdinalIgnoreCase);
                     if (startIndex != -1) responseBody = responseBody.Substring(startIndex);
-                    MessageBox.Show("Invalid one of values, Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nDETAILS OF WHAT TO CORRECT: " + responseBody);
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Invalid one of values, Status Code: " + (int)response.StatusCode + " -> " + response.StatusCode + "\nDETAILS OF WHAT TO CORRECT: " + responseBody);
                     return false;
                 }
             }
