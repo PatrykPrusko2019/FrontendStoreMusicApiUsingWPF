@@ -245,7 +245,16 @@ namespace FrontEndStoreMusicAPI.View.Artist_Sub_Windows
             if (query.PageSize == 0) query.PageSize = 5;
 
             var artistsResult = await artistService.GetAll(query);
-            if (artistsResult.Items == null || artistsResult.Items.Count == 0) { Xceed.Wpf.Toolkit.MessageBox.Show("artists not found !"); return; }
+            if (artistsResult == null || artistsResult.Items == null || artistsResult.Items.Count == 0) 
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("artists not found ! Please use the search button again !!!");
+                query.PageNumber = 0;
+                query.PageSize = 0;
+                query.SearchWord = "";
+                query.SortBy = "";
+                query.SortDirection = Models.SortDirection.NULL;
+                return;
+            }
             paginationResults.Add(artistsResult);
             DataGridArtistsResults.DataContext = paginationResults;
 
